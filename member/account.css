@@ -13,10 +13,10 @@
     font-size: 1.3rem;
 }
 
-/* css for other elements */
 #user-icon {
     margin-left: 1vw;
 }
+/* css for other elements */
 
 #joined-event-col, #privacy-panel-email, #privacy-panel-password, #privacy-panel-other {
     border: 5px solid rgba(63, 63, 63, 0.65);
