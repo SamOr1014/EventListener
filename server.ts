@@ -6,6 +6,7 @@ import fs from 'fs'
 //import routers
 import {login} from './router/login'
 import {register} from './router/register'
+import {event} from './router/event'
 
 const uploadDir = 'uploads'
 fs.mkdirSync(uploadDir, { recursive: true })
@@ -43,6 +44,7 @@ app.get('/', (req, res)=> {
 //Use Different Router
 app.use('/login', login)
 app.use('/register', register)
+app.use('/createEvent',event)
 
 
 app.use(express.static('public'))
