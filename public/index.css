@@ -24,7 +24,7 @@
     border-radius: 15px;
 }
 
-
+/* css for slider */
 .homepage {
     display: block;
     height: 300px;
@@ -37,13 +37,16 @@
 
 p {
     margin-top: 100px;
+    font-family: Macan, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-
+/* css for categories */
 .categories {
     font-size: 2rem;
     margin-left: 40px;
+    margin-top: 40px;
     font-weight: bold;
+    font-family: Macan, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .title {
@@ -64,7 +67,7 @@ p {
     left: 16px;
     color: white;
     font-size: 2rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Macan, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
 }
 
@@ -73,6 +76,10 @@ p {
     border-radius: 5px;
     height: 100%; 
     width: 100%; 
-    max-width: 300px; 
-    max-height: 300px;
+    max-width: 280px; 
+    max-height: 280px;
+}
+
+.carousel-item {
+    height: 700px;
 }
