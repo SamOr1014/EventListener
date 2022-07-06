@@ -1,14 +1,18 @@
 import express from 'express'
 
+//app declare
 const app = express();
-
+//import routers
+import {login} from './router/login'
+import {register} from './router/register'
 
 app.get('/', (req, res)=> {
     res.send("main")
 })
 
 //Use Different Router
-// app.use()
+app.use('/login', login)
+app.use('/register', register)
 
 
 
