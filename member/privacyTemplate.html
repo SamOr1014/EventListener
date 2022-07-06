@@ -1,0 +1,136 @@
+<!--User Profile-->
+    <div id="user-profile" class="container-fluid p-3">
+        <div class="row">
+        <div class="col-md-4 d-flex flex-column justify-content-center">
+          <!--Profile card-->
+          <div id="Profile" class="card w-100 mb-3">
+            <img
+              src="../test-image/profile-pic.jpg"
+              class="card-img-top w-100 rounded-circle"
+              alt="..."
+            />
+            <div class="card-body">
+              <div><h5 class="card-title">Name</h5></div>
+              <p class="card-text">Birthday :</p>
+              <p class="card-text">Email :</p>
+              <p class="card-text">Bio :</p>
+              <p class="card-text"></p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change-profile">
+                Edit Your Profile
+              </button>
+              <!--Modal-->
+              <div class="modal fade" id="change-profile" tabindex="-1" aria-labelledby="change-profile" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="change-profile-btn">Change Your Basic Information</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="profile-change">
+                        <div class="mb-3">
+                          <label for="first-name" class="col-form-label">First Name :</label>
+                          <input type="text" class="form-control" id="first-name">
+                        </div>
+                        <div class="mb-3">
+                          <label for="last-name" class="col-form-label">Last Name :</label>
+                          <input type="text" class="form-control" id="last-name">
+                        </div>
+                        <div class="mb-3">
+                          <label for="phone" class="col-form-label">Phone :</label>
+                          <input type="text" class="form-control" id="phone">
+                        </div>
+                        <div class="mb-3">
+                          <label for="birthday" class="col-form-label">Birthday :</label>
+                          <input type="date" class="form-control" id="birthday">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!--Password and Email changes-->
+        <div class="col-md-8">
+          <div id="privacy-panel-email" class="col-md-12 p-5 mb-5">
+            <div><h1>Your Current mail is :</h1></div>
+            <div id="email-placeholder">ABC@GMAIL.COM</div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change-email">
+              Change Email
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="change-email" tabindex="-1" aria-labelledby="change-email" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Changing your email</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="email-change">
+                      <div class="mb-3">
+                        <label for="new-email" class="col-form-label">New Email :</label>
+                        <input type="email" class="form-control" id="new-email">
+                      </div>
+                      <div class="mb-3">
+                        <label for="confirm-email" class="col-form-label">Confirm Email :</label>
+                        <input type="email" class="form-control" id="confirm-email">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Change</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        <div id="privacy-panel-password" class="col-md-12 p-5 mb-lg-5">
+          <div><h1>Last Change of your Current Password :</h1></div>
+          <div id="email-placeholder">2022-01-01</div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#change-pw">Change Password</button>
+          <!-- Modal -->
+          <div class="modal fade" id="change-pw" tabindex="-1" aria-labelledby="change-pw" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Changing Your Password</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form id="pw-change">
+                    <div class="mb-3">
+                      <label for="new-pw" class="col-form-label">New Password :</label>
+                      <input type="password" class="form-control" id="new-pw">
+                    </div>
+                    <div class="mb-3">
+                      <label for="confirm-pw" class="col-form-label">Confirm Password :</label>
+                      <input type="password" class="form-control" id="confirm-pw">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Change</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div id="privacy-panel-other" class="col-md-12 p-5">
+          <div><h1>Other Basic Information</h1></div>
+          <div id="phone-placeholder">Phone :</div>
+          <div id="gender-placeholder">Gender :</div>
+        </div>
+      <!--End of Page Div-->
+      </div>

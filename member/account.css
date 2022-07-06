@@ -15,11 +15,32 @@
 
 /* css for other elements */
 #user-icon {
-    margin-left: 4%;
+    margin-left: 1vw;
 }
 
-#joined-event-col {
+#joined-event-col, #privacy-panel-email, #privacy-panel-password, #privacy-panel-other {
     border: 5px solid rgba(63, 63, 63, 0.65);
     padding: 1rem;
     border-radius: 15px;
+}
+#followers {
+    aspect-ratio: 1/1;
+    height: 10px;
+}
+
+#follower-list{
+    height:200px;
+    list-style-type: none;
+    overflow-y: scroll;
+}
+#bio-text{
+    height:250px;
+    overflow-y: scroll;
+}
+
+#privacy-panel-email, #privacy-panel-password, #privacy-panel-other{
+    font-size: 1.5rem;
+}
+#privacy-panel-email div, #privacy-panel-password div, #privacy-panel-other div{
+    margin-bottom: 1rem;
 }
