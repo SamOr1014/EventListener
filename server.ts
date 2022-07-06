@@ -1,4 +1,5 @@
 import express from 'express'
+import expressSession from 'express-session'
 import formidable from 'formidable'
 import fs from 'fs'
 
@@ -20,13 +21,21 @@ export const form = formidable({
 //app declare
 const app = express(); 
 
+//express-session
+app.use(expressSession({
+  secret: 'I am A Secret and you suck',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+
 //Parse Multiform Data
 app.use(express.urlencoded({ extended: true }))
+
 //Parse Json
 app.use(express.json())
 
-
-
+//main page
 app.get('/', (req, res)=> {
     res.send("main")
 })
