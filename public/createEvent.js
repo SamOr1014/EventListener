@@ -1,6 +1,18 @@
 console.log("testing")
 
+window.onload =() => {
+  adjustTime()
+}
 
+function adjustTime() {
+  let today = new Date()
+  let day = String(today.getDate() ).padStart(2, '0');
+  let month = String(today.getMonth() + 1).padStart(2, '0');
+  let year = today.getFullYear();
+  today = year + '-' + month + '-' + day;
+  const updateTime = `<input type="date" id="eventDate" name="eventDate" min = ${today} required>`
+  document.querySelector('#eventDate').innerHTML = updateTime;
+}
 
 
 function disableFee(fee) {
@@ -18,15 +30,15 @@ document.querySelector('#createEvent').addEventListener("submit", async function
     const formData = new FormData();
     formData.append("eventName", form.eventName.value);
     formData.append("type", form.type.value);
+    formData.append("eventDate", form.eventDate.value);
+    formData.append("eventTime", form.eventTime.value);
     formData.append("participants", form.participants.value);
     formData.append("venue", form.venue.value);
     formData.append("Fee", form.Fee.value);
     formData.append("content", form.content.value)
     formData.append("image", form.image.files[0])
 
-    console.log(formData)
-
-    const res = await fetch ('/createEvent', {
+    const res = await fetch ('/event', {
       method:"POST",
       body: formData,
     })

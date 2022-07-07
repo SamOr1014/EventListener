@@ -3,3 +3,5 @@ node_modules
 package-lock.json
 .env
 test-image
+wsj_proj.session.sql
+.vscode

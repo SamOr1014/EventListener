@@ -19,6 +19,7 @@ import {login} from './router/login'
 import {register} from './router/register'
 import {event} from './router/event'
 import {account} from './router/account'
+import {followers} from './router/followers'
 
 const uploadDir = 'uploads'
 fs.mkdirSync(uploadDir, { recursive: true })
@@ -39,7 +40,7 @@ app.use(expressSession({
   secret: 'I am A Secret and you suck',
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: false }
 }))
 
 //Parse Multiform Data
@@ -58,6 +59,7 @@ app.use('/login', login)
 app.use('/register', register)
 app.use('/event',event)
 app.use('/account', account)
+app.use('/followers', followers)
 
 app.use(express.static('public'))
 account.use(express.static('member'))
