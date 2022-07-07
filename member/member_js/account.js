@@ -1,8 +1,7 @@
 //functions
 async function loadUserProfile(){
-    let userID = 1
     let htmlProfileCard = document.querySelector('#profile-info')
-    const profile = await fetch(`/account/userdetail?userid=${userID}`, {
+    const profile = await fetch(`/account/userdetail`, {
         method: 'GET'
     })
     const userInfo = await profile.json()
@@ -25,7 +24,7 @@ async function loadUserProfile(){
 async function loadFollowers(){
     let htmlFollowersList = document.querySelector('#follower-list')
     let userID = 1
-    const followers = await fetch(`/followers?userid=${userID}`, {
+    const followers = await fetch(`/followers`, {
         method: 'GET'
     })
     const followersInfo = await followers.json()
@@ -34,6 +33,6 @@ async function loadFollowers(){
       htmlFollowersList.innerHTML += `<li>${fullName}</li>`
     }
 }
-console.log("Front end")
+
 loadUserProfile()
 loadFollowers()

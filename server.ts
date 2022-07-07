@@ -1,3 +1,7 @@
+//######Trial only needa delete later
+let loginStatus = true
+
+
 import express from 'express'
 import expressSession from 'express-session'
 import formidable from 'formidable'
@@ -59,6 +63,14 @@ app.get('/', (req, res)=> {
 })
 app.get('/main', (req, res)=> {
     res.send("main page")
+})
+app.get('/status', (req, res)=> {
+    res.json({loginStatus})
+})
+
+app.get('/logout', (req, res)=> {
+  loginStatus = false //replace by req.session["user"]
+  res.redirect('/')
 })
 
 //Router can be used by Non-user

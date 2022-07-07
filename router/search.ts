@@ -8,9 +8,9 @@ search.get('/', (req, res)=> {
 })
 
 search.get('/keyword', (req, res)=> {
-    const keyword = req.query.searchword
+    const keyword = req.query.keyword
     console.log(keyword)
-    res.send('keywords search')
+    res.json(keyword)
 })
 
 search.get('/genre', (req, res)=> {
