@@ -104,7 +104,62 @@
     </header>
     <!--Content for elements to insert in-->
     <div id="content">
-      
+      <div id="user-profile" class="container-fluid p-3">
+        <div class="row">
+        <div class="col-md-4 d-flex flex-column justify-content-center">
+          <div id="profile-info" class="card w-100 mb-3">
+            <img
+              src="../test-image/profile-pic.jpg"
+              class="card-img-top w-100 rounded-circle"
+              alt="..."
+            />
+            <div class="card-body">
+              <div><h5 id="profile-name" class="card-title">Name</h5></div>
+              <div id="profile-birthday" class="card-text mb-2">Birthday :</div>
+              <div id="profile-email" class="card-text mb-2">Email :</div>
+              <div class="card-text mb-2">Bio :</div>
+              <div id="profile-bio" class="card-text mb-2"></div>
+            </div>
+          </div>
+          
+          <!--Follower card-->
+          <div id="Followers" class="card">
+            <div class="card-body">
+              <div>
+                <h5 class="card-title">The Users You Followed</h5>
+                <div>
+                  <ul id="follower-list">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+            <!--Upcoming Event-->
+        <div class="col-md-8">
+          <div id="upcoming-event" class="col-md-12">
+            <div class="col-lg-12 text-center mb-3"><h1>Upcoming Events</h3></div>
+              <div id="joined-event-col" class="col-lg-12 d-flex m-1 flex-wrap justify-content-center">
+                <div class="col-md-12 text-c"><h3>Kowloon Beach Happy Hour Party</h3></div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <img src="../test-image/_D756736_d622fac5-3fac-4454-819e-db7d5234cac3.jpg" class="w-75">
+                </div>
+                
+                <div class="col-md-4">
+                    <div><h4>Venue: </h4></div>
+                    <div><h5>@Kowloon Beach</h5></div>
+                    <div><h5>on 2022-10-19</h5></div>
+                    <div><h5>Rating: 4/5</h5></div>
+                </div>
+                <div class="col-lg-4">
+                    <div><h5>Event Bio:</h5></div>
+                    <div id="bio-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
     <!--Script Part-->
     <script
@@ -112,5 +167,6 @@
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
+    <script src="./account.js"></script>
   </body>
 </html>
