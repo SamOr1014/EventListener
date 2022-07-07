@@ -8,6 +8,7 @@ create table users (
     first_name varchar(255),
     phone varchar(255),
     email varchar(255),
+    password varchar(255),
     bio text,
     profile_img text,
     gender text,
