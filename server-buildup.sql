@@ -11,7 +11,8 @@ create table users (
     bio text,
     profile_img text,
     gender text,
-    birthday date
+    birthday date,
+    is_banned boolean
 );
 
 create table events (
@@ -27,13 +28,16 @@ create table events (
     is_full boolean,
     is_active boolean,
     is_deleted boolean,
-    organiser_id integer foreign key reference users (id) on delete cascade
+    organiser_id int,
+    constraint organiser_id
+    foreign key (organiser_id)
+    references users(id)
 );
 
 create table users_request (
     id serial primary key,
-    user_id integer foreign key reference users (id) on delete cascade,
-    event_id integer foreign key reference events (id) on delete cascade,
+    user_id int, foreign key (user_id) references users (id),
+    event_id int, foreign key (event_id) references events (id),
     created_at timestamp,
     updated_at timestamp,
     processed boolean
@@ -41,26 +45,26 @@ create table users_request (
 
 create table users_joined (
     id serial primary key,
-    user_id integer foreign key reference users (id) on delete cascade,
-    event_id integer foreign key reference events (id) on delete cascade,
+    user_id int, foreign key (user_id) references users (id),
+    event_id int, foreign key (event_id) references events (id)
 );
 
 create table follower_relation (
     id serial primary key,
-    user_id integer foreign key reference users (id) on delete cascade,
-    follower_id integer foreign key reference users (id) on delete cascade
+    user_id int, foreign key (user_id) references users (id),
+    follower_id int, foreign key (follower_id) references users (id)
 );
 
 create table event_comment (
     id serial primary key,
-    event_id integer foreign key reference events (id) on delete cascade,
-    user_id integer,
+    event_id int, foreign key (event_id) references events (id),
+    user_id int, foreign key (user_id) references users (id),
     comment text
 );
 
 create table reports (
     id serial primary key,
-    event_id integer foreign key reference events (id) on delete cascade,
+    event_id int, foreign key (event_id) references events (id),
     reason text,
     solved boolean
 );
@@ -72,6 +76,6 @@ create table genre (
 
 create table event_genre (
     id serial primary key,
-    event_id int foreign key reference events (id) on delete cascade,
-    genre_id int foreign key reference genre (id)
+    event_id int, foreign key (event_id) references events (id),
+    genre_id int, foreign key (genre_id) references genre (id)
 );
