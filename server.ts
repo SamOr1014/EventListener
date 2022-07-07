@@ -20,10 +20,14 @@ import {register} from './router/register'
 import {event} from './router/event'
 import {account} from './router/account'
 import {followers} from './router/followers'
+import {search} from './router/search'
 
+
+//file upload route
 const uploadDir = 'uploads'
 fs.mkdirSync(uploadDir, { recursive: true })
 
+//formidable parsing shit
 export const form = formidable({
   uploadDir,
   keepExtensions: true,
@@ -51,19 +55,27 @@ app.use(express.json())
 
 //main page
 app.get('/', (req, res)=> {
-    res.send("main")
+    res.redirect("index.html")
+})
+app.get('/main', (req, res)=> {
+    res.send("main page")
 })
 
-//Use Different Router
-app.use('/login', login)
+//Router can be used by Non-user
 app.use('/register', register)
+app.use('/search', search)
+app.use('/login', login)
+
+//Router can only be use by user
 app.use('/event',event)
 app.use('/account', account)
 app.use('/followers', followers)
 
+
 app.use(express.static('public'))
 account.use(express.static('member'))
 app.use(express.static('private'))
+
 //Listening to Port 8080
 const PORT = 8080
 app.listen(PORT, ()=> {
