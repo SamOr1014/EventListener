@@ -2,11 +2,23 @@ import express from 'express'
 import expressSession from 'express-session'
 import formidable from 'formidable'
 import fs from 'fs'
+import dotenv from 'dotenv'
+dotenv.config()
+import pg from 'pg'
+
+//database
+export const client = new pg.Client({
+  database: process.env.DB_NAME,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD
+})
+client.connect();
 
 //import routers
 import {login} from './router/login'
 import {register} from './router/register'
 import {event} from './router/event'
+import {account} from './router/account'
 
 const uploadDir = 'uploads'
 fs.mkdirSync(uploadDir, { recursive: true })
@@ -44,12 +56,12 @@ app.get('/', (req, res)=> {
 //Use Different Router
 app.use('/login', login)
 app.use('/register', register)
-app.use('/createEvent',event)
-
+app.use('/event',event)
+app.use('/account', account)
 
 app.use(express.static('public'))
-app.use(express.static('member'))
-app.use(express.static('Private'))
+account.use(express.static('member'))
+app.use(express.static('private'))
 //Listening to Port 8080
 const PORT = 8080
 app.listen(PORT, ()=> {
