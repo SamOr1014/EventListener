@@ -39,7 +39,7 @@ app.use(expressSession({
   secret: 'I am A Secret and you suck',
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: false }
 }))
 
 //Parse Multiform Data
