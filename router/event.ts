@@ -34,7 +34,6 @@ event.get("/", (req, res) => {
   res.redirect("createEvent.html");
 });
 
-<<<<<<< HEAD
 event.get("/allEvents", async (req, res) => {
   const allEvent = await client.query(
     "select * from events where is_deleted = false and is_active = true"
@@ -46,14 +45,6 @@ event.get("/details", (req, res) => {
 });
 event.use(express.static("public"));
 event.post("/", formidableMiddleware, async (req, res) => {
-=======
-event.get('/allEvents', async (req, res)=> {
-    const allEvent = await client.query('select * from events where is_deleted = false and is_active = true')
-    res.json(allEvent.rows)
-})
-
-event.post('/', formidableMiddleware, async (req, res) => {
->>>>>>> e0b36bb19b15523ccfdb7fdff7068d8fd31120ea
   try {
     const form = req.form!;
     const eventName = form.fields.eventName;
@@ -89,8 +80,5 @@ event.post('/', formidableMiddleware, async (req, res) => {
     console.log("Event created");
   }
 });
-<<<<<<< HEAD
-=======
 
 
->>>>>>> e0b36bb19b15523ccfdb7fdff7068d8fd31120ea
