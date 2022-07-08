@@ -1,9 +1,8 @@
-create database wsj_proj;
-
 psql -U postgres;
 
-\c wsj_proj;
+create database wsj_proj;
 
+\c wsj_proj;
 
 create table users (
     id serial primary key,
@@ -17,7 +16,7 @@ create table users (
     gender text,
     birthday date,
     is_banned boolean,
-    is_Admin boolean
+    is_admin boolean
 );
 
 create table events (

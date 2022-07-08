@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express'
 
 export async function isLoggedin(req:Request, res:Response, next:NextFunction) {
-    if (req.session['userStatus']) {
+    if (req.session['user']) {
         next()
     }
     else {

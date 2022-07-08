@@ -34,17 +34,9 @@ event.get("/", (req, res) => {
   res.redirect("createEvent.html");
 });
 
-<<<<<<< HEAD
 event.get('/allEvents', async (req, res)=> {
     const allEvent = await client.query('select * from events where is_deleted = false and is_active = true and is_full = false')
     res.json(allEvent.rows);
-=======
-event.get("/allEvents", async (req, res) => {
-  const allEvent = await client.query(
-    "select * from events where is_deleted = false and is_active = true and is_full = false"
-  );
-  res.json(allEvent.rows);
->>>>>>> 793c221e1b5a505719af13be876071bb7b7df0dc
 });
 
 event.get("/details/:id", (req, res) => {
