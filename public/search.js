@@ -10,8 +10,15 @@ async function getData() {
 
     // manage html
     const dataBoard = document.querySelector("#content")
-    const htmlStr = `<div> ${data.name}, ${data.image} </div>`
+    const htmlStr = `<div> ${data.name}, ${data.image}, ${data.venue}, ${data.date}, ${data.user}, ${data.rating} </div>`
     dataBoard.innerHTML = htmlStr
 } 
 
-getData()
+getData()      
+
+
+// Result: image, event name, event venue, event date, user(organizer) bio, rating
+
+
+
+
