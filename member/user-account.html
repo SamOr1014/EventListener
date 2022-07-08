@@ -21,85 +21,96 @@
         >
           <a
             id="logo"
-            href="/"
             class="d-flex align-items-center mb-2 mb-lg-2 text-white text-decoration-none"
+            href="/"
           >
             EL.
           </a>
-
+    
           <ul
             id="navigation"
             class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0"
           >
-            <li><a href="#" id="explore" class="nav-link px-2 text-white">Explore</a></li>
             <li>
-              <a href="#" id="create-event" class="nav-link px-2 text-white">Create Event</a>
+              <a id="explore" class="nav-link px-2 text-white" href="/main"
+                >Explore</a
+              >
+            </li>
+            <li>
+              <a
+                id="create-event"
+                class="nav-link px-2 text-white"
+                href="/event"
+                >Create Event</a
+              >
             </li>
             <li>
               <div class="dropdown">
-                <a class="nav-link px-2 text-white dropdown-toggle" href="#" id="genre" data-bs-toggle="dropdown" aria-expanded="false">
+                <a
+                  class="nav-link px-2 text-white dropdown-toggle"
+                  id="genre"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Genre
                 </a>
-              
+    
                 <ul class="dropdown-menu" aria-labelledby="genre">
-                  <li><a id="genre-sport" class="dropdown-item" href="#">Sport</a></li>
-                  <li><a id="genre-water" class="dropdown-item" href="#">Water Activity</a></li>
-                  <li><a id="genre-party" class="dropdown-item" href="#">Party</a></li>
-                  <li><a id="genre-boardgame" class="dropdown-item" href="#">Board Game</a></li>
-                  <li><a id="genre-workshop" class="dropdown-item" href="#">Workshop</a></li>
-                  <li><a id="genre-gaming" class="dropdown-item" href="#">Gaming</a></li>
-                  <li><a id="genre-online" class="dropdown-item" href="#">Online Activity</a></li>
+                  <li>
+                    <a id="genre-sport" class="dropdown-item" href="/search?genre=sport">Sport</a>
+                  </li>
+                  <li>
+                    <a id="genre-water" class="dropdown-item" href="/search?genre=water-activity">Water Activity</a>
+                  </li>
+                  <li>
+                    <a id="genre-party" class="dropdown-item" href="/search?genre=party">Party</a>
+                  </li>
+                  <li>
+                    <a id="genre-boardgame" class="dropdown-item" href="/search?genre=board-game">Board Game</a>
+                  </li>
+                  <li>
+                    <a id="genre-workshop" class="dropdown-item" href="/search?genre=workshop">Workshop</a>
+                  </li>
+                  <li>
+                    <a id="genre-gaming" class="dropdown-item" href="/search?genre=gaming"
+                      >Gaming</a
+                    >
+                  </li>
+                  <li>
+                    <a id="genre-online" class="dropdown-item" href="/search?genre=online-activity"
+                      >Online Activity</a
+                    >
+                  </li>
+                  <li>
+                    <a id="genre-other" class="dropdown-item" href="/search?genre=other">Other</a>
+                  </li>
                 </ul>
               </div>
             </li>
           </ul>
-
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+    
+          <form
+            id="header-search"
+            class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex"
+            role="search"
+          >
             <input
+              name="searchbar"
               type="search"
               class="form-control form-control-dark text-white bg-dark"
               placeholder="Search..."
               aria-label="Search"
             />
+            <!-- <button type="submit" class="btn btn-primary">search</button> -->
           </form>
+    
+          <div id="account" class="text-end d-flex">
 
-          <div id="account" class="text-end">
-            <button type="button" class="btn btn-outline-light me-2">
-              Account
-            </button>
-            <button type="button" class="btn btn-warning">Log Out</button>
           </div>
-
-          <div id="user-menu">
-          <a
-            href="#"
-            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="user-icon"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://github.com/mdo.png"
-              alt=""
-              class="rounded-circle me-2"
-              width="32"
-              height="32"
-            />
-            <strong>User</strong>
-          </a>
-          <ul
-            class="dropdown-menu dropdown-menu-dark text-small shadow"
-            aria-labelledby="user-icon"
-          >
-            <li><a id="profile" class="dropdown-item" href="#">Profile</a></li>
-            <li><a id="created" class="dropdown-item" href="#">Created</a></li>
-            <li><a id="joined" class="dropdown-item" href="#">Joined</a></li>
-            <li>
-              <a id="privacy" class="dropdown-item" href="#">Privacy Setting</a>
-            </li>
-          </ul>
         </div>
-        </div>
+    
+    
+      </div>
       </div>
     </header>
     <!--Content for elements to insert in-->
@@ -109,7 +120,7 @@
         <div class="col-md-4 d-flex flex-column justify-content-center">
           <div id="profile-info" class="card w-100 mb-3">
             <img
-              src="../test-image/profile-pic.jpg"
+              src="/profile-pic.jpg"
               class="card-img-top w-100 rounded-circle"
               alt="..."
             />
@@ -167,7 +178,8 @@
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
+    <script src="/header.js"></script>
     <script src="./member_js/account.js"></script>
-    <script type="text/javascript" src="../common-js/header.js"></script>
+    
   </body>
 </html>

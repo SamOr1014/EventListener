@@ -6,9 +6,10 @@ async function loadUserProfile(){
     })
     const userInfo = await profile.json()
     console.log(userInfo)
+    let image = userInfo.profile_img ? userInfo.profile_img: "/profile-pic.jpg"
     htmlProfileCard.innerHTML = ''
     htmlProfileCard.innerHTML += `            <img
-    src=""
+    src="${image}"
     class="card-img-top w-100 rounded-circle"
     alt=""
   />
@@ -32,6 +33,10 @@ async function loadFollowers(){
       let fullName = followers.first_name + " " + followers.last_name
       htmlFollowersList.innerHTML += `<li>${fullName}</li>`
     }
+}
+
+async function loadUpComingEvent(){
+    
 }
 
 loadUserProfile()

@@ -34,6 +34,11 @@ event.get('/', (req,res)=>{
     res.redirect('createEvent.html')
 })
 
+event.get('/getAllEvents', async (req, res)=> {
+    const allEvent = await client.query('select * from events where is_deleted = false and is_active = true')
+    res.json(allEvent.rows)
+})
+
 event.post('/', formidableMiddleware, async (req, res) => {
     try {
       const form = req.form!;

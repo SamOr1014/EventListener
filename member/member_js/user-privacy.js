@@ -6,7 +6,9 @@ async function loadPrivacyProfile(){
     })
     const userInfo = await profile.json()
     console.log(userInfo)
+    let image = await userInfo.profile_img ? userInfo.profile_img: "/profile-pic.jpg"
     document.querySelector('#profile-name').innerHTML = `<h2>${userInfo.first_name + " " + userInfo.last_name}</h2>`
+    document.querySelector('#pf-pic').src = image
     document.querySelector('#b-day').innerHTML += userInfo.birthday
     document.querySelector('#cur-user-id').innerHTML += userInfo.id
     document.querySelector('#bio').innerHTML = userInfo.bio
