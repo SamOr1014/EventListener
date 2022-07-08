@@ -39,6 +39,18 @@ event.get('/allEvents', async (req, res)=> {
     res.json(allEvent.rows);
 });
 
+event.get('/createdEvent', async (req, res)=> {
+  const userCreated = await client.query('select * from events where organiser_id = $1 order by date desc',[req.session['user'].ID])
+  console.log(userCreated.rows)
+  res.json(userCreated.rows)
+})
+
+event.get('/joinedEvent', async (req, res)=> {
+  const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1;', [req.session['user'].ID])
+  console.log(userJoined.rows)
+  res.json(userJoined.rows)
+})
+
 event.get("/details/:id", (req, res) => {
   const id = parseInt(req.params.id, 10);
   console.log(id);
