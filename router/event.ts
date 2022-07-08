@@ -34,7 +34,7 @@ event.get('/', (req, res) => {
   res.redirect('createEvent.html')
 })
 
-event.get('/getAllEvents', async (req, res)=> {
+event.get('/allEvents', async (req, res)=> {
     const allEvent = await client.query('select * from events where is_deleted = false and is_active = true')
     res.json(allEvent.rows)
 })
@@ -66,8 +66,4 @@ event.post('/', formidableMiddleware, async (req, res) => {
   }
 });
 
-event.get('/allEvents', async (req, res) => {
-  const getAllEventSQL = `SELECT * FROM events`
-  const result = await client.query(getAllEventSQL)
-  res.json({result, message: "success"})
-})
+

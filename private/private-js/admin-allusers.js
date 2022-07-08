@@ -1,8 +1,8 @@
-async function loadAllEventAdmin(){
-    const eventsFromServer = await fetch('/account/alluserdetail', {
+async function loadAllUsersAdmin(){
+    const usersFromServer = await fetch('/account/alluserdetail', {
         method: 'GET'
     })
-    const usersDetail = await eventsFromServer.json()
+    const usersDetail = await usersFromServer.json()
     console.log(usersDetail);
     for (let user of usersDetail){
         let statusButton = user.is_banned? "Unban":"Ban"
@@ -23,7 +23,7 @@ async function loadAllEventAdmin(){
 }
 
 
-loadAllEventAdmin()
+loadAllUsersAdmin()
 
 
 
