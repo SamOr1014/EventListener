@@ -15,10 +15,10 @@
 #user-icon {
   margin-left: 1vw;
 }
-/* .container {
+#event-details {
   margin-top: 80px;
-  background-color: aqua;
-} */
+  /* background-color: aqua; */
+}
 .event-left {
   width: 50%;
   /* margin-right: 300px; */
