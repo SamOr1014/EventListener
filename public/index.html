@@ -26,22 +26,40 @@
         >
           <a
             id="logo"
+            href="/"
             class="d-flex align-items-center mb-2 mb-lg-2 text-white text-decoration-none"
           >
             EL.
           </a>
-
+    
           <ul
             id="navigation"
             class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0"
           >
-            <li><a href="#" class="nav-link px-2 text-white">Explore</a></li>
+            <li><a href="#" id="explore" class="nav-link px-2 text-white">Explore</a></li>
             <li>
-              <a href="#" class="nav-link px-2 text-white">Create Event</a>
+              <a href="#" id="create-event" class="nav-link px-2 text-white">Create Event</a>
+            </li>
+            <li>
+              <div class="dropdown">
+                <a class="nav-link px-2 text-white dropdown-toggle" href="#" id="genre" data-bs-toggle="dropdown" aria-expanded="false">
+                  Genre
+                </a>
+              
+                <ul class="dropdown-menu" aria-labelledby="genre">
+                  <li><a id="genre-sport" class="dropdown-item" href="#">Sport</a></li>
+                  <li><a id="genre-water" class="dropdown-item" href="#">Water Activity</a></li>
+                  <li><a id="genre-party" class="dropdown-item" href="#">Party</a></li>
+                  <li><a id="genre-boardgame" class="dropdown-item" href="#">Board Game</a></li>
+                  <li><a id="genre-workshop" class="dropdown-item" href="#">Workshop</a></li>
+                  <li><a id="genre-gaming" class="dropdown-item" href="#">Gaming</a></li>
+                  <li><a id="genre-online" class="dropdown-item" href="#">Online Activity</a></li>
+                </ul>
+              </div>
             </li>
           </ul>
-
-          <form id="header-search" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+    
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <input
               type="search"
               class="form-control form-control-dark text-white bg-dark"
@@ -49,16 +67,9 @@
               aria-label="Search"
             />
           </form>
-
-          <div id="account" class="text-end">
-            <button type="button" class="btn btn-outline-light me-2">
-              Log in
-            </button>
-            <button type="button" class="btn btn-warning">
-              Sign up
-              </button>
+    
+          <div id="account" class="text-end d-flex">
           </div>
-          
         </div>
       </div>
     </header>
@@ -163,5 +174,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="index.js"></script>
+    <script src="/header.js"></script>
   </body>
 </html>
