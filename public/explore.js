@@ -27,9 +27,7 @@ async function loadEventsWithAc() {
 async function postAllEvents() {
   console.log("No AC so will show all contents")
   const resp = await fetch("/event/allEvents")
-  const resultToHandle = await resp.json()
-  const results = resultToHandle.result.rows
-  console.log(results)
+  const results = await resp.json()
   let htmlStr = "";
   for (const result of results) {
     console.log(`Testing${result}`)
@@ -40,16 +38,30 @@ async function postAllEvents() {
       class="card-img-top"
       alt="..."
     />
-    <div class="card-body" id = "event-id-${result.id}>
+    <div class="card-body" data-id="${result.id}">
       <h5 class="card-title">${result.name}</h5>
       <p class="card-text">
         Date:${result.date}<br>
         Location:${result.venue}<br>
         Fee:${result.fee}
       </p>
-    </div>
+      </div>
   </div>
 `;
+
   }
-  document.querySelector("#cardArea").innerHTML = htmlStr;
+  document.querySelector("#allEvent").innerHTML = htmlStr;
+
+  document.querySelectorAll(".card-body").forEach((ele) =>
+  ele.addEventListener("click", async (e) => {
+    const id = e.target.parentElement.dataset.id;
+    console.log(id)
+    const resp = await fetch(`/event/${id}`, { method: "GET" });
+    if (resp.status === 400) {
+      const result = await resp.json();
+      alert(result.message);
+    }
+  })
+);  
 }
+

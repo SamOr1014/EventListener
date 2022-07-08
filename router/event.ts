@@ -34,8 +34,8 @@ event.get('/', (req, res) => {
   res.redirect('createEvent.html')
 })
 
-event.get('/getAllEvents', async (req, res)=> {
-    const allEvent = await client.query('select * from events where is_deleted = false and is_active = true')
+event.get('/allEvents', async (req, res)=> {
+    const allEvent = await client.query('select * from events where is_deleted = false and is_active = true and is_full = false')
     res.json(allEvent.rows)
 })
 
@@ -55,8 +55,8 @@ event.post('/', formidableMiddleware, async (req, res) => {
     const imageSavedName = form.files.image?.["newFilename"];
     const user = req.session["user"]
 
-    const saveEventSQL = `INSERT INTO events (name, date, max_participant,type, bio, venue, fee,organiser_id,image,created_at) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`
-    await client.query(saveEventSQL, [eventName, time, numberOfPart, type, content, venue, Fee, user.ID, imageSavedName, dateTime])
+    const saveEventSQL = `INSERT INTO events (name, date, max_participant,type, bio, venue, fee,organiser_id,image,created_at,is_full,is_active,is_deleted) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`
+    await client.query(saveEventSQL, [eventName, time, numberOfPart, type, content, venue, Fee, user.ID, imageSavedName, dateTime,false,true,false])
     res.json({ success: true, message: "event created"})
 
   } catch (err) {
@@ -66,8 +66,9 @@ event.post('/', formidableMiddleware, async (req, res) => {
   }
 });
 
-event.get('/allEvents', async (req, res) => {
-  const getAllEventSQL = `SELECT * FROM events`
-  const result = await client.query(getAllEventSQL)
-  res.json({result, message: "success"})
+event.get('/:id', async (req,res)=> {
+  const id = parseInt(req.params.id, 10);
+  console.log(id)
 })
+
+
