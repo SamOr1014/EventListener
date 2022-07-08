@@ -25,6 +25,8 @@ import {event} from './router/event'
 import {account} from './router/account'
 import {followers} from './router/followers'
 import {search} from './router/search'
+import {explore} from './router/explore'
+
 
 
 //file upload route
@@ -77,6 +79,7 @@ app.get('/logout', (req, res)=> {
 app.use('/register', register)
 app.use('/search', search)
 app.use('/login', login)
+app.use('/explore', explore)
 
 //Router can only be use by user
 app.use('/event',event)
