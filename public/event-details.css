@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 /* css for header plus navbar */
 #logo {
-  font-family: "Permanent Marker", cursive;
+  font-family: 'Permanent Marker', cursive;
   font-size: 3rem;
 }
 #navigation {
@@ -58,4 +58,7 @@
 }
 #user-profile {
   margin: 3rem;
+}
+#event-content-text ul {
+  list-style-type: none;
 }
