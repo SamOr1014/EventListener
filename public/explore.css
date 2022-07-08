@@ -18,6 +18,11 @@
 .followed {
   margin: 100px 0px 50px 10px;
 }
+
+.cardArea {
+  display: flex;
+  flex-wrap: row;
+}
 .title {
   font-size: 20px;
   margin-bottom: 20px;
