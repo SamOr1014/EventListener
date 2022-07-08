@@ -1,7 +1,6 @@
 //######Trial only needa delete later
 let loginStatus = true
 
-
 import express from 'express'
 import expressSession from 'express-session'
 import formidable from 'formidable'
@@ -9,6 +8,7 @@ import fs from 'fs'
 import dotenv from 'dotenv'
 dotenv.config()
 import pg from 'pg'
+import path from 'path'
 
 //database
 export const client = new pg.Client({
@@ -64,9 +64,6 @@ app.get('/', (req, res)=> {
 app.get('/main', (req, res)=> {
     res.send("main page")
 })
-app.get('/status', (req, res)=> {
-    res.json({loginStatus})
-})
 
 app.get('/logout', (req, res)=> {
   loginStatus = false //replace by req.session["user"]
@@ -83,8 +80,13 @@ app.use('/event',event)
 app.use('/account', account)
 app.use('/followers', followers)
 
-
+app.get('/status', (req, res)=> {
+    res.json({loginStatus})
+})
+app.use(express.static(path.join(__dirname,'common-js')))
 app.use(express.static('public'))
+
+app.use(express.static('src'))
 account.use(express.static('member'))
 app.use(express.static('private'))
 

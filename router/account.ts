@@ -11,7 +11,6 @@ account.get('/', (req,res)=> {
 account.get('/userdetail', async (req, res)=> {
     const userID = 1 //later substitute by req.session["userID"]
     const userINFO = await client.query('SELECT * FROM users where id = $1', [userID])
-    console.log(userINFO.rows[0])
     res.json(userINFO.rows[0])
 })
 

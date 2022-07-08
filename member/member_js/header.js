@@ -36,7 +36,7 @@ async function loadHeaderAccountButton(){
         method: 'GET'
     })
     const userLoginStatus = await status.json()
-
+    console.log(userLoginStatus.loginStatus)
     //true fetch user's profile and get his profile pic and name
     if(userLoginStatus.loginStatus){
         //the login status is true so load the user profile
@@ -47,7 +47,7 @@ async function loadHeaderAccountButton(){
         console.log(userInfo)
         let image
         if (!userInfo.profile_img){
-          image = "./src/profile-pic.jpg"
+          image = "/src/profile-pic.jpg"
         }
         else {
           image = userInfo.profile_img
@@ -118,5 +118,4 @@ async function loadHeaderAccountButton(){
         addHeaderAccountListenerFalse()
     }
 }
-
-loadHeaderAccountButton()
+window.onload = ()=> {loadHeaderAccountButton()}
