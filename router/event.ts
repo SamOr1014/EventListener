@@ -34,17 +34,31 @@ event.get("/", (req, res) => {
   res.redirect("createEvent.html");
 });
 
+<<<<<<< HEAD
 event.get("/allEvents", async (req, res) => {
   const allEvent = await client.query(
     "select * from events where is_deleted = false and is_active = true"
   );
   res.json(allEvent.rows);
+=======
+event.get('/allEvents', async (req, res)=> {
+    const allEvent = await client.query('select * from events where is_deleted = false and is_active = true and is_full = false')
+    res.json(allEvent.rows);
+>>>>>>> d21205067c38ecd814a6cd1eb045e0e147989d10
 });
-event.get("/details", (req, res) => {
-  res.redirect("event-details.html");
+
+event.get("/details/:id", (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  console.log(id)
+  // res.redirect("event-details.html");
 });
+
 event.use(express.static("public"));
 event.post("/", formidableMiddleware, async (req, res) => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> d21205067c38ecd814a6cd1eb045e0e147989d10
   try {
     const form = req.form!;
     const eventName = form.fields.eventName;
@@ -58,27 +72,19 @@ event.post("/", formidableMiddleware, async (req, res) => {
     const content = form.fields.content;
     // const imageFileName = form.files.image?.["originalFilename"];
     const imageSavedName = form.files.image?.["newFilename"];
-    const user = req.session["user"];
+    const user = req.session["user"]
 
-    const saveEventSQL = `INSERT INTO events (name, date, max_participant,type, bio, venue, fee,organiser_id,image,created_at) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`;
-    await client.query(saveEventSQL, [
-      eventName,
-      time,
-      numberOfPart,
-      type,
-      content,
-      venue,
-      Fee,
-      user.ID,
-      imageSavedName,
-      dateTime,
-    ]);
-    res.json({ success: true, message: "event created" });
+    const saveEventSQL = `INSERT INTO events (name, date, max_participant,type, bio, venue, fee,organiser_id,image,created_at,is_full,is_active,is_deleted) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`
+    await client.query(saveEventSQL, [eventName, time, numberOfPart, type, content, venue, Fee, user.ID, imageSavedName, dateTime,false,true,false])
+    res.json({ success: true, message: "event created"})
   } catch (err) {
     console.error(err.message);
   } finally {
     console.log("Event created");
   }
 });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d21205067c38ecd814a6cd1eb045e0e147989d10
