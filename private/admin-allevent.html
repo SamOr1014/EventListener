@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Panel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link href="./admin.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!--The NavBar-->
+    <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            id="logo"
+            class="d-flex align-items-center mb-2 mb-lg-2 text-white text-decoration-none"
+            href="/"
+          >
+            EL.
+          </a>
+  
+          <ul
+            id="navigation"
+            class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0"
+          >
+            <li>
+              <a id="explore" class="nav-link px-2 text-white" href="/main"
+                >Explore</a
+              >
+            </li>
+            <li>
+              <a
+                id="create-event"
+                class="nav-link px-2 text-white"
+                href="/event"
+                >Create Event</a
+              >
+            </li>
+            <li>
+              <div class="dropdown">
+                <a
+                  class="nav-link px-2 text-white dropdown-toggle"
+                  id="genre"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Genre
+                </a>
+  
+                <ul class="dropdown-menu" aria-labelledby="genre">
+                  <li>
+                    <a
+                      id="genre-sport"
+                      class="dropdown-item"
+                      href="/search?genre=sport"
+                      >Sport</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-water"
+                      class="dropdown-item"
+                      href="/search?genre=water-activity"
+                      >Water Activity</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-party"
+                      class="dropdown-item"
+                      href="/search?genre=party"
+                      >Party</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-boardgame"
+                      class="dropdown-item"
+                      href="/search?genre=board-game"
+                      >Board Game</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-workshop"
+                      class="dropdown-item"
+                      href="/search?genre=workshop"
+                      >Workshop</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-gaming"
+                      class="dropdown-item"
+                      href="/search?genre=gaming"
+                      >Gaming</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-online"
+                      class="dropdown-item"
+                      href="/search?genre=online-activity"
+                      >Online Activity</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-other"
+                      class="dropdown-item"
+                      href="/search?genre=other"
+                      >Other</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+  
+          <form
+            id="header-search"
+            class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex"
+            role="search"
+          >
+            <input
+              name="searchbar"
+              type="search"
+              class="form-control form-control-dark text-white bg-dark"
+              placeholder="Search..."
+              aria-label="Search"
+            />
+            <!-- <button type="submit" class="btn btn-primary">search</button> -->
+          </form>
+  
+        <div id="account" class="text-end d-flex">
+        </div>
+        </div>
+      </div>
+    </header>
+    <!--The Whole Panel-->
+    <div id="profile-panel" class="container-fluid m-2">
+        <div id="showing-panel" class="row">  
+        </div>
+    </div>
+
+    <!--Script Part-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./private-js/admin-allevent.js"></script>
+    <script src="/admin-header.js"></script>
+    
+  </body>
+</html>

@@ -1,36 +1,38 @@
 window.onload = async () => {
-    console.log("Texting1")
-    await getUserInfo();
-    // true if has ac
-    // const isLoggedIN = !!user;
+  console.log("Texting1")
+  await getUserInfo();
+  // true if has ac
+  // const isLoggedIN = !!user;
 
-    console.log("Final texting")
+  console.log("Final texting")
 }
 
 
 async function getUserInfo() {
-    const resp = await fetch("/account/getUser");
-    if (resp.status === 200) {
-        const result = await resp.json();
-        user = result.user;
-        loadEventsWithAc();
-    } else {
-        postAllEvents();
-    }
+  const resp = await fetch("/account/getUser");
+  if (resp.status === 200) {
+    const result = await resp.json();
+    user = result.user;
+    loadEventsWithAc();
+  } else {
+    postAllEvents();
+  }
 }
 
 async function loadEventsWithAc() {
-    console.log(user.ID)
-    console.log(user.username)
+  console.log(user.ID)
+  console.log(user.username)
 }
 
 async function postAllEvents() {
-    console.log("No AC so will show all contents")
-    const resp = await fetch ("/event/allEvents")
-    const results = await resp.json()
-    let htmlStr = "";
-    for (const result of results){
-    console.log(result)
+  console.log("No AC so will show all contents")
+  const resp = await fetch("/event/allEvents")
+  const resultToHandle = await resp.json()
+  const results = resultToHandle.result.rows
+  console.log(results)
+  let htmlStr = "";
+  for (const result of results) {
+    console.log(`Testing${result}`)
     htmlStr += /*html*/ `   
     <div class="card" style="width: 18rem">
     <img
@@ -48,6 +50,6 @@ async function postAllEvents() {
     </div>
   </div>
 `;
-    }
-    document.querySelector("#cardArea").innerHTML = htmlStr;
+  }
+  document.querySelector("#cardArea").innerHTML = htmlStr;
 }

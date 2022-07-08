@@ -14,7 +14,7 @@ async function getData() {
     dataBoard.innerHTML = htmlStr
 } 
 
-getData()      
+// getData()      
 
 
 // Result: image, event name, event venue, event date, user(organizer) bio, rating

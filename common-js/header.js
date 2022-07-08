@@ -3,10 +3,15 @@ function addHeaderEventListeners(){
     //Event listeners
     //###############
     //search bar on header
-    document.querySelector('#header-search').addEventListener('submit', (event) => {
+    document.querySelector('#header-search').addEventListener('submit', async (event) => {
         event.preventDefault()
         const searchword = event.target.searchbar.value
-        window.location.href = `/search?keyword=${searchword}`
+        const searchKeyword = await fetch (`/search/keyword?keyword=${searchword}`, {
+          method: "GET"
+        })
+        console.log(await searchKeyword.json())
+        // window.location.href = `/search`
+
     })
 
 }    
@@ -44,10 +49,9 @@ async function loadHeaderAccountButton(){
             method: 'GET'
         })
         let userInfo = await userInfoFromServer.json()
-        console.log(userInfo)
         let image
         if (!userInfo.profile_img){
-          image = "/src/profile-pic.jpg"
+          image = "/profile-pic.jpg"
         }
         else {
           image = userInfo.profile_img
@@ -118,4 +122,7 @@ async function loadHeaderAccountButton(){
         addHeaderAccountListenerFalse()
     }
 }
-window.onload = ()=> {loadHeaderAccountButton()}
+window.onload = ()=> {
+  loadHeaderAccountButton()
+  console.log("You loaded header.js")
+}
