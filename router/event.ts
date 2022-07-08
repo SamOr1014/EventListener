@@ -2,7 +2,10 @@ import express from 'express'
 import {form} from '../server'
 import { Request, Response, NextFunction } from "express";
 import type { Fields, Files } from "formidable";
+import {client} from '../server'
 export const event = express.Router()
+
+let dateTime = new Date()
 
 declare global {
     namespace Express {
@@ -36,20 +39,24 @@ event.post('/', formidableMiddleware, async (req, res) => {
       const form = req.form!;
       const eventName = form.fields.eventName;
       const type = form.fields.type;
+      const eventDate = form.fields.eventDate;
+      const eventTime = form.fields.eventTime
+      const time = `${eventDate} ${eventTime}`  
       const numberOfPart = form.fields.participants;
       const venue = form.fields.venue;
       const Fee = form.fields.Fee;
       const content = form.fields.content;
-      const imageFileName = form.files.image?.["originalFilename"];
+      // const imageFileName = form.files.image?.["originalFilename"];
       const imageSavedName = form.files.image?.["newFilename"];
+      const user = req.session["user"]
 
-      console.log(eventName,type,numberOfPart,venue,Fee,content,imageFileName,imageSavedName)  
+      const saveEventSQL = `INSERT INTO events (name, date, max_participant,type, bio, venue, fee,organiser_id,image,created_at) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`
+      await client.query(saveEventSQL,[eventName,time,numberOfPart,type,content,venue,Fee,user.ID,imageSavedName,dateTime])
+      res.json({ success: true })
   
     } catch (err) {
       console.error(err.message);
     } finally {
-     
-      res.json({ success: true });
-   
+     console.log("Final texting")
     }
   });

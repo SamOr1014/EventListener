@@ -1,6 +1,9 @@
 create database wsj_proj;
 
-\c wsj_proj
+psql -U postgres;
+
+\c wsj_proj;
+
 
 create table users (
     id serial primary key,
@@ -13,7 +16,8 @@ create table users (
     profile_img text,
     gender text,
     birthday date,
-    is_banned boolean
+    is_banned boolean,
+    is_Admin boolean
 );
 
 create table events (
@@ -21,11 +25,13 @@ create table events (
     name text,
     date timestamp,
     max_participant int,
+    type text,
     bio text,
     venue text,
     fee integer,
+    image text,
     created_at timestamp,
-    updated_at timestamp,
+    updated_at timestamp DEFAULT CURRENT_TIMESTAMP not null,
     is_full boolean,
     is_active boolean,
     is_deleted boolean,
@@ -34,6 +40,16 @@ create table events (
     foreign key (organiser_id)
     references users(id)
 );
+
+SELECT * FROM users;
+SELECT * FROM events;
+
+DROP TABLE users;
+DROP TABLE events;
+
+DELETE FROM users;
+DELETE FROM events;
+
 
 create table users_request (
     id serial primary key,

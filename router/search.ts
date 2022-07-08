@@ -1,13 +1,20 @@
-import express from "express"
+import express from 'express'
+// import {client} from '../server'
 
+export const search = express.Router()
 
-const search = express.Router()
-
-search.get("/", async (req, res) => {
-    res.redirect("./public/search.html")
+search.get('/', (req, res)=> {
+    res.redirect('search.html')
 })
 
-// app.get('/',function(req, res){
-//     const category = req.query.category;
-//     res.end();
-// })
+search.get('/keyword', (req, res)=> {
+    const keyword = req.query.keyword
+    console.log(keyword)
+    res.json(keyword)
+})
+
+search.get('/genre', (req, res)=> {
+    const genre = req.query.genre
+    console.log(genre)
+    res.send('genre search')
+})
