@@ -4,15 +4,37 @@ document.querySelector("#apply-now").addEventListener("click", function (event) 
 });
 
 window.onload = () => {
-  initEventDetails();
+  loadEventDetails();
 };
 
-async function initEventDetails() {
-  // const form = e.target;
-  const formData = new FormData();
-  formData.append();
-  formData.append();
-  const resp = await fetch("/", {
-    body: formData,
-  });
+async function loadEventDetails() {
+  const resp = await fetch("./event");
+  const events = await resp.json();
+  let htmlStr = "";
+  htmlStr += /*html */ `<div class="event-detailsInfo">
+    <div class="event-name">Event Name: ${events.eventName}</div>
+    <div id="event-content-text">
+      <div class="time">Time:${events.time}</div>
+      <ul>
+        <li></li>
+      </ul>
+      <div class="venue">Venue:${events.venue}</div>
+      <ul>
+        <li></li>
+      </ul>
+      <div class="fee">Fee:${events.fee}</div>
+      <ul>
+        <li></li>
+      </ul>
+      <div class="max-pp">Max-participants:${events.numberOfPart}</div>
+      <ul>
+        <li></li>
+      </ul>
+
+      <div class="description">Description: ${events.content}</div>
+    </div>
+  </div>
+</div>
+</div>`;
+  document.querySelector(".event-detailsInfo").innerHTML = htmlStr;
 }
