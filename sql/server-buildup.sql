@@ -1,6 +1,9 @@
 create database wsj_proj;
 
-\c wsj_proj
+psql -U postgres;
+
+\c wsj_proj;
+
 
 create table users (
     id serial primary key,
@@ -27,8 +30,8 @@ create table events (
     venue text,
     fee integer,
     image text,
-    created_at timestamp DEFAULT CURRENT_TIMESTAMP,
-    updated_at timestamp DEFAULT CURRENT_TIMESTAMP,
+    created_at timestamp,
+    updated_at timestamp DEFAULT CURRENT_TIMESTAMP not null,
     is_full boolean,
     is_active boolean,
     is_deleted boolean,
