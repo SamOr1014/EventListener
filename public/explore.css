@@ -23,6 +23,13 @@
   display: flex;
   flex-wrap: row;
 }
+
+#allEvent {
+  display: flex;
+  flex-wrap: row;
+  justify-content: space-around;
+}
+
 .title {
   font-size: 20px;
   margin-bottom: 20px;
