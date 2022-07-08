@@ -1,7 +1,8 @@
 import express from 'express'
 import {client} from '../server'
-
+import {isLoggedinForExplore} from '../guard'
 export const account = express.Router()
+import type { Request, Response } from "express";
 
 account.get('/', (req,res)=> {
     console.log('you request for you profile')
@@ -42,3 +43,16 @@ account.get('/joined', (req,res)=> {
 account.use(express.static('member'))
 account.use(express.static('common-js'))
 account.use(express.static('src'))
+
+export async function getUserInfo(req: Request, res: Response){
+    try {
+      const user = req.session["user"];
+      const { id, ...others } = user;
+      res.json({ success: true, user: others });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ success: false, message: "internal server error" });
+    }
+  }
+  
+account.get('/getUser', isLoggedinForExplore, getUserInfo ) // Check if login for explore
