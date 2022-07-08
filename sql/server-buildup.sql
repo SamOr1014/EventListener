@@ -72,6 +72,10 @@ create table follower_relation (
     follower_id int, foreign key (follower_id) references users (id)
 );
 
+SELECT * FROM follower_relation;
+
+INSERT INTO follower_relation (user_id, follower_id) values (1,3);
+
 create table event_comment (
     id serial primary key,
     event_id int, foreign key (event_id) references events (id),

@@ -19,7 +19,7 @@
   margin: 100px 0px 50px 10px;
 }
 
-.cardArea {
+#cardArea {
   display: flex;
   flex-wrap: row;
 }

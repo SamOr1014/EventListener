@@ -65,3 +65,9 @@ event.post('/', formidableMiddleware, async (req, res) => {
     console.log("Event created")
   }
 });
+
+event.get('/allEvents', async (req, res) => {
+  const getAllEventSQL = `SELECT * FROM events`
+  const result = await client.query(getAllEventSQL)
+  res.json({result, message: "success"})
+})
