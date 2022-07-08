@@ -15,9 +15,8 @@ account.get('/userdetail', async (req, res)=> {
     res.json(userINFO.rows[0])
 })
 account.get('/alluserdetail', async (req, res)=> {
-    const userID = 1 //later substitute by req.session["userID"]
-    const userINFO = await client.query('SELECT * FROM users where is_banned = false', [userID])
-    res.json(userINFO.rows[0])
+    const allUserINFO = await client.query('SELECT * FROM users')
+    res.json(allUserINFO.rows)
 })
 
 account.get('/created', (req,res)=> {

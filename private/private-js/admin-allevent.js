@@ -1,5 +1,5 @@
 async function loadAllEventAdmin(){
-    const eventsFromServer = await fetch('/event/getAllEvents', {
+    const eventsFromServer = await fetch('/event/allEvents', {
         method: 'GET'
     })
     const eventsDetail = await eventsFromServer.json()

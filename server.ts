@@ -1,5 +1,5 @@
 //######Trial only needa delete later
-let loginStatus = false
+let loginStatus = true
 
 import express from 'express'
 import expressSession from 'express-session'
