@@ -8,7 +8,7 @@ window.onload = () => {
 };
 
 async function loadEventDetails() {
-  const resp = await fetch("./event");
+  const resp = await fetch("./");
   const events = await resp.json();
   let htmlStr = "";
   htmlStr += /*html */ `<div class="event-detailsInfo">
