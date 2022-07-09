@@ -96,6 +96,7 @@ app.use('/admin',isLoggedin, admin)
 app.use(express.static('common-js'))
 app.use(express.static('public'))
 app.use(express.static('src'))
+app.use(express.static('upload'))
 app.use(isLoggedin,express.static('private'))
 
 //Listening to Port 8080
