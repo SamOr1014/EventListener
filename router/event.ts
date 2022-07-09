@@ -34,18 +34,27 @@ event.get("/", (req, res) => {
   res.redirect("createEvent.html");
 });
 
+//selecting all active and not banned events
 event.get('/allEvents', async (req, res)=> {
     const allEvent = await client.query('select * from events where is_deleted = false and is_active = true and is_full = false')
     res.json(allEvent.rows);
 });
 
+//select created event by the current session user
 event.get('/createdEvent', async (req, res)=> {
   const userCreated = await client.query('select * from events where organiser_id = $1 order by date desc',[req.session['user'].ID])
   console.log(userCreated.rows)
   res.json(userCreated.rows)
 })
 
+//select joined event by the current user
 event.get('/joinedEvent', async (req, res)=> {
+  const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1;', [req.session['user'].ID])
+  console.log(userJoined.rows)
+  res.json(userJoined.rows)
+})
+//select upcoming joined event of a user
+event.get('/joinedEvent/upcoming', async (req, res)=> {
   const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1;', [req.session['user'].ID])
   console.log(userJoined.rows)
   res.json(userJoined.rows)
