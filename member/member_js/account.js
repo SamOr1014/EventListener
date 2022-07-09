@@ -24,7 +24,6 @@ async function loadUserProfile(){
 
 async function loadFollowers(){
     let htmlFollowersList = document.querySelector('#follower-list')
-    let userID = 1
     const followers = await fetch(`/followers`, {
         method: 'GET'
     })
