@@ -28,7 +28,6 @@
 /* css for slider */
 .homepage {
     display: block;
-    height: 300px;
     font-size: 3rem;
     text-align: center;
     top:50%;
@@ -37,15 +36,20 @@
 }
 
 p {
-    margin-top: 100px;
     font-family: 'Gentium Book Plus', serif;
+}
+
+@media screen and (max-width: 550px) {
+    .categories {
+        margin-top: 0;
+    }
 }
 
 /* css for categories */
 .categories {
     font-size: 2rem;
-    margin-left: 40px;
-    margin-top: 40px;
+    margin-top: 60px;
+    margin-left: 100px;
     font-weight: bold;
     font-family: 'Gentium Book Plus', serif;
 }
@@ -85,5 +89,5 @@ p {
 }
 
 .carousel-item {
-    height: 700px;
+    height: 500px;
 }

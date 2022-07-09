@@ -41,9 +41,9 @@ async function loadHeaderAccountButton(){
         method: 'GET'
     })
     const userLoginStatus = await status.json()
-    console.log(userLoginStatus.loginStatus)
+    console.log(userLoginStatus.login)
     //true fetch user's profile and get his profile pic and name
-    if(userLoginStatus.loginStatus){
+    if(userLoginStatus.login){
         //the login status is true so load the user profile
         const userInfoFromServer = await fetch('/account/userdetail', {
             method: 'GET'
@@ -110,7 +110,8 @@ async function loadHeaderAccountButton(){
       document.querySelector('#account').innerHTML = buttons
       addHeaderEventListeners()
       addHeaderAccountListenerTrue()
-    }else {
+    }
+    else {
         let buttons = `            <button type="button" id="login-button-header" class="btn btn-outline-light me-2">
         Log in
       </button>
@@ -122,7 +123,6 @@ async function loadHeaderAccountButton(){
         addHeaderAccountListenerFalse()
     }
 }
-window.onload = ()=> {
-  loadHeaderAccountButton()
-  console.log("You loaded header.js")
-}
+
+loadHeaderAccountButton()
+console.log("You loaded header.js")

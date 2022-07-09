@@ -8,7 +8,7 @@ import fs from 'fs'
 import dotenv from 'dotenv'
 dotenv.config()
 import pg from 'pg'
-// import path from 'path'
+
 
 //database
 export const client = new pg.Client({
@@ -28,7 +28,8 @@ import {search} from './router/search'
 import {admin} from './router/admin'
 import {explore} from './router/explore'
 
-
+//import guards
+import {isLoggedin} from './guard'
 
 //file upload route
 const uploadDir = 'uploads'
@@ -68,24 +69,31 @@ app.get('/main', (req, res)=> {
     res.send("main page")
 })
 app.get('/logout', (req, res)=> {
-  loginStatus = false //replace by req.session["user"]
+  req.session["user"]= "" //replace by req.session["user"]
   res.redirect('/')
 })
 app.get('/status', (req, res)=> {
-    res.json({loginStatus})
+    if(req.session["user"]){
+      res.json({login: true})
+    }
+    else {
+      res.json({login: false})
+    }
 })
+
+
 
 //Router can be used by Non-user
 app.use('/register', register)
 app.use('/search', search)
 app.use('/login', login)
 app.use('/explore', explore)
+app.use('/event',event)
 
 //Router can only be use by user
-app.use('/event',event)
-app.use('/account', account)
+app.use('/account',isLoggedin, account)
 app.use('/followers', followers)
-app.use('/admin', admin)
+app.use('/admin',isLoggedin, admin)
 
 
 app.use(express.static('common-js'))

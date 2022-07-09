@@ -1,6 +1,6 @@
 import express from 'express'
 import {client} from '../server'
-import {isLoggedinForExplore} from '../guard'
+import {isLoggedinForExplore, isLoggedin} from '../guard'
 export const account = express.Router()
 import type { Request, Response } from "express";
 
@@ -10,7 +10,7 @@ account.get('/', (req,res)=> {
 })
 
 account.get('/userdetail', async (req, res)=> {
-    const userID = 1 //later substitute by req.session["userID"]
+    const userID = req.session['user'].ID //later substitute by req.session["userID"]
     const userINFO = await client.query('SELECT * FROM users where id = $1', [userID])
     res.json(userINFO.rows[0])
 })
@@ -36,10 +36,11 @@ account.get('/request', (req, res)=> {
 
 account.get('/joined', (req,res)=> {
     console.log('you request for you joined')
-    res.redirect('user-created.html')
+    res.redirect('user-joined.html')
 })
 
-account.use(express.static('member'))
+
+account.use(isLoggedin,express.static('member'))
 account.use(express.static('common-js'))
 account.use(express.static('src'))
 
