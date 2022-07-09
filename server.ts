@@ -81,8 +81,6 @@ app.get('/status', (req, res)=> {
     }
 })
 
-
-
 //Router can be used by Non-user
 app.use('/register', register)
 app.use('/search', search)
