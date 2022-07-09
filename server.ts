@@ -25,9 +25,11 @@ import {followers} from './router/followers'
 import {search} from './router/search'
 import {admin} from './router/admin'
 import {explore} from './router/explore'
+import {createEvent} from './router/createEvent'
 
 //import guards
 import {isLoggedin} from './guard'
+// import { create } from "domain"
 
 //file upload route
 const uploadDir = 'uploads'
@@ -92,6 +94,7 @@ app.use('/event',event)
 app.use('/account',isLoggedin, account)
 app.use('/followers', followers)
 app.use('/admin',isLoggedin, admin)
+app.use('/createEvent', createEvent)
 
 
 app.use(express.static('common-js'))

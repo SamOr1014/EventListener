@@ -15,13 +15,14 @@
 #user-icon {
   margin-left: 1vw;
 }
-.followed {
+#followed {
   margin: 100px 0px 50px 10px;
 }
 
 #cardArea {
   display: flex;
   flex-wrap: row;
+  justify-content: space-around;
 }
 
 #allEvent {
