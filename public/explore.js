@@ -30,20 +30,45 @@ async function postAllEvents() {
   const results = await resp.json()
   let htmlStr = "";
   for (const result of results) {
-    console.log(`Testing${result}`)
+    console.log(result)
+    if (result.fee === 0) {
+      Amount = "Free"
+    } else {
+      Amount = `HKD${result.fee}`
+    }
+
+    if (result.type === "Sport") {
+      defaulePath = "sports.jpg"
+    } else if (result.type === "Board_game") {
+      defaulePath = "board-game.jpg"
+    } else if (result.type === "Water_activity") {
+      defaulePath = "water.jpg"
+    } else if (result.type === "Gambling") {
+      defaulePath = "gambling.jpg"
+    } else if (result.type === "Party") {
+      defaulePath = "party.jpg"
+    } else if (result.type === "Workshop") {
+      defaulePath = "workshop.jpg"
+    } else if (result.type === "Online_activity") {
+      defaulePath = "online.jpg"
+    } else {
+      defaulePath = "others.jpg"
+    }
+
+    const image = result.image ?
+      `/image/${result.image}` : `/image/${defaulePath}`;
+
     htmlStr += /*html*/ `   
-    <div class="card" style="width: 18rem">
-    <img
-      src=".././test-image/gambling.jpg"
-      class="card-img-top"
-      alt="..."
-    />
-    <div class="card-body" data-id="${result.id}">
+    <div class="card" style="width: 18rem" data-id="${result.id}">
+
+    <img src = "${image}" class="card-img-top" />
+
+    <div class="card-body" >
       <h5 class="card-title">${result.name}</h5>
       <p class="card-text">
-        Date:${result.date}<br>
-        Location:${result.venue}<br>
-        Fee:${result.fee}
+        Date: ${result.date}<br>
+        Location: ${result.venue}<br>
+        Fee: ${Amount}
       </p>
       </div>
   </div>
@@ -52,16 +77,15 @@ async function postAllEvents() {
   }
   document.querySelector("#allEvent").innerHTML = htmlStr;
 
-  document.querySelectorAll(".card-body").forEach((ele) =>
-  ele.addEventListener("click", async (e) => {
-    const id = e.target.parentElement.dataset.id;
-    console.log(id)
-    const resp = await fetch(`/event/details/${id}`, { method: "GET" });
-    if (resp.status === 400) {
-      const result = await resp.json();
-      alert(result.message);
-    }
-  })
-);  
+  document.querySelectorAll(".card").forEach((ele) =>
+    ele.addEventListener("click", async (e) => {
+      const id = e.target.parentElement.dataset.id;
+      console.log(id)
+      const resp = await fetch(`/event/details/${id}`, { method: "GET" });
+      if (resp.status === 400) {
+        const result = await resp.json();
+        alert(result.message);
+      }
+    })
+  );
 }
-
