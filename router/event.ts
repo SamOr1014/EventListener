@@ -46,6 +46,8 @@ event.get("/details/:id", (req, res) => {
 });
 
 event.use(express.static("public"));
+event.use(express.static('src'))
+event.use(express.static('uploads'))
 event.post("/", formidableMiddleware, async (req, res) => {
 
   try {

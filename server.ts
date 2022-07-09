@@ -1,6 +1,6 @@
 //######Trial only needa delete later
 let loginStatus = true
-
+import path from "path"
 import express from 'express'
 import expressSession from 'express-session'
 import formidable from 'formidable'
@@ -92,6 +92,7 @@ app.use(express.static('common-js'))
 app.use(express.static('public'))
 app.use(express.static('src'))
 app.use(express.static('private'))
+app.use("/image", express.static(path.join(__dirname,'uploads')))
 
 //Listening to Port 8080
 const PORT = 8080
