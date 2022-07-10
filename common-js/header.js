@@ -56,7 +56,7 @@ async function loadHeaderAccountButton(){
         else {
           image = userInfo.profile_img
         }
-        //insert the three buttons
+        //insert the three buttons according if they are admin
         let buttons = !userInfo.is_admin?`        <button
         id="account-detail" 
         type="button"

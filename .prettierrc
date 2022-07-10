@@ -5,7 +5,7 @@
     "singleQuote": true,
     "overrides": [
         {
-            "files": ["*.ts", "*.js"],
+            "files": ["*.ts", "*.js", ".html"],
             "options": {
                 "semi": true,
                 "tabWidth": 2,
