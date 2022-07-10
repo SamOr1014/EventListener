@@ -48,12 +48,12 @@ event.get('/createdEvent', async (req, res)=> {
 
 //select joined event by the current user
 event.get('/joinedEvent', async (req, res)=> {
-  const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1;', [req.session['user'].ID])
+  const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1 order by events.date desc;', [req.session['user'].ID])
   res.json(userJoined.rows)
 })
 //select upcoming joined event of a user
 event.get('/joinedEvent/upcoming', async (req, res)=> {
-  const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1;', [req.session['user'].ID])
+  const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1 and events.date > NOW() order by events.id asc;', [req.session['user'].ID])
   res.json(userJoined.rows)
 })
 

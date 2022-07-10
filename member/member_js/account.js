@@ -37,10 +37,11 @@ async function loadFollowers(){
 async function loadUpComingEvent(){
   const joinedEventFromServer = await fetch('/event/joinedEvent/upcoming')
   const allJoinedEvent = await joinedEventFromServer.json()
+  document.querySelector('#upcoming-event').innerHTML += `<div class="text-center"><h3>Upcoming Events</h3></div>`
   for(let event of allJoinedEvent ){
       let image = event.image? event.image: "water.jpg"
-      document.querySelector('#upcoming-event').innerHTML = `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">
-          <div class="text-center"><h3>Upcoming Events</h3></div>
+
+      document.querySelector('#upcoming-event').innerHTML += `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">
           <div id="joined-event-col" class="col-lg-12 d-flex flex-wrap justify-content-around">
             <div class="col-md-12"><h3>${event.name}</h3></div>
             <div class="col-md-4 p-2">

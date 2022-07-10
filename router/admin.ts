@@ -71,6 +71,7 @@ admin.put("/events/inactivestatus", async (req, res) => {
   }
   const eventidToBeInactive = req.query.eventid
   const isactiveStatus = (await client.query('select is_active from events where id = $1;',[eventidToBeInactive])).rows[0].is_active
+  //check is_active status 
   isactiveStatus?await client.query("update events set is_active = false where id = $1", [eventidToBeInactive]):await client.query("update events set is_active = true where id = $1", [eventidToBeInactive])
 
   res.json({ deactivate: true })

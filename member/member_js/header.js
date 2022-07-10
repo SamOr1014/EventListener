@@ -8,7 +8,6 @@ function addHeaderEventListeners(){
         const searchword = event.target.searchbar.value
         window.location.href = `/search?keyword=${searchword}`
     })
-
 }    
 function addHeaderAccountListenerFalse() {
       //add to those login status false button
