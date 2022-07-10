@@ -52,5 +52,15 @@ document.querySelector('#createEvent').addEventListener("submit", async function
 })
 
 
+document.querySelector('#explore').addEventListener('click', () => {
+  window.location.href = '/explore'
+})
+
+
+document.querySelector('#create-event').addEventListener('click', () => {
+  location.reload();
+ 
+})
+
 
 
