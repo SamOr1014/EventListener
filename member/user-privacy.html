@@ -180,30 +180,40 @@
                     <form id="profile-change">
                       <div class="mb-3">
                         <label for="first-name" class="col-form-label">First Name :</label>
-                        <input type="text" class="form-control" id="change-first-name">
+                        <input type="text" class="form-control" id="change-first-name"
+                        name="first-name"
+                        required>
                       </div>
                       <div class="mb-3">
                         <label for="last-name" class="col-form-label">Last Name :</label>
-                        <input type="text" class="form-control" id="change-last-name">
+                        <input type="text" class="form-control" id="change-last-name"
+                        name="last-name"
+                        required>
                       </div>
                       <div class="mb-3">
                         <label for="phone" class="col-form-label">Phone :</label>
-                        <input type="text" class="form-control" id="change-phone">
+                        <input type="text" class="form-control" id="change-phone"
+                        name="phone"
+                        required>
                       </div>
                       <div class="mb-3">
                         <label for="birthday" class="col-form-label">Birthday :</label>
-                        <input type="date" class="form-control" id="change-birthday">
+                        <input type="date" class="form-control" id="change-birthday"
+                        name="birthday"
+                        required>
                       </div>
                       <div class="mb-3">
-                        <label for="bio" class="col-form-label">Birthday :</label>
-                        <input type="text" class="form-control" id="change-user-bio">
+                        <label for="bio" class="col-form-label">Bio :</label>
+                        <input type="text" class="form-control" id="change-user-bio"
+                        name="bio">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Change</button>
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Change</button>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -232,18 +242,18 @@
                   <form id="email-change">
                     <div class="mb-3">
                       <label for="new-email" class="col-form-label">New Email :</label>
-                      <input type="email" class="form-control" id="new-email">
+                      <input type="email" class="form-control" id="new-email" name="email" required>
                     </div>
                     <div class="mb-3">
                       <label for="confirm-email" class="col-form-label">Confirm Email :</label>
-                      <input type="email" class="form-control" id="confirm-email">
+                      <input type="email" class="form-control" id="confirm-email" name="confirm-email"
+                      required>
                     </div>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Change</button>
                   </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Change</button>
-                </div>
+
               </div>
             </div>
           </div>
@@ -265,17 +275,21 @@
                 <form id="pw-change">
                   <div class="mb-3">
                     <label for="new-pw" class="col-form-label">New Password :</label>
-                    <input type="password" class="form-control" id="new-pw">
+                    <input type="password" class="form-control" id="new-pw" 
+                    name="password"
+                    required>
                   </div>
                   <div class="mb-3">
                     <label for="confirm-pw" class="col-form-label">Confirm Password :</label>
-                    <input type="password" class="form-control" id="confirm-pw">
+                    <input type="password" class="form-control" id="confirm-pw" 
+                    name="confirm-password"
+                    required>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Change</button>
                   </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Change</button>
               </div>
             </div>
           </div>

@@ -146,6 +146,11 @@ async function loadHeaderAccountButton(){
         <li>
           <a id="all-reports" class="dropdown-item" href="/admin/reports">Reports</a>
         </li>
+        <li>
+        <a id="privacy" class="dropdown-item" href="/account/privacy"
+          >Privacy Setting</a
+        >
+      </li>
       </ul>
     </div>`
       document.querySelector('#account').innerHTML = buttons
