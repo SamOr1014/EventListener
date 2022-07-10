@@ -15,7 +15,7 @@ account.get('/userdetail', async (req, res)=> {
     res.json(userINFO.rows[0])
 })
 account.get('/alluserdetail', async (req, res)=> {
-    const allUserINFO = await client.query('SELECT * FROM users')
+    const allUserINFO = await client.query('SELECT * FROM users order by id asc')
     res.json(allUserINFO.rows)
 })
 

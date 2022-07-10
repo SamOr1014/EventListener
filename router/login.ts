@@ -20,9 +20,15 @@ login.post('/', async (req, res) => {
         const user = users.rows[0];
 
         if (users.rowCount == 0) { // check if ac exist
+            console.log("not exist")
             res.json({ success: false })
+            return
         }
-
+        if (user.is_banned){
+            console.log('This is a banned user')
+            res.json({success : false, message : 'banned'})
+            return
+        }
         const match = await checkPassword(password, user.password)
         if (match) {
             req.session["user"] = { ID: user.id, username: user.email }
@@ -33,6 +39,7 @@ login.post('/', async (req, res) => {
             }
             res.json({ success: true, message: "A user login"})
         } else { // wrong password
+            console.log('wrong password')
             res.status(400).json({ success: false, message: "Incorrect account or password" })
         }
 

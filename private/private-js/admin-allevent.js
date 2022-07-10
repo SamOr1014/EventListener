@@ -4,6 +4,7 @@ async function loadAllEventAdmin(){
     })
     const eventsDetail = await eventsFromServer.json()
     console.log(eventsDetail);
+    document.querySelector('#showing-panel').innerHTML = `<div class="text-center"><h4>ALL ACTIVE EVENT</h4></div>`
     for (let event of eventsDetail){
         document.querySelector('#showing-panel').innerHTML += `          <div class="col-md-3 report-cards">
         <div eventid="${event.id}" class="card">

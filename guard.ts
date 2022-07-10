@@ -21,7 +21,7 @@ export async function isLoggedinForExplore (req:Request, res:Response, next:Next
 
 export function isAdmin(req:Request, res:Response, next:NextFunction) {
     if (!req.session['adminStatus']){
-        res.redirect('404.html')
+        res.redirect('/')
         return
     }
     next()
