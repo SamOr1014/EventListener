@@ -91,14 +91,14 @@ app.use('/event',event)
 //Router can only be use by user
 app.use('/account',isLoggedin, account)
 app.use('/followers', followers)
-app.use('/admin',isAdmin, admin)
+app.use('/admin',isLoggedin,isAdmin, admin)
 app.use('/createEvent', createEvent)
 
 
 app.use(express.static('common-js'))
 app.use(express.static('public'))
 app.use(express.static('src'))
-app.use(express.static('private'))
+app.use(isLoggedin,isAdmin,express.static('private'))
 app.use("/image", express.static(path.join(__dirname,'uploads')))
 
 //Listening to Port 8080
