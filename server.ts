@@ -28,7 +28,7 @@ import {explore} from './router/explore'
 import {createEvent} from './router/createEvent'
 
 //import guards
-import {isLoggedin} from './guard'
+import {isLoggedin, isAdmin} from './guard'
 // import { create } from "domain"
 
 //file upload route
@@ -91,7 +91,7 @@ app.use('/event',event)
 //Router can only be use by user
 app.use('/account',isLoggedin, account)
 app.use('/followers', followers)
-app.use('/admin',isLoggedin, admin)
+app.use('/admin',isAdmin, admin)
 app.use('/createEvent', createEvent)
 
 

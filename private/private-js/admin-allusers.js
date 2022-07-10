@@ -7,7 +7,7 @@ async function loadAllUsersAdmin(){
     for (let user of usersDetail){
         let statusButton = user.is_banned? "Unban":"Ban"
         let buttonClass = user.is_banned? "danger":"primary"
-        document.querySelector('#showing-panel').innerHTML = `<div class="col-md-3 user-cards" userid="">
+        document.querySelector('#showing-panel').innerHTML += `<div class="col-md-3 user-cards" userid="">
         <div class="card">
           <div class="card-body">
             <p class="card-title">Name: ${user.first_name + " " + user.last_name}</p>

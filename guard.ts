@@ -1,6 +1,7 @@
 import {Request, Response, NextFunction} from 'express'
 
-export async function isLoggedin(req:Request, res:Response, next:NextFunction) {
+export function isLoggedin(req:Request, res:Response, next:NextFunction) {
+    console.log(req.session['user'])
     if (req.session['user']) {
         next()
     }
@@ -18,11 +19,10 @@ export async function isLoggedinForExplore (req:Request, res:Response, next:Next
       next();
     }
 
-export async function isAdmin(req:Request, res:Response, next:NextFunction) {
-    if (req.session['adminStatus']){
-        next();
-    }
-    else {
+export function isAdmin(req:Request, res:Response, next:NextFunction) {
+    if (!req.session['adminStatus']){
         res.redirect('404.html')
+        return
     }
+    next()
 }

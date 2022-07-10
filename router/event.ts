@@ -60,6 +60,7 @@ event.get('/joinedEvent/upcoming', async (req, res)=> {
   res.json(userJoined.rows)
 })
 
+
 event.get("/details/:id", (req, res) => {
   const id = parseInt(req.params.id, 10);
   console.log(id);

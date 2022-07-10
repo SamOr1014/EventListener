@@ -26,6 +26,11 @@ login.post('/', async (req, res) => {
         const match = await checkPassword(password, user.password)
         if (match) {
             req.session["user"] = { ID: user.id, username: user.email }
+            if(user.is_admin){
+                req.session['adminStatus'] = true
+            }else {
+                req.session['adminStatus'] = false
+            }
             res.json({ success: true, message: "A user login"})
         } else { // wrong password
             res.status(400).json({ success: false, message: "Incorrect account or password" })
