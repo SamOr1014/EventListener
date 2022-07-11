@@ -49,7 +49,7 @@ async function loadEventsWithAc() {
     } else {
       defaulePath = "others.jpg"
     }
-    const image = result.image ? `/image/${result.image}` : `/image/${defaulePath}`
+    const image = result.image ? `/${result.image}` : `/${defaulePath}`
     htmlStr +=
       /*html*/
       `
@@ -113,8 +113,9 @@ async function postAllEvents() {
     } else {
       defaulePath = "others.jpg"
     }
+    const path = result.image;
 
-    const image = result.image ? `/image/${result.image}` : `/image/${defaulePath}`
+    const image = result.image ? `/${path}` : `/${defaulePath}`
 
     htmlStr += /*html*/ `   
     <div class="card" style="width: 18rem" data-id="${result.id}">
