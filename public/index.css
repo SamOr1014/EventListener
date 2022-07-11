@@ -61,6 +61,7 @@ p {
 }
 
 .card {
+    cursor: pointer;
     width: (100% / 4 - 10px);
     margin: 20px;
     position: relative;
