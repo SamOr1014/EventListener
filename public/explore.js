@@ -1,10 +1,5 @@
 window.onload = async () => {
-  console.log("Texting1")
   await getUserInfo()
-  // true if has ac
-  // const isLoggedIN = !!user;
-
-  console.log("Final texting")
 }
 
 async function getUserInfo() {
@@ -15,15 +10,17 @@ async function getUserInfo() {
     loadEventsWithAc()
   } else {
     postAllEvents()
+    disableTitle()
   }
 }
 
 async function loadEventsWithAc() {
+
   console.log(user.ID)
   console.log(user.username)
   const resp = await fetch("event/FollowerEvent")
   const results = await resp.json()
-  let htmlStr = ""
+  let htmlStr = ``
   for (const result of results) {
     console.log(result)
     if (result.fee === 0) {
@@ -32,19 +29,19 @@ async function loadEventsWithAc() {
       Amount = `HKD${result.fee}`
     }
 
-    if (result.type === "Sport") {
+    if (result.type === "sport") {
       defaulePath = "sports.jpg"
-    } else if (result.type === "Board_game") {
+    } else if (result.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (result.type === "Water_activity") {
+    } else if (result.type === "water_activity") {
       defaulePath = "water.jpg"
-    } else if (result.type === "Gambling") {
+    } else if (result.type === "gambling") {
       defaulePath = "gambling.jpg"
-    } else if (result.type === "Party") {
+    } else if (result.type === "party") {
       defaulePath = "party.jpg"
-    } else if (result.type === "Workshop") {
+    } else if (result.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (result.type === "Online_activity") {
+    } else if (result.type === "online_activity") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"
@@ -84,7 +81,6 @@ async function loadEventsWithAc() {
 }
 
 async function postAllEvents() {
-  console.log("No AC so will show all contents")
   const resp = await fetch("/event/allEvents")
   const results = await resp.json()
   let htmlStr = ""
@@ -96,24 +92,24 @@ async function postAllEvents() {
       Amount = `HKD${result.fee}`
     }
 
-    if (result.type === "Sport") {
+    if (result.type === "sport") {
       defaulePath = "sports.jpg"
-    } else if (result.type === "Board_game") {
+    } else if (result.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (result.type === "Water_activity") {
+    } else if (result.type === "water_activity") {
       defaulePath = "water.jpg"
-    } else if (result.type === "Gambling") {
+    } else if (result.type === "gambling") {
       defaulePath = "gambling.jpg"
-    } else if (result.type === "Party") {
+    } else if (result.type === "party") {
       defaulePath = "party.jpg"
-    } else if (result.type === "Workshop") {
+    } else if (result.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (result.type === "Online_activity") {
+    } else if (result.type === "online_activity") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"
     }
-    const path = result.image;
+    const path = result.image
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
@@ -163,3 +159,8 @@ async function CheckLogin() {
 document.querySelector("#create-event").addEventListener("click", () => {
   CheckLogin()
 })
+
+async function disableTitle() {
+  document.querySelector("#FollowTitle").innerHTML = ''
+}
+
