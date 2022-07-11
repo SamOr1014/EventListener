@@ -6,7 +6,7 @@ async function loadAllReportsAdmin() {
   const reportsDetail = await reportsFromServer.json();
   console.log(reportsDetail);
   for (let report of reportsDetail) {
-    document.querySelector("#showing-panel").innerHTML += `<div class="col-md-3 report-cards">
+    document.querySelector("#showing-panel").innerHTML += `<div class="col-md-4 mb-2 mt-2 report-cards">
         <div class="card">
           <div class="card-body">
             <h4>Report Number: ${report.id}</h4>
