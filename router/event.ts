@@ -34,32 +34,50 @@ event.get("/", (req, res) => {
   res.redirect("createEvent.html");
 });
 
-event.get('/allEvents', async (req, res)=> {
-    const allEvent = await client.query('select * from events where is_deleted = false and is_active = true and is_full = false')
-    res.json(allEvent.rows);
+event.get("/allEvents", async (req, res) => {
+  const allEvent = await client.query(
+    "select * from events where is_deleted = false and is_active = true and is_full = false"
+  );
+  res.json(allEvent.rows);
 });
 
-event.get('/createdEvent', async (req, res)=> {
-  const userCreated = await client.query('select * from events where organiser_id = $1 order by date desc',[req.session['user'].ID])
-  console.log(userCreated.rows)
-  res.json(userCreated.rows)
-})
+event.get("/createdEvent", async (req, res) => {
+  const userCreated = await client.query(
+    "select * from events where organiser_id = $1 order by date desc",
+    [req.session["user"].ID]
+  );
+  console.log(userCreated.rows);
+  res.json(userCreated.rows);
+});
 
-event.get('/joinedEvent', async (req, res)=> {
-  const userJoined = await client.query('select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1;', [req.session['user'].ID])
-  console.log(userJoined.rows)
-  res.json(userJoined.rows)
-})
+event.get("/joinedEvent", async (req, res) => {
+  const userJoined = await client.query(
+    "select * from events inner join users_joined on events.id = users_joined.event_id where users_joined.user_id = $1;",
+    [req.session["user"].ID]
+  );
+  console.log(userJoined.rows);
+  res.json(userJoined.rows);
+});
 
-event.get("/details/:id", (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  console.log(id);
-  // res.redirect("event-details.html");
+event.get("/details/:id", async (req, res) => {
+  const eventid = parseInt(req.params.id, 10);
+  console.log(eventid);
+  // const getEventDetails = await client.query(
+  //   /*sql */ `SELECT * FROM EVENTS WHERE ID =$1`[eventid]
+  // );
+  // res.json(getEventDetails.rows);
+  res.redirect(`event-details.html/?eventid=${eventid}`);
+});
+
+event.get("/singleEvent", async (req, res) => {
+  const eventid = req.query.eventid;
+  console.log(eventid);
+  res.send("success");
 });
 
 event.use(express.static("public"));
-event.use(express.static('src'))
-event.use(express.static('uploads'))
+event.use(express.static("src"));
+event.use(express.static("uploads"));
 event.post("/", formidableMiddleware, async (req, res) => {
   try {
     const form = req.form!;

@@ -1,12 +1,11 @@
 window.onload = async () => {
-  console.log("Texting1")
+  console.log("Texting1");
   await getUserInfo();
   // true if has ac
   // const isLoggedIN = !!user;
 
-  console.log("Final texting")
-}
-
+  console.log("Final texting");
+};
 
 async function getUserInfo() {
   const resp = await fetch("/account/getUser");
@@ -20,43 +19,42 @@ async function getUserInfo() {
 }
 
 async function loadEventsWithAc() {
-  console.log(user.ID)
-  console.log(user.username)
+  console.log(user.ID);
+  console.log(user.username);
 }
 
 async function postAllEvents() {
-  console.log("No AC so will show all contents")
-  const resp = await fetch("/event/allEvents")
-  const results = await resp.json()
+  console.log("No AC so will show all contents");
+  const resp = await fetch("/event/allEvents");
+  const results = await resp.json();
   let htmlStr = "";
   for (const result of results) {
-    console.log(result)
+    console.log(result);
     if (result.fee === 0) {
-      Amount = "Free"
+      Amount = "Free";
     } else {
-      Amount = `HKD${result.fee}`
+      Amount = `HKD${result.fee}`;
     }
 
     if (result.type === "Sport") {
-      defaulePath = "sports.jpg"
+      defaulePath = "sports.jpg";
     } else if (result.type === "Board_game") {
-      defaulePath = "board-game.jpg"
+      defaulePath = "board-game.jpg";
     } else if (result.type === "Water_activity") {
-      defaulePath = "water.jpg"
+      defaulePath = "water.jpg";
     } else if (result.type === "Gambling") {
-      defaulePath = "gambling.jpg"
+      defaulePath = "gambling.jpg";
     } else if (result.type === "Party") {
-      defaulePath = "party.jpg"
+      defaulePath = "party.jpg";
     } else if (result.type === "Workshop") {
-      defaulePath = "workshop.jpg"
+      defaulePath = "workshop.jpg";
     } else if (result.type === "Online_activity") {
-      defaulePath = "online.jpg"
+      defaulePath = "online.jpg";
     } else {
-      defaulePath = "others.jpg"
+      defaulePath = "others.jpg";
     }
 
-    const image = result.image ?
-      `/image/${result.image}` : `/image/${defaulePath}`;
+    const image = result.image ? `/image/${result.image}` : `/image/${defaulePath}`;
 
     htmlStr += /*html*/ `   
     <div class="card" style="width: 18rem" data-id="${result.id}">
@@ -73,14 +71,13 @@ async function postAllEvents() {
       </div>
   </div>
 `;
-
   }
   document.querySelector("#allEvent").innerHTML = htmlStr;
 
   document.querySelectorAll(".card").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id;
-      console.log(id)
+      console.log(id);
       const resp = await fetch(`/event/details/${id}`, { method: "GET" });
       if (resp.status === 400) {
         const result = await resp.json();
