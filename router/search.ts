@@ -14,9 +14,15 @@ search.get('/keyword', async (req, res)=> {
     res.json(matchedEvent.rows)
 })
 
-search.get('/genres', (req, res)=> {
+search.get('/genres', async (req, res)=> {
     const genre = req.query.genre
     console.log(genre)
-    res.json()
+    const matchedGenre = await client.query(
+        `
+SELECT * 
+FROM events 
+WHERE events.type = $1;
+        `,[genre])
+    res.json(matchedGenre.rows)
 })
 

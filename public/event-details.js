@@ -1,27 +1,29 @@
-window.onload = () => {
+window.onload = async () => {
   const eventid = window.location.search.substr(9)
   console.log(eventid)
-  loadEventDetails(eventid)
+  await loadEventDetails(eventid)
+  await userProfileInEventDetails(eventid)
 }
 
 async function loadEventDetails(eventid) {
   console.log("fetching")
   const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
   const events = await resp.json()
+  console.log("event:", events)
+  // console.log("event[0]:", events[0])
   let htmlStr = ""
   if (events.fee === 0) {
     Amount = "Free"
   } else {
     Amount = `HKD${events.fee}`
   }
-
   if (events.type === "Sport") {
     defaulePath = "sports.jpg"
   } else if (events.type === "Board_game") {
     defaulePath = "board-game.jpg"
   } else if (events.type === "Water_activity") {
     defaulePath = "water.jpg"
-  } else if (events.type === "Gambling") {
+  } else if (events.type === "Gaming") {
     defaulePath = "gambling.jpg"
   } else if (events.type === "Party") {
     defaulePath = "party.jpg"
@@ -33,14 +35,15 @@ async function loadEventDetails(eventid) {
     defaulePath = "others.jpg"
   }
 
-  const image = events.image ? `/${events.image}` : `/{defaulePath}`
+  const image = events.image ? `/${events.image}` : `/${defaulePath}`
+
   htmlStr += /*html */ `
   <div id="event-left">
-   <img src=${image}" width="100%" alt="..." />
+   <img src="${image}" width="100%" alt="..." />
     <div class="event-detailsInfo">
-     <div class="event-name">Event Name: ${events.eventName}</div>
+     <div class="event-name">Event Name: ${events.name}</div>
        <div id="event-content-text">
-         <div class="time">Time:${events.time}</div>
+         <div class="time">Time:${events.date}</div>
          <ul>
          <li></li>
          </ul>
@@ -48,19 +51,19 @@ async function loadEventDetails(eventid) {
          <ul>
          <li></li>
          </ul>
-         <div class="fee">Fee:${events.fee}</div>
+         <div class="fee">Fee:${Amount}</div>
          <ul>
          <li></li>
          </ul>
-         <div class="max-pp">Max-participants:${events.numberOfPart}</div>
+         <div class="max-pp">Max-participants:${events.max_participant}</div>
          <ul>
          <li></li>
          </ul>
-         <div class="description">Description: ${events.content}</div>
+         <div class="description">Description: ${events.bio}</div>
       </div>
     </div>
   </div>`
-  document.querySelector(".event-detailsInfo").innerHTML = htmlStr
+  document.querySelector("#event-details").innerHTML = htmlStr
 }
 
 document.querySelector("#apply-now").addEventListener("click", function (event) {
@@ -68,16 +71,17 @@ document.querySelector("#apply-now").addEventListener("click", function (event) 
   console.log("hi")
 })
 
-async function userProfileInEventDetails() {
+async function userProfileInEventDetails(eventid) {
   let htmlProfileCard = document.querySelector("#Profile")
-  const profile = await fetch(`/account/userdetail`, {
-    method: "GET",
-  })
+  const profile = await fetch(`/event/organiser?eventid=${eventid}`)
+  // const profile = await fetch(`/account/userdetail`, {
+  //   method: "GET",
+  // })
   const userInfo = await profile.json()
   console.log(userInfo)
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
-  htmlProfileCard.innerHTML = ""
-  htmlProfileCard.innerHTML += `<div id="Profile" class="card w-50 mb-3">
+  // htmlProfileCard.innerHTML = ""
+  htmlProfileCard.innerHTML = `
   <a href="#">
     <img
       src="${image}"
@@ -91,7 +95,8 @@ async function userProfileInEventDetails() {
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
   </div>
-</div>`
+`
+  console.log(htmlProfileCard)
 }
 
 let reportMsg = ""

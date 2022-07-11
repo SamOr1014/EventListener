@@ -58,7 +58,8 @@ event.put('/approve', async(req, res)=> {
 //selecting all active and not banned events
 event.get("/allEvents", async (req, res) => {
   const allEvent = await client.query(
-    "select * from events where is_deleted = false and is_active = true and is_full = false"
+    "select * from events where is_deleted = false and is_active = true and is_full = false and date > $1",
+    [dateTime]
   )
   res.json(allEvent.rows)
 })
@@ -89,20 +90,25 @@ event.get("/joinedEvent/upcoming", async (req, res) => {
   res.json(userJoined.rows)
 })
 
-event.get("/details", async (req, res) => {
-  const eventid = req.query.id
-  console.log(`Testing ${eventid}`)
-  // const getEventDetails = await client.query(
-  //   /*sql */ `SELECT * FROM EVENTS WHERE ID =$1`[eventid]
-  // );
-  // res.json(getEventDetails.rows);
-  // res.redirect(`event-details.html/?eventid=${eventid}`)
-})
 
-event.get("/singleEvent/eventid=eventid", async (req, res) => {
+event.get("/singleEvent", async (req, res) => {
   const eventid = req.query.eventid
   console.log(eventid)
-  res.send("success")
+  const getEventDetails = await client.query(/*sql */ `SELECT * FROM EVENTS WHERE ID =$1;`, [
+    eventid,
+  ])
+  res.json(getEventDetails.rows[0])
+
+})
+
+event.get("/organiser", async (req, res) => {
+  const eventid = req.query.eventid
+  const getOrganiserId = await client.query(
+    /*sql */ `SELECT t1.id, t1.last_name, t1.first_name, t1.phone, t1.email, t1.bio from users as t1 INNER JOIN events as t2 on t2.organiser_id = t1.id WHERE (t2.id = $1)`,
+    [eventid]
+  )
+  res.json(getOrganiserId.rows[0])
+  console.log(getOrganiserId.rows[0])
 })
 
 event.use(express.static("public"))
@@ -151,16 +157,15 @@ event.post("/", formidableMiddleware, async (req, res) => {
 event.get("/FollowerEvent", async (req, res) => {
   console.log(`UserID:${req.session["user"].ID}`)
   const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.user_id =  t1.organiser_id 
-  WHERE (t2.follower_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false);`
-  const Followers = await client.query(FollowersSQL, [req.session["user"].ID])
+  WHERE (t2.follower_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false AND t1.date > $2);`
+  const Followers = await client.query(FollowersSQL, [req.session["user"].ID, dateTime])
   console.log(Followers.rows)
   res.json(Followers.rows)
+  // SELECT * FROM events inner join follower_relation on events.is_deleted = false and events.is_active = true and events.is_full = false && on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = 1
+  // SELECT * FROM events join follower_relation on events.is_active = true JOIN events follower_relation on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = 1
+  // SELECT * from events as t1 INNER JOIN follower_relation as t2 on t2.user_id =  t1.organiser_id WHERE (t2.follower_id = 1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false);
+  // SELECT * FROM events inner join follower_relation on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = $1
 })
 
-// SELECT * FROM events inner join follower_relation on events.is_deleted = false and events.is_active = true and events.is_full = false && on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = 1
 
-// SELECT * FROM events join follower_relation on events.is_active = true JOIN events follower_relation on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = 1
 
-// SELECT * from events as t1 INNER JOIN follower_relation as t2 on t2.user_id =  t1.organiser_id WHERE (t2.follower_id = 1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false);
-
-// SELECT * FROM events inner join follower_relation on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = $1

@@ -11,6 +11,65 @@ async function loadSearchResult() {
 
 async function loadgenre(genre) {
   console.log("genre",genre)
+  document.querySelector("#result-type").innerHTML = `<h2><u><strong>${genre[0].toUpperCase()+genre.substring(1)}</strong><u></h2>`;
+
+  const resp = await fetch(`/search/genres?genre=${genre}`);
+  const results = await resp.json()
+  console.log(results)
+  let htmlStr = "";
+  for (const result of results) {
+    console.log(result)
+
+
+    // switch(result.image) {
+    //   case board-game:
+    //     defaultPath = board-game.jpg;
+    //     break;
+       
+    // }
+    if (result.type === "sport") {
+      defaultPath = "sports.jpg"
+    } else if (result.type === "board_game") {
+      defaultPath = "board-game.jpg"
+    } else if (result.type === "water_activities") {
+      defaultPath = "water.jpg"
+    } else if (result.type === "gaming") {
+      defaultPath = "gambling.jpg"
+    } else if (result.type === "party") {
+      defaultPath = "party.jpg"
+    } else if (result.type === "workshop") {
+      defaultPath = "workshop.jpg"
+    } else if (result.type === "online_activities") {
+      defaultPath = "online.jpg"
+    } else {
+      defaultPath = "others.jpg"
+    }
+    const path = result.image;
+
+    const image = result.image? `/${path}` : `/${defaultPath}`
+
+    htmlStr = 
+     /*html*/
+     `
+    <div class="col-md-3 mt-3">
+     <div class="card" data-id="${result.id}">
+     <img src = "${image}" class="card-img-top" />
+
+     <div class="card-body" >
+       <h5 class="card-title">${result.name}</h5>
+       <p class="card-text">
+         Date: ${result.date}<br>
+         Location: ${result.venue}<br>
+         Fee: ${result.fee}
+       </p>
+       </div>
+   </div>
+   </div>
+   `
+   document.querySelector("#content-board").innerHTML += htmlStr;
+  }
+  
+
 }
 
 async function loadkeyword(keyword) {
