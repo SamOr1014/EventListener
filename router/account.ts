@@ -34,6 +34,15 @@ account.get("/request", (req, res) => {
   res.redirect("request.html")
 })
 
+account.get('/request/detail', async(req, res)=> {
+  const userid = req.session['user'].ID
+  if (!userid){
+    res.json({success : false, message: "failed"})
+  }
+  const reqUser = await client.query('select users_request.user_id, users_request.event_id, users.first_name, users.last_name, users.phone, events.name, users_request.id from users_request inner join users on users_request.user_id = users.id inner join events on users_request.event_id = events.id where users_request.organiser_id = $1 and processed = false;',[userid])
+  res.json(reqUser.rows)
+})
+
 account.get("/joined", (req, res) => {
   console.log("you request for you joined")
   res.redirect("user-joined.html")

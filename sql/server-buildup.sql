@@ -40,19 +40,11 @@ create table events (
     references users(id)
 );
 
-SELECT * FROM users;
-SELECT * FROM events;
-
-DROP TABLE users;
-DROP TABLE events;
-
-DELETE FROM users;
-DELETE FROM events;
-
 
 create table users_request (
     id serial primary key,
     user_id int, foreign key (user_id) references users (id),
+    organiser_id int, foreign key (user_id) references users (id),
     event_id int, foreign key (event_id) references events (id),
     created_at timestamp,
     updated_at timestamp,
@@ -70,10 +62,6 @@ create table follower_relation (
     user_id int, foreign key (user_id) references users (id),
     follower_id int, foreign key (follower_id) references users (id)
 );
-
-SELECT * FROM follower_relation;
-
-INSERT INTO follower_relation (user_id, follower_id) values (1,3);
 
 create table event_comment (
     id serial primary key,

@@ -34,6 +34,27 @@ event.get("/", (req, res) => {
   // res.redirect("createEvent.html");
 })
 
+//Approving users to join event
+event.put('/approve', async(req, res)=> {
+  console.log(req.body)
+  const eventid = req.body.eventid
+  const reqUserid = req.body.reqUserid
+  const reqid = req.body.reqid
+  const approve = req.query.approve
+  if(!approve) {
+    res.json({success: false, message: 'Invalid query'})
+  }
+  if (approve === 'yes'){
+    await client.query('update users_request set processed = true where id = $1', [reqid])
+    await client.query('insert into users_joined (user_id, event_id) values ($1, $2)',[reqUserid, eventid])
+    res.json({message: `Approve User ID ${reqUserid} joined Event ID ${eventid}`})
+  }
+  else if (approve === 'no'){
+    await client.query('update users_request set processed = true where id = $1', [reqid])
+    res.json({message : `Dismiss User ID ${reqUserid}'s Request`})
+  }                       
+})
+
 //selecting all active and not banned events
 event.get("/allEvents", async (req, res) => {
   const allEvent = await client.query(
