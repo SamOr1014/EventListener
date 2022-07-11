@@ -138,11 +138,8 @@ async function postAllEvents() {
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
       console.log(id)
-      const resp = await fetch(`/event/details/${id}`, { method: "GET" })
-      if (resp.status === 400) {
-        const result = await resp.json()
-        alert(result.message)
-      }
+      // const resp = await fetch(`/event/details?id=${id}`, { method: "GET" })
+      window.location.href = `/event-details.html?eventid=${id}`
     })
   )
 }
