@@ -68,20 +68,22 @@ event.get("/joinedEvent/upcoming", async (req, res) => {
   res.json(userJoined.rows)
 })
 
-event.get("/details", async (req, res) => {
-  const eventid = req.query.id
-  console.log(`Testing ${eventid}`)
-  // const getEventDetails = await client.query(
-  //   /*sql */ `SELECT * FROM EVENTS WHERE ID =$1`[eventid]
-  // );
-  // res.json(getEventDetails.rows);
-  // res.redirect(`event-details.html/?eventid=${eventid}`)
-})
-
-event.get("/singleEvent/eventid=eventid", async (req, res) => {
+event.get("/singleEvent", async (req, res) => {
   const eventid = req.query.eventid
   console.log(eventid)
-  res.send("success")
+  const getEventDetails = await client.query(/*sql */ `SELECT * FROM EVENTS WHERE ID =$1;`, [
+    eventid,
+  ])
+  res.json(getEventDetails.rows[0])
+})
+
+event.get("/organiser", async (req, res) => {
+  const eventid = req.query.eventid
+  const getOrganiserId = await client.query(
+    /*sql */ `select * from users inner join events on users.id= events.organiser_id where events.id=$1`,
+    [eventid]
+  )
+  res.json(getOrganiserId.rows[0])
 })
 
 event.use(express.static("public"))

@@ -113,7 +113,7 @@ async function postAllEvents() {
     } else {
       defaulePath = "others.jpg"
     }
-    const path = result.image;
+    const path = result.image
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
