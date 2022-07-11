@@ -3,9 +3,9 @@ import {client} from '../server'
 
 export const search = express.Router()
 
-search.get('/', (req, res)=> {
-    res.redirect('search.html')
-})
+// search.get('/', (req, res)=> {
+//     res.redirect('search.html')
+// })
 
 search.get('/keyword', async (req, res)=> {
     const keyword = req.query.keyword
@@ -15,7 +15,9 @@ search.get('/keyword', async (req, res)=> {
 })
 
 search.get('/genre', (req, res)=> {
-    const genre = req.query.genre
-    console.log(genre)
-    res.send('genre search')
+    console.log("hi")
+    console.log(req.path)
+    // const genre = req.query.genre
+    // console.log(genre)
+    // res.redirect(`search.html?genre=${genre}`)
 })
