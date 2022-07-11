@@ -1,10 +1,5 @@
 window.onload = async () => {
-  console.log("Texting1")
   await getUserInfo()
-  // true if has ac
-  // const isLoggedIN = !!user;
-
-  console.log("Final texting")
 }
 
 async function getUserInfo() {
@@ -15,15 +10,17 @@ async function getUserInfo() {
     loadEventsWithAc()
   } else {
     postAllEvents()
+    disableTitle()
   }
 }
 
 async function loadEventsWithAc() {
+
   console.log(user.ID)
   console.log(user.username)
   const resp = await fetch("event/FollowerEvent")
   const results = await resp.json()
-  let htmlStr = ""
+  let htmlStr = ``
   for (const result of results) {
     console.log(result)
     if (result.fee === 0) {
@@ -84,7 +81,6 @@ async function loadEventsWithAc() {
 }
 
 async function postAllEvents() {
-  console.log("No AC so will show all contents")
   const resp = await fetch("/event/allEvents")
   const results = await resp.json()
   let htmlStr = ""
@@ -163,3 +159,8 @@ async function CheckLogin() {
 document.querySelector("#create-event").addEventListener("click", () => {
   CheckLogin()
 })
+
+async function disableTitle() {
+  document.querySelector("#FollowTitle").innerHTML = ''
+}
+

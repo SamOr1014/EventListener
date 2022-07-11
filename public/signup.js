@@ -35,6 +35,7 @@ document.querySelector("#createAc").addEventListener("submit", async function (e
   const result = await res.json()
   if (result.success) {
     alert("Account created")
+    window.location.href = "/index.html"
   } else {
     alert("Error, account registered")
   }
