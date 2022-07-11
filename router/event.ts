@@ -68,17 +68,17 @@ event.get("/joinedEvent/upcoming", async (req, res) => {
   res.json(userJoined.rows)
 })
 
-event.get("/details/:id", async (req, res) => {
-  const eventid = parseInt(req.params.id, 10)
-  console.log(eventid)
+event.get("/details", async (req, res) => {
+  const eventid = req.query.id
+  console.log(`Testing ${eventid}`)
   // const getEventDetails = await client.query(
   //   /*sql */ `SELECT * FROM EVENTS WHERE ID =$1`[eventid]
   // );
   // res.json(getEventDetails.rows);
-  res.redirect(`event-details.html/?eventid=${eventid}`)
+  // res.redirect(`event-details.html/?eventid=${eventid}`)
 })
 
-event.get("/singleEvent", async (req, res) => {
+event.get("/singleEvent/eventid=eventid", async (req, res) => {
   const eventid = req.query.eventid
   console.log(eventid)
   res.send("success")

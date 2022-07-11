@@ -1,6 +1,6 @@
 window.onload = () => {
-  const eventid = window.location.search.substr(-1)
-  console.log(parseInt(eventid))
+  const eventid = window.location.search.substr(9)
+  console.log(eventid)
   loadEventDetails(eventid)
 }
 
