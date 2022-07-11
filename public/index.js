@@ -1,6 +1,27 @@
 async function addEventListenerToGenre(){
     document.querySelector('#boardgame-pic').addEventListener('click', (e)=> {
-        window.location.href = "/search.html?genre=1"
+        window.location.href = "/search.html?genre=board_game"
+    })
+    document.querySelector('#workshop-pic').addEventListener('click', (e)=> {
+        window.location.href = "/search.html?genre=workshop"
+    })
+    document.querySelector('#party-pic').addEventListener('click', (e)=> {
+        window.location.href = "/search.html?genre=party"
+    })
+    document.querySelector('#sport-pic').addEventListener('click', (e)=> {
+        window.location.href = "/search.html?genre=sport"
+    })
+    document.querySelector('#water-pic').addEventListener('click', (e)=> {
+        window.location.href = "/search.html?genre=water_activities"
+    })
+    document.querySelector('#online-pic').addEventListener('click', (e)=> {
+        window.location.href = "/search.html?genre=online_activities"
+    })
+    document.querySelector('#gaming-pic').addEventListener('click', (e)=> {
+        window.location.href = "/search.html?genre=gaming"
+    })
+    document.querySelector('#other-pic').addEventListener('click', (e)=> {
+        window.location.href = "/search.html?genre=other"
     })
 }
 

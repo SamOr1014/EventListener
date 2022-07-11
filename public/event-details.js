@@ -1,39 +1,39 @@
 window.onload = () => {
-  const eventid = window.location.search.substr(9);
+  const eventid = window.location.search.substr(9)
   console.log(eventid)
-  loadEventDetails(eventid);
-};
+  loadEventDetails(eventid)
+}
 
 async function loadEventDetails(eventid) {
-  console.log("fetching");
-  const resp = await fetch(`/event/singleEvent?eventid=${eventid}`);
-  const events = await resp.json();
-  let htmlStr = "";
+  console.log("fetching")
+  const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
+  const events = await resp.json()
+  let htmlStr = ""
   if (events.fee === 0) {
-    Amount = "Free";
+    Amount = "Free"
   } else {
-    Amount = `HKD${events.fee}`;
+    Amount = `HKD${events.fee}`
   }
 
   if (events.type === "Sport") {
-    defaulePath = "sports.jpg";
+    defaulePath = "sports.jpg"
   } else if (events.type === "Board_game") {
-    defaulePath = "board-game.jpg";
+    defaulePath = "board-game.jpg"
   } else if (events.type === "Water_activity") {
-    defaulePath = "water.jpg";
+    defaulePath = "water.jpg"
   } else if (events.type === "Gambling") {
-    defaulePath = "gambling.jpg";
+    defaulePath = "gambling.jpg"
   } else if (events.type === "Party") {
-    defaulePath = "party.jpg";
+    defaulePath = "party.jpg"
   } else if (events.type === "Workshop") {
-    defaulePath = "workshop.jpg";
+    defaulePath = "workshop.jpg"
   } else if (events.type === "Online_activity") {
-    defaulePath = "online.jpg";
+    defaulePath = "online.jpg"
   } else {
-    defaulePath = "others.jpg";
+    defaulePath = "others.jpg"
   }
 
-  const image = events.image ? `/image/${events.image}` : `/image/${defaulePath}`;
+  const image = events.image ? `/${events.image}` : `/{defaulePath}`
   htmlStr += /*html */ `
   <div id="event-left">
    <img src=${image}" width="100%" alt="..." />
@@ -59,24 +59,24 @@ async function loadEventDetails(eventid) {
          <div class="description">Description: ${events.content}</div>
       </div>
     </div>
-  </div>`;
-  document.querySelector(".event-detailsInfo").innerHTML = htmlStr;
+  </div>`
+  document.querySelector(".event-detailsInfo").innerHTML = htmlStr
 }
 
 document.querySelector("#apply-now").addEventListener("click", function (event) {
-  event.preventDefault();
-  console.log("hi");
-});
+  event.preventDefault()
+  console.log("hi")
+})
 
 async function userProfileInEventDetails() {
-  let htmlProfileCard = document.querySelector("#Profile");
+  let htmlProfileCard = document.querySelector("#Profile")
   const profile = await fetch(`/account/userdetail`, {
     method: "GET",
-  });
-  const userInfo = await profile.json();
-  console.log(userInfo);
-  let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg";
-  htmlProfileCard.innerHTML = "";
+  })
+  const userInfo = await profile.json()
+  console.log(userInfo)
+  let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
+  htmlProfileCard.innerHTML = ""
   htmlProfileCard.innerHTML += `<div id="Profile" class="card w-50 mb-3">
   <a href="#">
     <img
@@ -91,17 +91,17 @@ async function userProfileInEventDetails() {
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
   </div>
-</div>`;
+</div>`
 }
 
-let reportMsg = "";
+let reportMsg = ""
 
 function promptEvent() {
-  reportMsg = prompt("May i have the Reasons?");
+  reportMsg = prompt("May i have the Reasons?")
   if (reportMsg == null || reportMsg == "") {
-    alert("Sorry, I haven't get your msg");
+    alert("Sorry, I haven't get your msg")
   } else {
-    alert("Your have reported!");
+    alert("Your have reported!")
   }
-  console.log(reportMsg);
+  console.log(reportMsg)
 }
