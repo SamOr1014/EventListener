@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 1000px) {
     body {
         display: flex;
         flex-direction: column;
@@ -12,13 +12,17 @@
         flex-direction: column;
         align-items: center;
     }
+    #signUpBoard, #loginBoard {
+        width: 90% !important;
+        margin-bottom: 2%;
+    }
 
 }
 
 
 
 body {
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
 }
@@ -49,7 +53,6 @@ body {
     flex-wrap: wrap row;
     justify-content: center;
     width: 40%;
-    Height: auto;
     padding: 10px;
     margin-top: 20px;
 }
@@ -61,7 +64,7 @@ body {
     flex-wrap: wrap row;
     justify-content: center;
     width: 40%;
-    Height: auto;
+    height: auto;
     padding: 5px;
     margin-top: 20px;
 }
@@ -165,7 +168,6 @@ p {
 
 .panel {
     position: relative;
-    bottom:-50px;
 }
 .form-control {
     width: 100%;

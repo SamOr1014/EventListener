@@ -1,6 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
 
+@media screen and (max-width: 1000px) {
+    .categories {
+        text-align: center;
+    }
+    .homepage{
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .homepage p {
+        font-size: 4vh;
+    }
+    .carousel-item {
+        height: 300px !important;
+    }
+
+}
+
 
 /* css for header plus navbar */
 #logo  {
@@ -30,7 +48,7 @@
 .homepage {
     position: absolute;
     display: block;
-    font-size: 3vw;
+    font-size: 5vw;
     text-align: center;
     top:50%;
     left: 50%;
@@ -41,21 +59,6 @@ p {
     font-family: 'Gentium Book Plus', serif;
 }
 
-@media screen and (max-width: 500px) {
-    .categories {
-        text-align: center;
-    }
-    .homepage{
-        font-size: 3vh;
-        top:50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    .carousel-item {
-        height: 250px !important;
-    }
-
-}
 
 /* css for categories */
 .categories {
