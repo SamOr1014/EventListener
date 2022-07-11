@@ -21,26 +21,21 @@
         >
           <a
             id="logo"
-            class="d-flex align-items-center mb-2 mb-lg-2 text-white text-decoration-none"
             href="/"
+            class="d-flex align-items-center mb-2 mb-lg-2 text-white text-decoration-none"
           >
             EL.
           </a>
-  
+    
           <ul
             id="navigation"
             class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0"
           >
             <li>
-              <a id="explore" class="nav-link px-2 text-white" href="/main"
-                >Explore</a
-              >
+              <a href="#" id="explore" class="nav-link px-2 text-white">Explore</a>
             </li>
             <li>
-              <a
-                id="create-event"
-                class="nav-link px-2 text-white"
-                href="/event"
+              <a href="#" id="create-event" class="nav-link px-2 text-white"
                 >Create Event</a
               >
             </li>
@@ -48,19 +43,20 @@
               <div class="dropdown">
                 <a
                   class="nav-link px-2 text-white dropdown-toggle"
+                  href="#"
                   id="genre"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Genre
                 </a>
-  
+    
                 <ul class="dropdown-menu" aria-labelledby="genre">
                   <li>
                     <a
                       id="genre-sport"
                       class="dropdown-item"
-                      href="/search?genre=sport"
+                      href="/search.html?genre=sport"
                       >Sport</a
                     >
                   </li>
@@ -68,7 +64,7 @@
                     <a
                       id="genre-water"
                       class="dropdown-item"
-                      href="/search?genre=water-activity"
+                      href="/search.html?genre=water_activities"
                       >Water Activity</a
                     >
                   </li>
@@ -76,7 +72,7 @@
                     <a
                       id="genre-party"
                       class="dropdown-item"
-                      href="/search?genre=party"
+                      href="/search.html?genre=party"
                       >Party</a
                     >
                   </li>
@@ -84,7 +80,7 @@
                     <a
                       id="genre-boardgame"
                       class="dropdown-item"
-                      href="/search?genre=board-game"
+                      href="/search.html?genre=board_game"
                       >Board Game</a
                     >
                   </li>
@@ -92,7 +88,7 @@
                     <a
                       id="genre-workshop"
                       class="dropdown-item"
-                      href="/search?genre=workshop"
+                      href="/search.html?genre=workshop"
                       >Workshop</a
                     >
                   </li>
@@ -100,7 +96,7 @@
                     <a
                       id="genre-gaming"
                       class="dropdown-item"
-                      href="/search?genre=gaming"
+                      href="/search.html?genre=gaming"
                       >Gaming</a
                     >
                   </li>
@@ -108,46 +104,41 @@
                     <a
                       id="genre-online"
                       class="dropdown-item"
-                      href="/search?genre=online-activity"
+                      href="/search.html?genre=online_activities"
                       >Online Activity</a
                     >
                   </li>
                   <li>
                     <a
-                      id="genre-other"
+                      id="others"
                       class="dropdown-item"
-                      href="/search?genre=other"
-                      >Other</a
+                      href="/search.html?genre=others"
+                      >others</a
                     >
                   </li>
                 </ul>
               </div>
             </li>
           </ul>
-  
-          <form
-            id="header-search"
-            class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex"
-            role="search"
-          >
+    
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <input
-              name="searchbar"
+              id="header-search"
               type="search"
               class="form-control form-control-dark text-white bg-dark"
               placeholder="Search..."
               aria-label="Search"
             />
-            <!-- <button type="submit" class="btn btn-primary">search</button> -->
           </form>
-  
-          <div id="account" class="text-end d-flex">
-          </div>
+    
+          <div id="account" class="text-end d-flex"></div>
         </div>
       </div>
     </header>
+    
     <!--The Whole Panel-->
-    <div id="content" class="container-fluid m-2">
-        <div id="showing-panel" class="row">
+    <div id="content" class="container d-flex justify-content-center">
+        <div id="showing-panel" class="row col-md-12 mt-3">
 
         </div>
     </div>

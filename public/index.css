@@ -26,9 +26,11 @@
 }
 
 /* css for slider */
+
 .homepage {
+    position: absolute;
     display: block;
-    font-size: 3rem;
+    font-size: 3vw;
     text-align: center;
     top:50%;
     left: 50%;
@@ -39,17 +41,26 @@ p {
     font-family: 'Gentium Book Plus', serif;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 500px) {
     .categories {
-        margin-top: 0;
+        text-align: center;
     }
+    .homepage{
+        font-size: 3vh;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .carousel-item {
+        height: 250px !important;
+    }
+
 }
 
 /* css for categories */
 .categories {
     font-size: 2rem;
-    margin-top: 60px;
-    margin-left: 100px;
+    margin-top: 3%;
     font-weight: bold;
     font-family: 'Gentium Book Plus', serif;
 }

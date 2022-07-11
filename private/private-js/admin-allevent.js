@@ -1,12 +1,12 @@
 function loadPage(result) {
   document.querySelector(
     "#showing-panel"
-  ).innerHTML = `<div class="text-center"><h4>EVENTS PANEL</h4></div>
+  ).innerHTML = `<div class="col-md-12 text-center"><h4>EVENTS PANEL</h4></div>
     <div class="d-flex justify-content-center">
     <button id="show-active" class="btn btn-primary m-1">See Active</button>
-    <\div>
     <button id="show-inactive" class="btn btn-primary m-1">See Inactive</button>
     <button id="show-deleted" class="btn btn-primary m-1">See Deleted</button>
+    <\div>
 `
   for (let event of result) {
     let delButton = event.is_deleted
@@ -19,7 +19,7 @@ function loadPage(result) {
 
     document.querySelector(
       "#showing-panel"
-    ).innerHTML += `          <div class="col-md-3 report-cards">
+    ).innerHTML += `          <div class="col-md-4 report-cards">
         <div eventid="${event.id}" class="card">
           <div class="card-body">
             <h4>${event.name}</h4>

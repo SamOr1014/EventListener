@@ -1,26 +1,20 @@
+async function loadSearchResult() {
+  let type = window.location.search
+  type = type.replace("?", "")
+  let typeArr = type.split("=")
+  if (typeArr[0] === "genre") {
+    loadgenre(typeArr[1])
+  } else if (typeArr[0] === "keyword") {
+    loadkeyword(typeArr[1])
+  }
+}
 
-// async function getData() {
-//     const category = localStorage.getItem("category")
-//     const url = `./.......?category=${category}`
+async function loadgenre(genre) {
+  console.log("genre",genre)
+}
 
-//     document.querySelector("#result-type").innerHTML = category
+async function loadkeyword(keyword) {
+  console.log("keyword",keyword)
+}
 
-//     // method: "GET"
-//     // backend >> req.query
-//     const dataJson = await fetch(url)
-//     const data = await data.json()
-
-//     // manage html
-//     const dataBoard = document.querySelector("#content")
-//     const htmlStr = `<div> ${data.name}, ${data.image}, ${data.venue}, ${data.date}, ${data.user}, ${data.rating} </div>`
-//     dataBoard.innerHTML = htmlStr
-// } 
-
-// // getData()      
-
-
-// // Result: image, event name, event venue, event date, user(organizer) bio, rating
-
-
-
-
+loadSearchResult()

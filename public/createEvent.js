@@ -46,6 +46,7 @@ document.querySelector('#createEvent').addEventListener("submit", async function
     const result = await res.json()
     if (result.success) {
       alert("Event Created");
+      window.location.href = "/index.html"
     } else {
       alert("Fail")
     }
@@ -61,6 +62,7 @@ document.querySelector('#create-event').addEventListener('click', () => {
   location.reload();
  
 })
+
 
 
 
