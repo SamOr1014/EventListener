@@ -69,15 +69,6 @@ event.get("/joinedEvent/upcoming", async (req, res) => {
   res.json(userJoined.rows)
 })
 
-event.get("/details", async (req, res) => {
-  const eventid = req.query.id
-  console.log(`Testing ${eventid}`)
-  // const getEventDetails = await client.query(
-  //   /*sql */ `SELECT * FROM EVENTS WHERE ID =$1`[eventid]
-  // );
-  // res.json(getEventDetails.rows);
-  // res.redirect(`event-details.html/?eventid=${eventid}`)
-})
 
 event.get("/singleEvent", async (req, res) => {
   const eventid = req.query.eventid
@@ -86,12 +77,17 @@ event.get("/singleEvent", async (req, res) => {
     eventid,
   ])
   res.json(getEventDetails.rows[0])
+
 })
 
 event.get("/organiser", async (req, res) => {
   const eventid = req.query.eventid
   const getOrganiserId = await client.query(
+<<<<<<< HEAD
     /*sql */ `select (users.id,users.first_name, users.last_name,users.phone, users.email, users.bio) from users inner join events on users.id= events.organiser_id where events.id=$1`,
+=======
+    /*sql */ `SELECT t1.id, t1.last_name, t1.first_name, t1.phone, t1.email, t1.bio from users as t1 INNER JOIN events as t2 on t2.organiser_id = t1.id WHERE (t2.id = $1)`,
+>>>>>>> eb0b8436672347a29435a5be34c9c1a20ea41abb
     [eventid]
   )
   res.json(getOrganiserId.rows[0])
@@ -153,3 +149,6 @@ event.get("/FollowerEvent", async (req, res) => {
   // SELECT * from events as t1 INNER JOIN follower_relation as t2 on t2.user_id =  t1.organiser_id WHERE (t2.follower_id = 1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false);
   // SELECT * FROM events inner join follower_relation on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = $1
 })
+
+
+
