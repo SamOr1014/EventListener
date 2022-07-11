@@ -2,7 +2,6 @@ async function loadAllRequestOfJoiningEvent() {
     document.querySelector('#showing-panel').innerHTML =``
     const userWhoReq = await fetch('/account/request/detail')
     const result = await userWhoReq.json()
-    console.log(result)
     document.querySelector('#showing-panel').innerHTML += `<div class="text-center mt-3"><h3>HERE ARE ALL THE REQUEST BY OTHER USERS</h3></div>`
     for (let request of result){
         document.querySelector('#showing-panel').innerHTML+= `<div class="col-md-3 report-cards">
@@ -28,7 +27,6 @@ async function addEventListenerToDismissAndApprove(){
         let eventid = e.target.attributes['eid'].value
         let reqUserid = e.target.attributes['ruid'].value
         let reqid = e.target.attributes['reqid'].value
-        console.log(eventid, reqUserid, reqid)
         const approveFetch = await fetch(`/event/approve?approve=yes`,{
             method: 'PUT',
             headers: {
@@ -47,7 +45,6 @@ async function addEventListenerToDismissAndApprove(){
         let eventid = e.target.attributes['eid'].value
         let reqUserid = e.target.attributes['ruid'].value
         let reqid = e.target.attributes['reqid'].value
-        console.log(eventid, reqUserid, reqid)
         const approveFetch = await fetch(`/event/approve?approve=no`,{
             method: 'PUT',
             headers: {
