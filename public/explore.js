@@ -29,19 +29,19 @@ async function loadEventsWithAc() {
       Amount = `HKD${result.fee}`
     }
 
-    if (result.type === "Sport") {
+    if (result.type === "sport") {
       defaulePath = "sports.jpg"
-    } else if (result.type === "Board_game") {
+    } else if (result.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (result.type === "Water_activity") {
+    } else if (result.type === "water_activity") {
       defaulePath = "water.jpg"
-    } else if (result.type === "Gambling") {
+    } else if (result.type === "gambling") {
       defaulePath = "gambling.jpg"
-    } else if (result.type === "Party") {
+    } else if (result.type === "party") {
       defaulePath = "party.jpg"
-    } else if (result.type === "Workshop") {
+    } else if (result.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (result.type === "Online_activity") {
+    } else if (result.type === "online_activity") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"
@@ -92,19 +92,19 @@ async function postAllEvents() {
       Amount = `HKD${result.fee}`
     }
 
-    if (result.type === "Sport") {
+    if (result.type === "sport") {
       defaulePath = "sports.jpg"
-    } else if (result.type === "Board_game") {
+    } else if (result.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (result.type === "Water_activity") {
+    } else if (result.type === "water_activity") {
       defaulePath = "water.jpg"
-    } else if (result.type === "Gambling") {
+    } else if (result.type === "gambling") {
       defaulePath = "gambling.jpg"
-    } else if (result.type === "Party") {
+    } else if (result.type === "party") {
       defaulePath = "party.jpg"
-    } else if (result.type === "Workshop") {
+    } else if (result.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (result.type === "Online_activity") {
+    } else if (result.type === "online_activity") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"
