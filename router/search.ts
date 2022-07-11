@@ -17,10 +17,6 @@ search.get('/keyword', async (req, res)=> {
 search.get('/genres', (req, res)=> {
     const genre = req.query.genre
     console.log(genre)
-    res.redirect(`/search.html?genre=${genre}`)
+    res.json()
 })
 
-search.get('/search.html', (req,res)=> {
-    console.log(req.query)
-    res.json({success : true})
-})
