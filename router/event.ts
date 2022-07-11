@@ -91,10 +91,11 @@ event.get("/singleEvent", async (req, res) => {
 event.get("/organiser", async (req, res) => {
   const eventid = req.query.eventid
   const getOrganiserId = await client.query(
-    /*sql */ `select * from users inner join events on users.id= events.organiser_id where events.id=$1`,
+    /*sql */ `select (users.id,users.first_name, users.last_name,users.phone, users.email, users.bio) from users inner join events on users.id= events.organiser_id where events.id=$1`,
     [eventid]
   )
   res.json(getOrganiserId.rows[0])
+  console.log(getOrganiserId.rows[0])
 })
 
 event.use(express.static("public"))

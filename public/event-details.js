@@ -23,7 +23,7 @@ async function loadEventDetails(eventid) {
     defaulePath = "board-game.jpg"
   } else if (events.type === "Water_activity") {
     defaulePath = "water.jpg"
-  } else if (events.type === "Gambling") {
+  } else if (events.type === "Gaming") {
     defaulePath = "gambling.jpg"
   } else if (events.type === "Party") {
     defaulePath = "party.jpg"
