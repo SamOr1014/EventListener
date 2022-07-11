@@ -24,7 +24,6 @@ async function loadUserProfile(){
 
 async function loadFollowers(){
     let htmlFollowersList = document.querySelector('#follower-list')
-    let userID = 1
     const followers = await fetch(`/followers`, {
         method: 'GET'
     })
@@ -36,8 +35,36 @@ async function loadFollowers(){
 }
 
 async function loadUpComingEvent(){
-    
+  const joinedEventFromServer = await fetch('/event/joinedEvent/upcoming')
+  const allJoinedEvent = await joinedEventFromServer.json()
+  document.querySelector('#upcoming-event').innerHTML += `<div class="text-center"><h3>Upcoming Events</h3></div>`
+  for(let event of allJoinedEvent ){
+      let image = event.image? event.image: "water.jpg"
+
+      document.querySelector('#upcoming-event').innerHTML += `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">
+          <div id="joined-event-col" class="col-lg-12 d-flex flex-wrap justify-content-around">
+            <div class="col-md-12"><h3>${event.name}</h3></div>
+            <div class="col-md-4 p-2">
+                <img src="${image}" class="w-100 h-100">
+            </div>
+            
+            <div class="col-md-4 p-2">
+                <div><h4>Venue: </h4></div>
+                <div><h5>@ ${event.venue}</h5></div>
+                <div><h5>on ${event.date}</h5></div>
+                <div><h5>Rating: /5</h5></div>
+            </div>
+            <div class="col-md-4 p-2">
+                <div><h5>Event Bio:</h5></div>
+                <div id="bio-text">${event.bio}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`
+  }
 }
 
 loadUserProfile()
+loadUpComingEvent()
 loadFollowers()

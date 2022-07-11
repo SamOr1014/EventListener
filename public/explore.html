@@ -31,123 +31,54 @@
           >
             EL.
           </a>
-
+    
           <ul
             id="navigation"
             class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0"
           >
-            <li><a href="#" class="nav-link px-2 text-white">Explore</a></li>
+            <li><a href="#" id="explore" class="nav-link px-2 text-white">Explore</a></li>
             <li>
-              <a href="#" class="nav-link px-2 text-white">Create Event</a>
+              <a href="#" id="create-event" class="nav-link px-2 text-white">Create Event</a>
             </li>
             <li>
               <div class="dropdown">
-                <a
-                  class="nav-link px-2 text-white dropdown-toggle"
-                  href="#"
-                  id="genre"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+                <a class="nav-link px-2 text-white dropdown-toggle" href="#" id="genre" data-bs-toggle="dropdown" aria-expanded="false">
                   Genre
                 </a>
-
+              
                 <ul class="dropdown-menu" aria-labelledby="genre">
-                  <li>
-                    <a id="genre-sport" class="dropdown-item" href="#">Sport</a>
-                  </li>
-                  <li>
-                    <a id="genre-water" class="dropdown-item" href="#"
-                      >Water Activity</a
-                    >
-                  </li>
-                  <li>
-                    <a id="genre-party" class="dropdown-item" href="#">Party</a>
-                  </li>
-                  <li>
-                    <a id="genre-boardgame" class="dropdown-item" href="#"
-                      >Board Game</a
-                    >
-                  </li>
-                  <li>
-                    <a id="genre-workshop" class="dropdown-item" href="#"
-                      >Workshop</a
-                    >
-                  </li>
-                  <li>
-                    <a id="genre-gaming" class="dropdown-item" href="#"
-                      >Gaming</a
-                    >
-                  </li>
-                  <li>
-                    <a id="genre-online" class="dropdown-item" href="#"
-                      >Online Activity</a
-                    >
-                  </li>
+                  <li><a id="genre-sport" class="dropdown-item" href="#">Sport</a></li>
+                  <li><a id="genre-water" class="dropdown-item" href="#">Water Activity</a></li>
+                  <li><a id="genre-party" class="dropdown-item" href="#">Party</a></li>
+                  <li><a id="genre-boardgame" class="dropdown-item" href="#">Board Game</a></li>
+                  <li><a id="genre-workshop" class="dropdown-item" href="#">Workshop</a></li>
+                  <li><a id="genre-gaming" class="dropdown-item" href="#">Gaming</a></li>
+                  <li><a id="genre-online" class="dropdown-item" href="#">Online Activity</a></li>
                 </ul>
               </div>
             </li>
           </ul>
-
+    
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <input
+              id="header-search"
               type="search"
               class="form-control form-control-dark text-white bg-dark"
               placeholder="Search..."
               aria-label="Search"
             />
           </form>
-
-          <div id="account" class="text-end">
-            <button type="button" class="btn btn-outline-light me-2">
-              Account
-            </button>
-            <button type="button" class="btn btn-warning">Log Out</button>
-          </div>
-
-          <div id="user-menu">
-            <a
-              href="#"
-              class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-              id="user-icon"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src="https://github.com/mdo.png"
-                alt=""
-                class="rounded-circle me-2"
-                width="32"
-                height="32"
-              />
-              <strong>User</strong>
-            </a>
-            <ul
-              class="dropdown-menu dropdown-menu-dark text-small shadow"
-              aria-labelledby="user-icon"
-            >
-              <li>
-                <a id="profile" class="dropdown-item" href="#">Profile</a>
-              </li>
-              <li>
-                <a id="created" class="dropdown-item" href="#">Created</a>
-              </li>
-              <li><a id="joined" class="dropdown-item" href="#">Joined</a></li>
-              <li>
-                <a id="privacy" class="dropdown-item" href="#"
-                  >Privacy Setting</a
-                >
-              </li>
-            </ul>
+    
+          <div id="account" class="text-end d-flex">
           </div>
         </div>
       </div>
     </header>
-    <!-- <div class="followed">
+    <div id="followed">
       <div class="title">You followed this people..</div>
       <div id = "cardArea">
 
-      <div class="card" style="width: 18rem">
+      <!-- <div class="card" style="width: 18rem">
         <img src ="../uploads/71217a1d58abd4a088f424a00.png"
           class="card-img-top"
           alt="..."
@@ -161,13 +92,14 @@
           </p>
           
         </div>
-      </div>
-      
+      </div> -->
     </div>
-    </div> -->
+    </div>
+
+<br>
 
     <div id="popular">
-      <div class="title">All events pending you to join</div>
+      <div class="title">All events for you to join</div>
         <div id = "allEvent">
       <!-- <div class="card" style="width: 18rem">
         <img
@@ -208,12 +140,13 @@
         </div>
       </div>
     </div> -->
-
+  </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript" src="/header.js"></script>
     <script type="text/javascript" src="explore.js"></script>
   </body>
 </html>

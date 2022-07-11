@@ -84,6 +84,7 @@ create table event_comment (
 
 create table reports (
     id serial primary key,
+    user_id int, foreign key (user_id) references users (id),
     event_id int, foreign key (event_id) references events (id),
     reason text,
     solved boolean

@@ -5,9 +5,9 @@
     "singleQuote": true,
     "overrides": [
         {
-            "files": ["*.ts", "*.js"],
+            "files": ["*.ts", "*.js", ".html"],
             "options": {
-                "semi": true,
+                "semi": false,
                 "tabWidth": 2,
                 "singleQuote": false,
                 "printWidth": 100

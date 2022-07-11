@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from 'express'
 
-export async function isLoggedin(req:Request, res:Response, next:NextFunction) {
+export function isLoggedin(req:Request, res:Response, next:NextFunction) {
     if (req.session['user']) {
         next()
     }
@@ -10,19 +10,18 @@ export async function isLoggedin(req:Request, res:Response, next:NextFunction) {
 }
 
 export async function isLoggedinForExplore (req:Request, res:Response, next:NextFunction) {
-    console.log("Texting2")
+    console.log("Texting for MiddleWare")
     if (!req.session["user"]) {
         res.status(401).json({ success: false, message: "Visitor" });
         return;
-      }
+      } 
       next();
-    };
+    }
 
-export async function isAdmin(req:Request, res:Response, next:NextFunction) {
-    if (req.session['adminStatus']){
-        next();
+export function isAdmin(req:Request, res:Response, next:NextFunction) {
+    if (!req.session['adminStatus']){
+        res.redirect('/')
+        return
     }
-    else {
-        res.redirect('404.html')
-    }
+    next()
 }

@@ -26,14 +26,14 @@
           >
             EL.
           </a>
-
+    
           <ul
             id="navigation"
             class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0"
           >
-            <li><a href="#" class="nav-link px-2 text-white">Explore</a></li>
+            <li><a href="#" id="explore" class="nav-link px-2 text-white">Explore</a></li>
             <li>
-              <a href="#" class="nav-link px-2 text-white">Create Event</a>
+              <a href="#" id="create-event" class="nav-link px-2 text-white">Create Event</a>
             </li>
             <li>
               <div class="dropdown">
@@ -53,52 +53,19 @@
               </div>
             </li>
           </ul>
-
+    
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <input
+              id="header-search"
               type="search"
               class="form-control form-control-dark text-white bg-dark"
               placeholder="Search..."
               aria-label="Search"
             />
           </form>
-
-          <div id="account" class="text-end">
-            <button type="button" class="btn btn-outline-light me-2">
-              Account
-            </button>
-            <button type="button" class="btn btn-warning">Log Out</button>
+    
+          <div id="account" class="text-end d-flex">
           </div>
-
-          <div id="user-menu">
-          <a
-            href="#"
-            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="user-icon"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://github.com/mdo.png"
-              alt=""
-              class="rounded-circle me-2"
-              width="32"
-              height="32"
-            />
-            <strong>User</strong>
-          </a>
-          <ul
-            class="dropdown-menu dropdown-menu-dark text-small shadow"
-            aria-labelledby="user-icon"
-          >
-            <li><a id="profile" class="dropdown-item" href="#">Profile</a></li>
-            <li><a id="created" class="dropdown-item" href="#">Created</a></li>
-            <li><a id="joined" class="dropdown-item" href="#">Joined</a></li>
-            <li>
-              <a id="privacy" class="dropdown-item" href="#">Privacy Setting</a>
-            </li>
-          </ul>
-        </div>
         </div>
       </div>
     </header>
@@ -115,5 +82,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./search.js"></script>
+    <script src="/header.js"></script>
   </body>
 </html>

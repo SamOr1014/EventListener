@@ -21,7 +21,8 @@ register.post('/', async (req, res) => {
         const Phone = req.body.Phone as string;
         const Email = req.body.Email;
         const password = req.body.password as string;
-        const isAdmin = req.body.isAdmin 
+        const isAdmin = req.body.isAdmin
+        const isBanned = req.body.isBanned
 
         const FindifExistedSQL = `SELECT * FROM USERS WHERE users.email = $1`
 
@@ -33,8 +34,8 @@ register.post('/', async (req, res) => {
             res.json({ success: false })
         } else {
             const hashedpassword = await hashPassword(password);
-            const SaveAcSql = `INSERT INTO users (last_name, first_name,gender,birthday,phone,email,password, is_Admin) values ($1,$2,$3,$4,$5,$6,$7,$8)`
-            await client.query(SaveAcSql, [last_name, first_name, gender, birthday, Phone, Email, hashedpassword,isAdmin])
+            const SaveAcSql = `INSERT INTO users (last_name, first_name,gender,birthday,phone,email,password, is_Admin, is_banned) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)`
+            await client.query(SaveAcSql, [last_name, first_name, gender, birthday, Phone, Email, hashedpassword,isAdmin,isBanned])
             res.json({ success: true })
         }
     }

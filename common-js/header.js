@@ -56,8 +56,8 @@ async function loadHeaderAccountButton(){
         else {
           image = userInfo.profile_img
         }
-        //insert the three buttons
-        let buttons = `        <button
+        //insert the three buttons according if they are admin
+        let buttons = !userInfo.is_admin?`        <button
         id="account-detail" 
         type="button"
         class="btn btn-outline-light me-2"
@@ -106,7 +106,53 @@ async function loadHeaderAccountButton(){
             >
           </li>
         </ul>
-      </div>`
+      </div>`: `        <button
+      id="account-detail" 
+      type="button"
+      class="btn btn-outline-light me-2"
+    >
+      Account
+    </button>
+    <button id="logout" type="button" class="btn btn-warning">
+      Log Out
+    </button>
+    <div id="user-menu">
+      <a
+        href="#"
+        class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+        id="user-icon"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="${image}"
+          alt=""
+          class="rounded-circle me-2"
+          width="32"
+          height="32"
+        />
+        <strong>${userInfo.first_name + " " + userInfo.last_name}</strong>
+      </a>
+      <ul
+        class="dropdown-menu dropdown-menu-dark text-small shadow"
+        aria-labelledby="user-icon"
+      >
+        <li>
+          <a id="all-users" class="dropdown-item" href="/admin/users">Users</a>
+        </li>
+        <li>
+          <a id="all-events" class="dropdown-item" href="/admin/events">Events</a>
+        </li>
+        <li>
+          <a id="all-reports" class="dropdown-item" href="/admin/reports">Reports</a>
+        </li>
+        <li>
+        <a id="privacy" class="dropdown-item" href="/account/privacy"
+          >Privacy Setting</a
+        >
+      </li>
+      </ul>
+    </div>`
       document.querySelector('#account').innerHTML = buttons
       addHeaderEventListeners()
       addHeaderAccountListenerTrue()
