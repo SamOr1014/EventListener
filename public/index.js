@@ -21,8 +21,9 @@ async function addEventListenerToGenre(){
         window.location.href = "/search.html?genre=gaming"
     })
     document.querySelector('#other-pic').addEventListener('click', (e)=> {
-        window.location.href = "/search.html?genre=other"
+        window.location.href = "/search.html?genre=others"
     })
+
 }
 
 addEventListenerToGenre()

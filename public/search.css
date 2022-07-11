@@ -44,3 +44,7 @@
 #privacy-panel-email div, #privacy-panel-password div, #privacy-panel-other div{
     margin-bottom: 1rem;
 }
+
+.card {
+    height: 100%;
+}
