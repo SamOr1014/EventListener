@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
+@media screen and (max-width: 450px) {
+    #joined-event-col {
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+    }
+    #bio-div {
+        height: 150px;
+        width: 100%;
+    }
+    #event-name { 
+        text-align: center;
+        width: 100%;
+    }
+}
 
 /* css for header plus navbar */
 #logo  {
