@@ -51,7 +51,8 @@ async function loadEventsWithAc() {
     htmlStr +=
       /*html*/
       `
-      <div class="card" style="width: 18rem" data-id="${result.id}">
+      <div class="col-md-4">
+      <div class="card" data-id="${result.id}">
       <img src = "${image}" class="card-img-top" />
 
       <div class="card-body" >
@@ -62,6 +63,7 @@ async function loadEventsWithAc() {
           Fee: ${Amount}
         </p>
         </div>
+    </div>
     </div>
     `
   }
@@ -116,9 +118,9 @@ async function postAllEvents() {
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
-    htmlStr += /*html*/ `   
-    <div class="card" style="width: 18rem" data-id="${result.id}">
-
+    htmlStr += /*html*/       `
+    <div class="col-md-4">
+    <div class="card" data-id="${result.id}">
     <img src = "${image}" class="card-img-top" />
 
     <div class="card-body" >
@@ -130,7 +132,8 @@ async function postAllEvents() {
       </p>
       </div>
   </div>
-`
+  </div>
+  `
   }
   document.querySelector("#allEvent").innerHTML = htmlStr
 

@@ -1,14 +1,26 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
-@media screen and (max-width: 996px) {
- 
- 
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+body{
+  font-family: 'Secular One', sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
-
+body {
+    background: #232526; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to left,
+      #414345,
+      #232526
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to left,
+      #414345,
+      #232526
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
 /* css for header plus navbar */
 #logo  {
     font-family: 'Permanent Marker', cursive;
@@ -36,10 +48,15 @@
 form H1 {
     text-align: center;
     font-weight: bold;
+    color: WHITE;
+}
+
+h3 {
+    color: white;
 }
 #EventBoard {
     border: 2px black solid;
-    box-shadow: 0px 5px 5px 5px #7e6262b4;
+    box-shadow: 0px 0px 15px 5px rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap ;
@@ -70,7 +87,7 @@ form H1 {
 
 }
 textarea {
-    width: 100%;
+    width: 70%;
     height: 200px;
     padding: 12px 20px;
     box-sizing: border-box;

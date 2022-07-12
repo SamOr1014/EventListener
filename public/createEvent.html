@@ -80,7 +80,7 @@
     </div>
   </header>
 
-  <div id="content" class="container-fluid">
+  <div id="content" class="container">
 
     <div class="FormArea">
       <div id="EventBoard">
@@ -93,13 +93,13 @@
           </div>
 
           <div class="mb-3">
-            <label for="time">Date & Time</label> <br>
+            <label style="color: white;" for="time">Date & Time</label> <br>
             <!-- <input type="date" name="eventDate" id ="eventDate" required> -->
             <div id="eventDate" name="eventDate"></div>
             <input type="time" id="eventTime" name="eventTime" required>
           </div>
 
-          <label for="exampleDataList" class="form-label">Event types:</label>
+          <label style="color: white;" for="exampleDataList" class="form-label">Event types:</label>
           <input type="text" name="type" class="form-control" list="datalistOptions" id="exampleDataList"
             placeholder="Please select event type">
           <datalist id="datalistOptions">
@@ -137,8 +137,6 @@
 
           <div class="input-group mb-3">
             <input type="file" class="form-control" id="inputGroupFile" name="image">
-            <label class="input-group-text" for="inputGroupFile">Let's upload an image for your event
-              !&#127882&#127882&#127882</label>
           </div>
 
           <div class="Submit-bar">

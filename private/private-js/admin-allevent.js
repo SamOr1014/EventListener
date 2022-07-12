@@ -1,7 +1,7 @@
 function loadPage(result) {
   document.querySelector(
     "#showing-panel"
-  ).innerHTML = `<div class="col-md-12 text-center"><h4>EVENTS PANEL</h4></div>
+  ).innerHTML = `<div class="col-md-12 text-center" id="title">EVENTS PANEL</div>
     <div class="d-flex justify-content-center">
     <button id="show-active" class="btn btn-primary m-1">See Active</button>
     <button id="show-inactive" class="btn btn-primary m-1">See Inactive</button>

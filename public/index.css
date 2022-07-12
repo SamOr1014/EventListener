@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Monoton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
-#content,
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+body{
+  font-family: 'Secular One', sans-serif;
+}
+
+body {
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
 body {
   background-color: rgba(255, 255, 255, 0) !important;
   background-image: none !important;
@@ -27,21 +37,21 @@ x-sign {
   animation: flicker steps(100) var(--interval) 1s infinite;
 }
 x-sign.huge-title {
-  color: yellow;
-  --color1: yellow;
-  --color2: lime;
-  --color3: green;
-  --color4: darkgreen;
-  font-family: Monoton;
-}
-
-x-sign.card-title {
   color: azure;
   --color1: azure;
   --color2: aqua;
   --color3: dodgerblue;
   --color4: blue;
-  font-family: Yellowtail;
+  font-family: Londrina Outline;
+}
+
+x-sign.card-title {
+  color: rgb(255, 255, 255);
+  --color1: rgb(243, 243, 243);
+  --color2: rgb(229, 235, 166);
+  --color3: rgb(218, 230, 143);
+  --color4: rgb(183, 255, 0);
+  font-family: Londrina Outline;
   font-size: 3rem;
 }
 /* css for header plus navbar */
@@ -81,13 +91,14 @@ p {
 }
 
 #slogan {
+  background-color: rgba(0, 0, 0, 0.426);
   font-size: 7rem;
     margin-top: 5%;
     padding: 5%;
-    border: 0.2rem solid #fff;
+    border: 0.2rem solid #ffffff;
     border-radius: 2rem;
-    box-shadow: 0 0 0.2rem rgb(197, 224, 21), 0 0 0.2rem darkgoldenrod, 0 0 2rem yellow,
-      0 0 0.8rem lime, 0 0 2.8rem green, inset 0 0 1.3rem darkgreen;
+    box-shadow: 0 0 0.2rem rgb(252, 252, 252), 0 0 0.2rem rgb(11, 164, 184), 0 0 2rem #2d93d2,
+      0 0 0.8rem rgb(0, 140, 255), 0 0 2.8rem rgb(0, 98, 128), inset 0 0 1.3rem rgb(0, 97, 100);
 }
 /* css for categories */
 .categories {
@@ -113,8 +124,8 @@ p {
   height: 200px;
   border: 0.2rem solid #fff;
   border-radius: 2rem;
-  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
-    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bbaf54,
+    0 0 0.8rem #d5d535, 0 0 2.8rem #dde031, inset 0 0 1.3rem #e4f803;
 }
 
 .card > div {
