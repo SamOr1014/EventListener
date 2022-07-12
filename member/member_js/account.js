@@ -6,6 +6,8 @@ async function loadUserProfile(){
     })
     const userInfo = await profile.json()
     console.log(userInfo)
+    const realBDay = new Date(userInfo.birthday)
+    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()
     let image = userInfo.profile_img ? userInfo.profile_img: "/profile-pic.jpg"
     htmlProfileCard.innerHTML = ''
     htmlProfileCard.innerHTML += `            <img
@@ -15,7 +17,7 @@ async function loadUserProfile(){
   />
   <div class="card-body">
     <div><h5 id="profile-name" class="card-title">${userInfo.first_name+ " "+ userInfo.last_name}</h5></div>
-    <div id="profile-birthday" class="card-text mb-2">Birthday :${userInfo.birthday}</div>
+    <div id="profile-birthday" class="card-text mb-2">Birthday :${finalDate}</div>
     <div id="profile-email" class="card-text mb-2">Email :${userInfo.email}</div>
     <div class="card-text mb-2">Bio :</div>
     <div id="profile-bio" class="card-text mb-2">${userInfo.bio}</div>
@@ -53,9 +55,10 @@ async function loadUpComingEvent(){
             <div class="col-md-4 p-2">
                 <div><h4>Venue: </h4></div>
                 <div><h5>@ ${event.venue}</h5></div>
+                <div><h4>Date: </h4></div>
                 <div><h5>on ${finalDate}</h5></div>
+                <div><h4>Event Bio:</h4></div>
                 <div class="col-md-4 p-2 w-100">
-                    <div><h5>Event Bio:</h5></div>
                     <div id="bio-text">${event.bio}</div>
                 </div>
             </div>

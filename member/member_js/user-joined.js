@@ -26,9 +26,10 @@ async function loadJoinedEvent() {
       <div class="col-md-4 p-2">
           <div><h4>Venue: </h4></div>
           <div><h5>@ ${event.venue}</h5></div>
+          <div><h4>Date: </h4></div>
           <div><h5>on ${finalDate}</h5></div>
+          <div><h4>Event Bio:</h4></div>
           <div class="col-md-4 p-2 w-100">
-              <div><h5>Event Bio:</h5></div>
               <div id="bio-text">${event.bio}</div>
           </div>
       </div>
