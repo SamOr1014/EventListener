@@ -11,7 +11,9 @@ search.get('/keyword', async (req, res)=> {
     const keyword = req.query.keyword
     console.log(keyword)
     const matchedEvent = await client.query("select * from events")
+    console.log(matchedEvent.rows)
     res.json(matchedEvent.rows)
+
 })
 
 search.get('/genres', async (req, res)=> {

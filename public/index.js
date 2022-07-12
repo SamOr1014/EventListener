@@ -23,7 +23,6 @@ async function addEventListenerToGenre(){
     document.querySelector('#other-pic').addEventListener('click', (e)=> {
         window.location.href = "/search.html?genre=others"
     })
-
 }
 
 addEventListenerToGenre()

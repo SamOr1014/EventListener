@@ -72,8 +72,19 @@ async function loadgenre(genre) {
 
 }
 
+// async function loadSelectedEvent() {
+
+// }
+// loadSelectedEvent();
+
 async function loadkeyword(keyword) {
   console.log("keyword",keyword)
+  document.querySelector("#result-type").innerHTML = `<h2>${keyword}</h2>`;
+
+  const resp = await fetch(`/search/keyword?keyword=${keyword}`);
+  const results = await resp.json()
+  console.log(result)
 }
+
 
 loadSearchResult()
