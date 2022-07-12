@@ -1,12 +1,12 @@
 function addHeaderEventListeners(){
+  console.log("loaded header")
     //###############
     //Event listeners
     //###############
     //search bar on header
-    document.querySelector('#header-search').addEventListener('keydown', async (event) => {
+    document.querySelector('#header-search').addEventListener('keyup', async (event) => {
+      const keyword = event.target.value
       if (event.key === 'Enter'){
-        console.log(event.target.value)
-        const keyword = event.target.value
         window.location.href = `/search.html?keyword=${keyword}`
       }
     })
@@ -164,7 +164,6 @@ async function loadHeaderAccountButton(){
         Sign up
         </button>`
         document.querySelector('#account').innerHTML = buttons
-        addHeaderEventListeners()
         addHeaderAccountListenerFalse()
     }
 }
@@ -189,4 +188,5 @@ document.querySelector("#create-event").addEventListener("click", () => {
 })
 
 loadHeaderAccountButton()
+addHeaderEventListeners()
 console.log("You loaded header.js")
