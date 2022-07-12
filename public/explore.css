@@ -59,11 +59,12 @@ body {
   font-family: 'Lobster', cursive;
   margin-bottom: 2%;
   margin-top: 2%;
+  text-shadow: #FFF 0px 0px 5px, #0e90dc 0px 0px 20px, #0e90dc 0px 0px 30px, #0e90dc 0px 0px 40px, #0e90dc 0px 0px 50px
 }
 
 .card {
   margin-top: 2%;
-  box-shadow: 0px 0px 5px 5px #ffffff;
+  box-shadow: #ffffff 0px 0px 10px, rgb(38 53 77) 0px 0px 50px;
   border-radius: 0.5rem;
   background: #141e30; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -118,9 +119,3 @@ body {
   height: 180px;
 }
 
-#FollowTitle {
-  font-size: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  font-weight: bold;
-}

@@ -10,9 +10,11 @@ async function loadSearchResult() {
 }
 
 async function loadgenre(genre) {
-  document.querySelector("#result-type").innerHTML = `<h2><u><strong>${
-    genre[0].toUpperCase() + genre.substring(1)
-  }</strong><u></h2>`
+  let genreWord = genre[0].toUpperCase() + genre.substring(1)
+  genreWord = genreWord.replace("_", " ")
+  document.querySelector("#result-type").innerHTML = `"${
+    genreWord
+  }"`
   const resp = await fetch(`/search/genres?genre=${genre}`)
   const results = await resp.json()
 
@@ -79,7 +81,7 @@ async function loadgenre(genre) {
 
 async function loadkeyword(keyword) {
   console.log("keyword", keyword)
-  document.querySelector("#result-type").innerHTML = `<h2>"${keyword}"</h2>`
+  document.querySelector("#result-type").innerHTML = `"${keyword}"`
 
   const resp = await fetch(`/search/keyword?keyword=${keyword}`)
   const results = await resp.json()
