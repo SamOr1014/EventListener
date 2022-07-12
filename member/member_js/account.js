@@ -40,7 +40,9 @@ async function loadUpComingEvent(){
   document.querySelector('#upcoming-event').innerHTML += `<div class="text-center"><h3>Upcoming Events</h3></div>`
   for(let event of allJoinedEvent ){
       let image = event.image? event.image: "water.jpg"
-
+      const realBDay = new Date(event.date)
+      const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()
+  
       document.querySelector('#upcoming-event').innerHTML += `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">
           <div id="joined-event-col" class="col-lg-12 d-flex flex-wrap justify-content-around">
             <div class="col-md-12"><h3>${event.name}</h3></div>
@@ -51,7 +53,7 @@ async function loadUpComingEvent(){
             <div class="col-md-4 p-2">
                 <div><h4>Venue: </h4></div>
                 <div><h5>@ ${event.venue}</h5></div>
-                <div><h5>on ${event.date}</h5></div>
+                <div><h5>on ${finalDate}</h5></div>
                 <div><h5>Rating: /5</h5></div>
             </div>
             <div class="col-md-4 p-2">
