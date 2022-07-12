@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+body{
+  font-family: 'Secular One', sans-serif;
+}
 
 /* css for header plus navbar */
 #logo {
