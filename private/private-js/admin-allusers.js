@@ -5,6 +5,7 @@ async function loadAllUsersAdmin(){
     const usersDetail = await usersFromServer.json()
     console.log(usersDetail);
     document.querySelector('#showing-panel').innerHTML = ""
+    document.querySelector('#showing-panel').innerHTML += `<div class="col-md-12 text-center" id="title">USERS PANEL</div>`
     for (let user of usersDetail){
         let statusButton = user.is_banned? "Unban":"Ban"
         let buttonClass = user.is_banned? "primary":"danger"

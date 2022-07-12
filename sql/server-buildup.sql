@@ -1,6 +1,6 @@
-psql -U postgres;
+psql - U postgres;
 create database wsj_proj;
-\ c wsj_proj;
+\c wsj_proj;
 create table users (
     id serial primary key,
     last_name varchar(255),
@@ -34,29 +34,15 @@ create table events (
     constraint organiser_id foreign key (organiser_id) references users(id)
 );
 <<<<<<< HEAD
+=======
 
 
+>>>>>>> c4692a969b5d1e1f5761b7e67d9305f4003a2d49
 create table users_request (
     id serial primary key,
     user_id int, foreign key (user_id) references users (id),
     organiser_id int, foreign key (user_id) references users (id),
     event_id int, foreign key (event_id) references events (id),
-=======
-SELECT *
-FROM users;
-SELECT *
-FROM events;
-DROP TABLE users;
-DROP TABLE events;
-DELETE FROM users;
-DELETE FROM events;
-create table users_request (
-    id serial primary key,
-    user_id int,
-    foreign key (user_id) references users (id),
-    event_id int,
-    foreign key (event_id) references events (id),
->>>>>>> fbaae95064ca9c346d6a980db3c3706369e9e87e
     created_at timestamp,
     updated_at timestamp,
     processed boolean
@@ -75,21 +61,14 @@ create table follower_relation (
     follower_id int,
     foreign key (follower_id) references users (id)
 );
-<<<<<<< HEAD
-
-=======
-SELECT *
-FROM follower_relation;
-INSERT INTO follower_relation (user_id, follower_id)
-values (1, 3);
->>>>>>> fbaae95064ca9c346d6a980db3c3706369e9e87e
 create table event_comment (
     id serial primary key,
     event_id int,
     foreign key (event_id) references events (id),
     user_id int,
     foreign key (user_id) references users (id),
-    comment text
+    comment text,
+    created_at timestamp DEFAULT CURRENT_TIMESTAMP
 );
 create table reports (
     id serial primary key,
