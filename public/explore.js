@@ -22,7 +22,6 @@ async function loadEventsWithAc() {
   const results = await resp.json()
   let htmlStr = ``
   for (const result of results) {
-    console.log(result)
     if (result.fee === 0) {
       Amount = "Free"
     } else {
@@ -47,6 +46,8 @@ async function loadEventsWithAc() {
       defaulePath = "others.jpg"
     }
     const image = result.image ? `/${result.image}` : `/${defaulePath}`
+    const realBDay = new Date(result.date)
+    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+'('+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()+')'
     htmlStr +=
       /*html*/
       `
@@ -56,7 +57,7 @@ async function loadEventsWithAc() {
       <div class="card-body" >
         <h5 class="card-title">${result.name}</h5>
         <p class="card-text">
-          Date: ${result.date}<br>
+          Date: ${finalDate}<br>
           Location: ${result.venue}<br>
           Fee: ${Amount}
         </p>
@@ -110,6 +111,8 @@ async function postAllEvents() {
       defaulePath = "others.jpg"
     }
     const path = result.image
+    const realBDay = new Date(result.date)
+    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+'('+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()+')'
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
@@ -121,7 +124,7 @@ async function postAllEvents() {
     <div class="card-body" >
       <h5 class="card-title">${result.name}</h5>
       <p class="card-text">
-        Date: ${result.date}<br>
+        Date: ${finalDate}<br>
         Location: ${result.venue}<br>
         Fee: ${Amount}
       </p>
