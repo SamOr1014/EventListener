@@ -1,9 +1,9 @@
 function addHeaderEventListeners(){
-  console.log("loaded header")
     //###############
     //Event listeners
     //###############
     //search bar on header
+
     document.querySelector('#header-search').addEventListener('keyup', async (event) => {
       const keyword = event.target.value
       if (event.key === 'Enter'){
@@ -30,9 +30,6 @@ function addHeaderAccountListenerTrue(){
     document.querySelector('#logout').addEventListener('click', ()=> {
       window.location.href = '/logout'
     })
-}
-async function loadSearchButton() {
-  document.querySelector('#header-form').innerHTML += ``
 }
 async function loadHeaderAccountButton(){
     //check the login status first
@@ -153,8 +150,8 @@ async function loadHeaderAccountButton(){
       </ul>
     </div>`
       document.querySelector('#account').innerHTML = buttons
-      addHeaderEventListeners()
       addHeaderAccountListenerTrue()
+      addHeaderEventListeners()
     }
     else {
         let buttons = `            <button type="button" id="login-button-header" class="btn btn-outline-light me-2">
@@ -165,8 +162,12 @@ async function loadHeaderAccountButton(){
         </button>`
         document.querySelector('#account').innerHTML = buttons
         addHeaderAccountListenerFalse()
+        addHeaderEventListeners()
     }
 }
+
+loadHeaderAccountButton()
+addHeaderEventListeners()
 
 document.querySelector("#explore").addEventListener("click", () => {
   window.location.href = "/explore"
@@ -187,6 +188,6 @@ document.querySelector("#create-event").addEventListener("click", () => {
   CheckLogin()
 })
 
-loadHeaderAccountButton()
-addHeaderEventListeners()
+
+
 console.log("You loaded header.js")
