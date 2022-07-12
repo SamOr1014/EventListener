@@ -5,7 +5,7 @@ import type { Fields, Files } from "formidable"
 import { client } from "../server"
 export const event = express.Router()
 
-let dateTime = new Date()
+export let dateTime = new Date()
 
 declare global {
   namespace Express {

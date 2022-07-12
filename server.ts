@@ -25,7 +25,7 @@ import { search } from "./router/search"
 import { admin } from "./router/admin"
 import { explore } from "./router/explore"
 import { createEvent } from "./router/createEvent"
-// import {eventDetails} from "./router/event-details"
+import {comment} from "./router/comment"
 
 //import guards
 import { isLoggedin, isAdmin } from "./guard"
@@ -88,6 +88,7 @@ app.use("/search", search)
 app.use("/login", login)
 app.use("/explore", explore)
 app.use("/event", event)
+app.use("/comment", comment)
 // app.use("/event-details", eventDetails)
 
 //Router can only be use by user

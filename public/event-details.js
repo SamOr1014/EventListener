@@ -1,8 +1,11 @@
+
+
 window.onload = async () => {
   const eventid = window.location.search.substr(9)
   console.log(eventid)
   await loadEventDetails(eventid)
   await userProfileInEventDetails(eventid)
+  await loadComment()
 }
 
 async function loadEventDetails(eventid) {
@@ -110,3 +113,55 @@ function promptEvent() {
   }
   console.log(reportMsg)
 }
+
+
+
+document.querySelector('#commentForm').addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const eventID = window.location.search.substr(9)
+  const form = event.target;
+  const comment = form.comment.value;
+  console.log(eventID)
+
+  const res = await fetch ('/comment', {
+    method:"POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({comment,eventID})
+  })
+
+  const result = await res.json()
+  if (result.success) {
+    alert("Comment Created");
+    location.reload();
+  } else {
+    alert("Fail to comment")
+  }
+})
+
+async function loadComment() {
+  const resp = await fetch("/createEvent/check")
+  const result = await resp.json()
+  if (result.success) { // have ac, show comment
+    addComment()
+  } else { // no ac, not gonna show comment
+    HideComment()
+  }
+}
+
+async function addComment() {
+  console.log("Here are the comment")
+}
+
+async function HideComment() {
+  const HTML = `<p>You are visitor so no comment will be shown</p>`
+  document.querySelector('#Comment-Area').innerHTML = HTML
+
+  const DisableHTML = 
+  `
+  <div id = "comment-board"> 
+  <textarea type="text" class="input" placeholder="Comment" id = "comment" disabled></textarea>`
+  document.querySelector('#commentForm').innerHTML = DisableHTML
+}
+
+
