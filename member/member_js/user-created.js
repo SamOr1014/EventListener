@@ -4,7 +4,24 @@ async function loadCreatedEvent() {
 
     document.querySelector('#content').innerHTML=`<div class="text-center mt-3"><h3>THE EVENTS YOU CREATED</h3></div>`
     for(let event of allCreatedEvent){
-        let image = event.image? event.image: "water.jpg"
+      if (event.type === "sport") {
+        defaulePath = "sports.jpg"
+      } else if (event.type === "board_game") {
+        defaulePath = "board-game.jpg"
+      } else if (event.type === "water_activity") {
+        defaulePath = "water.jpg"
+      } else if (event.type === "gambling") {
+        defaulePath = "gambling.jpg"
+      } else if (event.type === "party") {
+        defaulePath = "party.jpg"
+      } else if (event.type === "workshop") {
+        defaulePath = "workshop.jpg"
+      } else if (event.type === "online_activity") {
+        defaulePath = "online.jpg"
+      } else {
+        defaulePath = "others.jpg"
+      }
+      const image = event.image ? `/${event.image}` : `/${defaulePath}`
         const realBDay = new Date(event.date)
         const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()
     

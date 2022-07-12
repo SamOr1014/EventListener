@@ -91,6 +91,7 @@ p {
 }
 
 #slogan {
+  background-color: rgba(0, 0, 0, 0.426);
   font-size: 7rem;
     margin-top: 5%;
     padding: 5%;

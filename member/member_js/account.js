@@ -1,22 +1,29 @@
 //functions
-async function loadUserProfile(){
-    let htmlProfileCard = document.querySelector('#profile-info')
-    const profile = await fetch(`/account/userdetail`, {
-        method: 'GET'
-    })
-    const userInfo = await profile.json()
-    console.log(userInfo)
-    const realBDay = new Date(userInfo.birthday)
-    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()
-    let image = userInfo.profile_img ? userInfo.profile_img: "/profile-pic.jpg"
-    htmlProfileCard.innerHTML = ''
-    htmlProfileCard.innerHTML += `            <img
+async function loadUserProfile() {
+  let htmlProfileCard = document.querySelector("#profile-info")
+  const profile = await fetch(`/account/userdetail`, {
+    method: "GET",
+  })
+  const userInfo = await profile.json()
+  console.log(userInfo)
+  const realBDay = new Date(userInfo.birthday)
+  const finalDate =
+    realBDay.getFullYear().toString() +
+    "-" +
+    (realBDay.getMonth() + 1).toString() +
+    "-" +
+    realBDay.getDate().toString()
+  let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
+  htmlProfileCard.innerHTML = ""
+  htmlProfileCard.innerHTML += `            <img
     src="${image}"
     class="card-img-top w-100 rounded-circle"
     alt=""
   />
   <div class="card-body">
-    <div><h5 id="profile-name" class="card-title">${userInfo.first_name+ " "+ userInfo.last_name}</h5></div>
+    <div><h5 id="profile-name" class="card-title">${
+      userInfo.first_name + " " + userInfo.last_name
+    }</h5></div>
     <div id="profile-birthday" class="card-text mb-2">Birthday :${finalDate}</div>
     <div id="profile-email" class="card-text mb-2">Email :${userInfo.email}</div>
     <div class="card-text mb-2">Bio :</div>
@@ -24,28 +31,54 @@ async function loadUserProfile(){
   </div>`
 }
 
-async function loadFollowers(){
-    let htmlFollowersList = document.querySelector('#follower-list')
-    const followers = await fetch(`/followers`, {
-        method: 'GET'
-    })
-    const followersInfo = await followers.json()
-    for (let followers of followersInfo){
-      let fullName = followers.first_name + " " + followers.last_name
-      htmlFollowersList.innerHTML += `<li>${fullName}</li>`
-    }
+async function loadFollowers() {
+  let htmlFollowersList = document.querySelector("#follower-list")
+  const followers = await fetch(`/followers`, {
+    method: "GET",
+  })
+  const followersInfo = await followers.json()
+  for (let followers of followersInfo) {
+    let fullName = followers.first_name + " " + followers.last_name
+    htmlFollowersList.innerHTML += `<li>${fullName}</li>`
+  }
 }
 
-async function loadUpComingEvent(){
-  const joinedEventFromServer = await fetch('/event/joinedEvent/upcoming')
+async function loadUpComingEvent() {
+  const joinedEventFromServer = await fetch("/event/joinedEvent/upcoming")
   const allJoinedEvent = await joinedEventFromServer.json()
-  document.querySelector('#upcoming-event').innerHTML += `<div class="text-center"><h3>Upcoming Events</h3></div>`
-  for(let event of allJoinedEvent ){
-      let image = event.image? event.image: "water.jpg"
-      const realBDay = new Date(event.date)
-      const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()
-  
-      document.querySelector('#upcoming-event').innerHTML += `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">
+  document.querySelector(
+    "#upcoming-event"
+  ).innerHTML += `<div class="text-center"><h3>Upcoming Events</h3></div>`
+  for (let event of allJoinedEvent) {
+    if (event.type === "sport") {
+      defaulePath = "sports.jpg"
+    } else if (event.type === "board_game") {
+      defaulePath = "board-game.jpg"
+    } else if (event.type === "water_activity") {
+      defaulePath = "water.jpg"
+    } else if (event.type === "gambling") {
+      defaulePath = "gambling.jpg"
+    } else if (event.type === "party") {
+      defaulePath = "party.jpg"
+    } else if (event.type === "workshop") {
+      defaulePath = "workshop.jpg"
+    } else if (event.type === "online_activity") {
+      defaulePath = "online.jpg"
+    } else {
+      defaulePath = "others.jpg"
+    }
+    const image = event.image ? `/${event.image}` : `/${defaulePath}`
+    const realBDay = new Date(event.date)
+    const finalDate =
+      realBDay.getFullYear().toString() +
+      "-" +
+      (realBDay.getMonth() + 1).toString() +
+      "-" +
+      realBDay.getDate().toString()
+
+    document.querySelector(
+      "#upcoming-event"
+    ).innerHTML += `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">
           <div id="joined-event-col" class="col-lg-12 d-flex flex-wrap justify-content-around">
             <div class="col-md-12"><h3>${event.name}</h3></div>
             <div class="col-md-8 p-2">

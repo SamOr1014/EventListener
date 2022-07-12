@@ -13,7 +13,24 @@ async function loadJoinedEvent() {
       "-" +
       realBDay.getDate().toString()
 
-    let image = event.image ? event.image : "water.jpg"
+      if (event.type === "sport") {
+        defaulePath = "sports.jpg"
+      } else if (event.type === "board_game") {
+        defaulePath = "board-game.jpg"
+      } else if (event.type === "water_activity") {
+        defaulePath = "water.jpg"
+      } else if (event.type === "gambling") {
+        defaulePath = "gambling.jpg"
+      } else if (event.type === "party") {
+        defaulePath = "party.jpg"
+      } else if (event.type === "workshop") {
+        defaulePath = "workshop.jpg"
+      } else if (event.type === "online_activity") {
+        defaulePath = "online.jpg"
+      } else {
+        defaulePath = "others.jpg"
+      }
+      const image = event.image ? `/${event.image}` : `/${defaulePath}`
     document.querySelector(
       "#content"
     ).innerHTML += `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">
