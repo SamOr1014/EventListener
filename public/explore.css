@@ -1,8 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+body {
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  font-size: 2rem;
+}
 
 /* css for header plus navbar */
 #logo {
-  font-family: "Permanent Marker", cursive;
+  font-family: 'Permanent Marker', cursive;
   font-size: 3rem;
 }
 #navigation {
@@ -15,9 +32,9 @@
 #user-icon {
   margin-left: 1vw;
 }
-#followed {
+/* #followed {
   margin: 100px 0px 50px 10px;
-}
+} */
 
 #cardArea {
   display: flex;
@@ -32,12 +49,36 @@
 }
 
 .title {
-  font-size: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
+  font-size: 3rem;
   font-weight: bold;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.card {
+  margin-top: 2%;
+  box-shadow: 0px 0px 5px 5px #ffffff;
+  border-radius: 0.5rem;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  cursor: pointer;
+}
+.card-text {
+  font-size: 1.5rem;
 }
 .card-title {
+  font-size: 2rem;
   text-align: center;
 }
 .card-body {
@@ -68,11 +109,11 @@
 }
 
 .card-img-top {
-  width:100%;
-  height:180px;
+  width: 100%;
+  height: 180px;
 }
 
-#FollowTitle{
+#FollowTitle {
   font-size: 20px;
   margin-bottom: 20px;
   margin-left: 20px;
