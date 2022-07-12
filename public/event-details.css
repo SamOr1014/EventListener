@@ -62,3 +62,20 @@
 #event-content-text ul {
   list-style-type: none;
 }
+
+#Comment-Area {
+  border: solid 5px black;
+  margin-bottom: 30px;
+}
+
+#Comment-Area p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+#comment-board {
+  display: flex;
+  flex-direction: column;
+}
