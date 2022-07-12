@@ -65,6 +65,7 @@
 
 #Comment-Area {
   border: solid 5px black;
+  margin-top:30px;
   margin-bottom: 30px;
 }
 
@@ -74,7 +75,20 @@
   font-size: 20px;
 }
 
-
+#user p {
+  text-align: start;
+  font-weight: bold;
+  font-size: 20px;
+}
+#postedComment {
+  border-bottom: 2px solid black;
+}
+#postedComment p {
+  text-align: start;
+  font-weight: bold;
+  font-size: 10px;
+  color: brown;
+}
 #comment-board {
   display: flex;
   flex-direction: column;
