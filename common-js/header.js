@@ -3,10 +3,12 @@ function addHeaderEventListeners(){
     //Event listeners
     //###############
     //search bar on header
-    document.querySelector('#header-search').addEventListener('submit', async (event) => {
-
-        window.location.href = `/search`
-
+    document.querySelector('#header-search').addEventListener('keydown', async (event) => {
+      if (event.key === 'Enter'){
+        console.log(event.target.value)
+        const keyword = event.target.value
+        window.location.href = `/search.html?keyword=${keyword}`
+      }
     })
 
 }   
@@ -29,7 +31,9 @@ function addHeaderAccountListenerTrue(){
       window.location.href = '/logout'
     })
 }
-
+async function loadSearchButton() {
+  document.querySelector('#header-form').innerHTML += ``
+}
 async function loadHeaderAccountButton(){
     //check the login status first
     const status = await fetch('/status', {
