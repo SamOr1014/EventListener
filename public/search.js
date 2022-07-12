@@ -79,7 +79,7 @@ async function loadgenre(genre) {
 
 async function loadkeyword(keyword) {
   console.log("keyword", keyword)
-  document.querySelector("#result-type").innerHTML = `<h2>${keyword}</h2>`
+  document.querySelector("#result-type").innerHTML = `<h2>"${keyword}"</h2>`
 
   const resp = await fetch(`/search/keyword?keyword=${keyword}`)
   const results = await resp.json()
