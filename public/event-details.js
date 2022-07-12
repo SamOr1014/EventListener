@@ -1,9 +1,12 @@
+
+
 window.onload = async () => {
   const eventid = window.location.search.substr(9)
   console.log(eventid)
   await CheckLogin()
   await loadEventDetails(eventid)
   await userProfileInEventDetails(eventid)
+  await loadComment(eventid)
 }
 
 async function loadEventDetails(eventid) {
@@ -35,7 +38,8 @@ async function loadEventDetails(eventid) {
   } else {
     defaulePath = "others.jpg"
   }
-
+  const realBDay = new Date(events.date)
+  const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
 
   htmlStr += /*html */ `
@@ -44,19 +48,19 @@ async function loadEventDetails(eventid) {
     <div class="event-detailsInfo">
      <div class="event-name">Event Name: ${events.name}</div>
        <div id="event-content-text">
-         <div class="time">Time:${events.date}</div>
+         <div class="time">Time:${finalDate}</div>
          <ul>
          <li></li>
          </ul>
-         <div class="venue">Venue:${events.venue}</div>
+         <div class="venue">Venue: ${events.venue}</div>
          <ul>
          <li></li>
          </ul>
-         <div class="fee">Fee:${Amount}</div>
+         <div class="fee">Fee: ${Amount}</div>
          <ul>
          <li></li>
          </ul>
-         <div class="max-pp">Max-participants:${events.max_participant}</div>
+         <div class="max-pp">Max-participants: ${events.max_participant}</div>
          <ul>
          <li></li>
          </ul>
@@ -162,3 +166,123 @@ function promptEvent() {
   }
   console.log(reportMsg)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.querySelector('#commentForm').addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const eventID = window.location.search.substr(9)
+  const form = event.target;
+  const comment = form.comment.value;
+  console.log(eventID)
+
+  const res = await fetch ('/comment', {
+    method:"POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({comment,eventID})
+  })
+
+  const result = await res.json()
+  if (result.success) {
+    alert("Comment Created");
+    location.reload();
+  } else {
+    alert("Fail to comment")
+  }
+})
+
+async function loadComment(eventid) {
+  const resp = await fetch("/createEvent/check")
+  const result = await resp.json()
+  if (result.success) { // have ac, show comment
+    addComment(eventid)
+  } else { // no ac, not gonna show comment
+    HideComment()
+  }
+}
+
+async function addComment(eventid) {
+  const resp = await fetch(`/comment?eventid=${eventid}`)
+  const Checkresults = await resp.json()
+  const results = Checkresults.result
+
+  if (Checkresults.success) {
+  let html = ''
+  for (const result of results) {
+    const realBDay = new Date(result.created_at)
+    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+'('+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()+')'
+    console.log(result)
+    html += `
+    <div id = "user"> 
+    <p>${result.last_name} ${result.first_name} posted on ${finalDate}</p>
+    </div>
+    <div id = "postedComment">
+    <p>${result.comment}
+    </p>
+    </div>
+    `
+  }
+  document.querySelector('#Comment-Area').innerHTML = html;
+} else {
+  document.querySelector('#Comment-Area').innerHTML = "<p>No Comment Yet</p>";
+}
+
+}
+
+async function HideComment() {
+  const HTML = `<p>Please login to see comment</p>`
+  document.querySelector('#Comment-Area').innerHTML = HTML
+
+  const DisableHTML = ''
+  document.querySelector('#commentForm').innerHTML = DisableHTML
+}
+
+

@@ -1,7 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 
+body{
+  font-family: 'Secular One', sans-serif;
+}
 
-@media screen and (max-width: 996px) {
+body {
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+
+}
+
+@media screen and (max-width: 1000px) {
     body {
         display: flex;
         flex-direction: column;
@@ -12,13 +34,17 @@
         flex-direction: column;
         align-items: center;
     }
+    #signUpBoard, #loginBoard {
+        width: 90% !important;
+        margin-bottom: 2%;
+    }
 
 }
 
 
 
 body {
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
 }
@@ -44,24 +70,23 @@ body {
 
 #signUpBoard {
     border: 2px black solid;
-    box-shadow: 0px 5px 5px 5px #7e6262b4;
+    box-shadow: 0px 0px 15px 5px #ffffff;
     display: flex;
     flex-wrap: wrap row;
     justify-content: center;
     width: 40%;
-    Height: auto;
     padding: 10px;
     margin-top: 20px;
 }
 
 #loginBoard {
     border: 2px black solid;
-    box-shadow: 0px 5px 5px 5px #7e6262b4;
+    box-shadow: 0px 0px 15px 5px #ffffff;
     display: flex;
     flex-wrap: wrap row;
     justify-content: center;
     width: 40%;
-    Height: auto;
+    height: auto;
     padding: 5px;
     margin-top: 20px;
 }
@@ -86,6 +111,9 @@ form h1 {
     justify-content: center;
 }
 
+.container {
+    margin-top: 5%;
+}
 
 .btn-primary {
     --bs-btn-color: #fff;
@@ -165,7 +193,6 @@ p {
 
 .panel {
     position: relative;
-    bottom:-50px;
 }
 .form-control {
     width: 100%;

@@ -31,36 +31,104 @@
           >
             EL.
           </a>
-    
+
           <ul
             id="navigation"
             class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0"
           >
-            <li><a href="#" id="explore" class="nav-link px-2 text-white">Explore</a></li>
             <li>
-              <a href="#" id="create-event" class="nav-link px-2 text-white">Create Event</a>
+              <a href="#" id="explore" class="nav-link px-2 text-white"
+                >Explore</a
+              >
+            </li>
+            <li>
+              <a href="#" id="create-event" class="nav-link px-2 text-white"
+                >Create Event</a
+              >
             </li>
             <li>
               <div class="dropdown">
-                <a class="nav-link px-2 text-white dropdown-toggle" href="#" id="genre" data-bs-toggle="dropdown" aria-expanded="false">
+                <a
+                  class="nav-link px-2 text-white dropdown-toggle"
+                  href="#"
+                  id="genre"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Genre
                 </a>
-              
+
                 <ul class="dropdown-menu" aria-labelledby="genre">
-                  <li><a id="genre-sport" class="dropdown-item" href="/search.html?genre=sport">Sport</a></li>
-                  <li><a id="genre-water" class="dropdown-item" href="/search.html?genre=water_activities">Water Activity</a></li>
-                  <li><a id="genre-party" class="dropdown-item" href="/search.html?genre=party">Party</a></li>
-                  <li><a id="genre-boardgame" class="dropdown-item" href="/search.html?genre=board_game">Board Game</a></li>
-                  <li><a id="genre-workshop" class="dropdown-item" href="/search.html?genre=workshop">Workshop</a></li>
-                  <li><a id="genre-gaming" class="dropdown-item" href="/search.html?genre=gaming">Gaming</a></li>
-                  <li><a id="genre-online" class="dropdown-item" href="/search.html?genre=online_activities">Online Activity</a></li>
-                  <li><a id="others" class="dropdown-item" href="/search.html?genre=others">others</a></li>
+                  <li>
+                    <a
+                      id="genre-sport"
+                      class="dropdown-item"
+                      href="/search.html?genre=sport"
+                      >Sport</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-water"
+                      class="dropdown-item"
+                      href="/search.html?genre=water_activities"
+                      >Water Activity</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-party"
+                      class="dropdown-item"
+                      href="/search.html?genre=party"
+                      >Party</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-boardgame"
+                      class="dropdown-item"
+                      href="/search.html?genre=board_game"
+                      >Board Game</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-workshop"
+                      class="dropdown-item"
+                      href="/search.html?genre=workshop"
+                      >Workshop</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-gaming"
+                      class="dropdown-item"
+                      href="/search.html?genre=gaming"
+                      >Gaming</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="genre-online"
+                      class="dropdown-item"
+                      href="/search.html?genre=online_activities"
+                      >Online Activity</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      id="others"
+                      class="dropdown-item"
+                      href="/search.html?genre=others"
+                      >others</a
+                    >
+                  </li>
                 </ul>
               </div>
             </li>
           </ul>
-    
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+
+          <div class="mx-2">
             <input
               id="header-search"
               type="search"
@@ -68,81 +136,27 @@
               placeholder="Search..."
               aria-label="Search"
             />
-          </form>
-    
-          <div id="account" class="text-end d-flex">
           </div>
+
+          <div id="account" class="text-end d-flex"></div>
         </div>
       </div>
     </header>
-    <div id="followed">
-      <div id="FollowTitle">You followed these people..</div>
-      <div id = "cardArea">
-      
 
-      <!-- <div class="card" style="width: 18rem">
-        <img src ="../uploads/71217a1d58abd4a088f424a00.png"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Event name</h5>
-          <p class="card-text">
-            Date:<br />
-            Location: <br />
-            Fee:<br />
-          </p>
-          
-        </div>
-      </div> -->
-    </div>
-    </div>
-
-<br>
-
-    <div id="popular">
-      <div class="title">All events for you to join</div>
-        <div id = "allEvent">
-      <!-- <div class="card" style="width: 18rem">
-        <img
-          src=".././test-image/gambling.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        
-        <div class="card-body">
-          <h5 class="card-title">Event name</h5>
-          <p class="card-text">
-            Date:<br />
-            Location: <br />
-            Fee:<br />
-          </p>
-         
-        </div>
-      </div> -->
-    </div>
-    </div>
-
-    <!-- <div class="latest">
-      <div class="title">Latest</div>
-      <div class="card" style="width: 18rem">
-        <img
-          src=".././test-image/gambling.jpg"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Event name</h5>
-          <p class="card-text">
-            Date:<br />
-            Location: <br />
-            Fee:<br />
-          </p>
-          
+    <div class="container">
+      <div id="followed">
+        <div class="title">You following...</div>
+        <div id="cardArea" class="row">
         </div>
       </div>
-    </div> -->
-  </div>
+
+      <div id="popular">
+        <div class="title">Events for you to join</div>
+        <div id="allEvent" class="row">
+
+        </div>
+      </div>
+    </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"

@@ -1,12 +1,15 @@
 async function loadAllReportsAdmin() {
-  document.querySelector("#showing-panel").innerHTML= ``
+  document.querySelector("#showing-panel").innerHTML = ``
   const reportsFromServer = await fetch("/admin/reports/details", {
     method: "GET",
-  });
-  const reportsDetail = await reportsFromServer.json();
-  console.log(reportsDetail);
+  })
+  const reportsDetail = await reportsFromServer.json()
+  console.log(reportsDetail)
+  document.querySelector("#showing-panel").innerHTML += `<div id="title" class="text-center">REPORTS</div>`
   for (let report of reportsDetail) {
-    document.querySelector("#showing-panel").innerHTML += `<div class="col-md-4 mb-2 mt-2 report-cards">
+    document.querySelector(
+      "#showing-panel"
+    ).innerHTML += `<div class="col-md-4 mb-2 mt-2 report-cards">
         <div class="card">
           <div class="card-body">
             <h4>Report Number: ${report.id}</h4>
@@ -17,43 +20,41 @@ async function loadAllReportsAdmin() {
             <a name="${report.id}" class="btn btn-primary dismiss-btn m-1">Dismiss</a>
           </div>
         </div>
-      </div>`;
+      </div>`
   }
   addEventListenerToDismissAndDeactive()
 }
 
-async function addEventListenerToDismissAndDeactive(){
-
+async function addEventListenerToDismissAndDeactive() {
   //Directly deactive the event and once the event is deactvated all report of that even will not be displayed in this panel and marked as solved
-  document.querySelectorAll(".deactive-btn").forEach((button)=> {
-    button.addEventListener('click', async (e)=> {
-      let eventToDeactivate = e.target.attributes['eventname'].value
+  document.querySelectorAll(".deactive-btn").forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      let eventToDeactivate = e.target.attributes["eventname"].value
       //set event inactive
       await fetch(`/admin/events/inactivestatus?eventid=${eventToDeactivate}`, {
-        method : 'PUT'
+        method: "PUT",
       })
       //solve every event that was deactivated from last fetch
-      await fetch(`/admin/reports/solvedeactiveevent?eventid=${eventToDeactivate}`,{
-        method: 'PUT'
+      await fetch(`/admin/reports/solvedeactiveevent?eventid=${eventToDeactivate}`, {
+        method: "PUT",
       })
 
       loadAllReportsAdmin()
     })
   })
 
-
   //Dismiss the report and mark it as solved in database
-  document.querySelectorAll(".dismiss-btn").forEach((button)=> {
-    button.addEventListener('click',async (e)=>{
-      console.log('reportID',e.target.name)
+  document.querySelectorAll(".dismiss-btn").forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      console.log("reportID", e.target.name)
       const dismissResult = await fetch(`/admin/reports/solved?reportid=${e.target.name}`, {
-        method: 'PUT'
+        method: "PUT",
       })
       loadAllReportsAdmin()
     })
   })
 }
 
-loadAllReportsAdmin();
+loadAllReportsAdmin()
 
-console.log("loading all users");
+console.log("loading all users")

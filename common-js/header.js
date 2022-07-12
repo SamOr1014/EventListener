@@ -3,10 +3,12 @@ function addHeaderEventListeners(){
     //Event listeners
     //###############
     //search bar on header
-    document.querySelector('#header-search').addEventListener('submit', async (event) => {
 
-        window.location.href = `/search`
-
+    document.querySelector('#header-search').addEventListener('keyup', async (event) => {
+      const keyword = event.target.value
+      if (event.key === 'Enter'){
+        window.location.href = `/search.html?keyword=${keyword}`
+      }
     })
 
 }   
@@ -29,7 +31,6 @@ function addHeaderAccountListenerTrue(){
       window.location.href = '/logout'
     })
 }
-
 async function loadHeaderAccountButton(){
     //check the login status first
     const status = await fetch('/status', {
@@ -149,8 +150,8 @@ async function loadHeaderAccountButton(){
       </ul>
     </div>`
       document.querySelector('#account').innerHTML = buttons
-      addHeaderEventListeners()
       addHeaderAccountListenerTrue()
+      addHeaderEventListeners()
     }
     else {
         let buttons = `            <button type="button" id="login-button-header" class="btn btn-outline-light me-2">
@@ -160,10 +161,13 @@ async function loadHeaderAccountButton(){
         Sign up
         </button>`
         document.querySelector('#account').innerHTML = buttons
-        addHeaderEventListeners()
         addHeaderAccountListenerFalse()
+        addHeaderEventListeners()
     }
 }
+
+loadHeaderAccountButton()
+addHeaderEventListeners()
 
 document.querySelector("#explore").addEventListener("click", () => {
   window.location.href = "/explore"
@@ -184,5 +188,6 @@ document.querySelector("#create-event").addEventListener("click", () => {
   CheckLogin()
 })
 
-loadHeaderAccountButton()
+
+
 console.log("You loaded header.js")

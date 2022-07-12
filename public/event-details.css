@@ -1,4 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+body{
+  font-family: 'Secular One', sans-serif;
+}
+body {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+  }
 
 /* css for header plus navbar */
 #logo {
@@ -61,4 +72,35 @@
 }
 #event-content-text ul {
   list-style-type: none;
+}
+
+#Comment-Area {
+  border: solid 5px black;
+  margin-top:30px;
+  margin-bottom: 30px;
+}
+
+#Comment-Area p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#user p {
+  text-align: start;
+  font-weight: bold;
+  font-size: 20px;
+}
+#postedComment {
+  border-bottom: 2px solid black;
+}
+#postedComment p {
+  text-align: start;
+  font-weight: bold;
+  font-size: 10px;
+  color: brown;
+}
+#comment-board {
+  display: flex;
+  flex-direction: column;
 }

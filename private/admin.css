@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 
+body{
+  font-family: 'Secular One', sans-serif;
+}
 
+body {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
 /* css for header plus navbar */
 #logo  {
     font-family: 'Permanent Marker', cursive;
@@ -22,4 +31,9 @@
     border: 5px solid rgba(63, 63, 63, 0.65);
     padding: 1rem;
     border-radius: 15px;
+}
+
+#title {
+    font-size: 3rem;
+    color: white;
 }
