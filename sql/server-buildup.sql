@@ -1,4 +1,4 @@
-psql -U postgres;
+psql - U postgres;
 create database wsj_proj;
 \ c wsj_proj;
 create table users (
@@ -33,14 +33,6 @@ create table events (
     organiser_id int,
     constraint organiser_id foreign key (organiser_id) references users(id)
 );
-SELECT *
-FROM users;
-SELECT *
-FROM events;
-DROP TABLE users;
-DROP TABLE events;
-DELETE FROM users;
-DELETE FROM events;
 create table users_request (
     id serial primary key,
     user_id int,

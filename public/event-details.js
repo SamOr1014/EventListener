@@ -1,6 +1,7 @@
 window.onload = async () => {
   const eventid = window.location.search.substr(9)
   console.log(eventid)
+  await CheckLogin()
   await loadEventDetails(eventid)
   await userProfileInEventDetails(eventid)
 }
@@ -66,11 +67,6 @@ async function loadEventDetails(eventid) {
   document.querySelector("#event-details").innerHTML = htmlStr
 }
 
-document.querySelector("#apply-now").addEventListener("click", function (event) {
-  event.preventDefault()
-  console.log("hi")
-})
-
 async function userProfileInEventDetails(eventid) {
   let htmlProfileCard = document.querySelector("#Profile")
   const profile = await fetch(`/event/organiser?eventid=${eventid}`)
@@ -96,8 +92,64 @@ async function userProfileInEventDetails(eventid) {
     <p class="card-text">Bio : ${userInfo.bio}</p>
   </div>
 `
-  console.log(htmlProfileCard)
+  // console.log(htmlProfileCard)
 }
+// check login or not
+async function CheckLogin() {
+  const resp = await fetch("/createEvent/check")
+  const result = await resp.json()
+  if (result.success) {
+    checkAppied()
+  } else {
+    needTologin()
+  }
+}
+// check if not login and click apply button
+async function needTologin() {
+  document.querySelector("#apply-now").addEventListener("click", async function (event) {
+    window.location.href = "/signup.html"
+    alert("please sign in first!")
+  })
+}
+
+async function checkAppiedStatus() {
+  const eventid = window.location.search.substr(9)
+  const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
+  const applyStatus = await resp.json()
+  console.log(applyStatus)
+}
+
+async function checkAppied() {
+  const eventid = window.location.search.substr(9)
+  const resp = await fetch(`/event/checkApply?eventid=${eventid}`)
+  const applyStatus = await resp.json()
+  // have ac and applied
+  if (applyStatus.success) {
+    // checkAppiedStatus()
+    checkAppiedStatus()
+  } else {
+    // have ac and not applied
+    document.querySelector("#apply-now").addEventListener("click", async function (event) {
+      event.preventDefault()
+      const eventid = window.location.search.substr(9)
+      const response = await fetch(`/event/applyButton?eventid=${eventid}`, {
+        method: "POST",
+      })
+      const result = await response.json()
+      if (result.success) {
+        alert("Joined")
+      } else {
+        alert("fail")
+      }
+    })
+  }
+}
+// check applied status
+// async function checkAppiedStatus() {
+//   const eventid = window.location.search.substr(9)
+//   const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
+//   const applyStatus = await resp.json()
+// }
 
 let reportMsg = ""
 

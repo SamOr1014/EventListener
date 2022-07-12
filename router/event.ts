@@ -69,7 +69,6 @@ event.get("/joinedEvent/upcoming", async (req, res) => {
   res.json(userJoined.rows)
 })
 
-
 event.get("/singleEvent", async (req, res) => {
   const eventid = req.query.eventid
   console.log(eventid)
@@ -77,21 +76,16 @@ event.get("/singleEvent", async (req, res) => {
     eventid,
   ])
   res.json(getEventDetails.rows[0])
-
 })
 
 event.get("/organiser", async (req, res) => {
   const eventid = req.query.eventid
   const getOrganiserId = await client.query(
-<<<<<<< HEAD
-    /*sql */ `select (users.id,users.first_name, users.last_name,users.phone, users.email, users.bio) from users inner join events on users.id= events.organiser_id where events.id=$1`,
-=======
     /*sql */ `SELECT t1.id, t1.last_name, t1.first_name, t1.phone, t1.email, t1.bio from users as t1 INNER JOIN events as t2 on t2.organiser_id = t1.id WHERE (t2.id = $1)`,
->>>>>>> eb0b8436672347a29435a5be34c9c1a20ea41abb
     [eventid]
   )
   res.json(getOrganiserId.rows[0])
-  console.log(getOrganiserId.rows[0])
+  // console.log(getOrganiserId.rows[0])
 })
 
 event.use(express.static("public"))
@@ -150,5 +144,33 @@ event.get("/FollowerEvent", async (req, res) => {
   // SELECT * FROM events inner join follower_relation on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = $1
 })
 
+event.post("/applyButton", async (req, res) => {
+  const userid = req.session["user"].ID
+  const eventid = req.query.eventid
+  console.log(userid, eventid)
+  const applyButtonSQL = /*sql */ `INSERT INTO users_request (user_id, event_id, processed) VALUES($1, $2, $3)`
+  await client.query(applyButtonSQL, [userid, eventid, false])
+  // console.log(applyButton.rows)
+  res.json({ success: true })
+})
 
+event.get("/checkApply", async (req, res) => {
+  const userid = req.session["user"].ID
+  const eventid = req.query.eventid
+  const SQLcheckApply = /*sql */ `SELECT * FROM users_request where users_request.user_id =$1 and users_request.event_id=$2`
+  const checkApply = await client.query(SQLcheckApply, [userid, eventid])
+  // console.log(`count${checkApply.rowCount}`)
+  if (checkApply.rowCount > 0) {
+    res.json({ success: true })
+  } else {
+    res.json({ success: false })
+  }
+})
 
+event.get("/checkAppliedStatus", async (req, res) => {
+  const userid = req.session["user"].ID
+  const eventid = req.query.eventid
+  const SQLcheckAppliedStatus = /*sql */ `SELECT users_request.processed FROM users_request WHERE users_request.user_id =$1 and users_request.event_id=$2`
+  const checkAppliedStatus = await client.query(SQLcheckAppliedStatus, [userid, eventid])
+  res.json(checkAppliedStatus.rows[0].processed)
+})
