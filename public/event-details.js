@@ -1,5 +1,3 @@
-
-
 window.onload = async () => {
   const eventid = window.location.search.substr(9)
   console.log(eventid)
@@ -39,7 +37,16 @@ async function loadEventDetails(eventid) {
     defaulePath = "others.jpg"
   }
   const realBDay = new Date(events.date)
-  const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()
+  const finalDate =
+    realBDay.getFullYear().toString() +
+    "-" +
+    (realBDay.getMonth() + 1).toString() +
+    "-" +
+    realBDay.getDate().toString() +
+    " " +
+    realBDay.getHours().toString() +
+    ":" +
+    realBDay.getMinutes().toString()
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
 
   htmlStr += /*html */ `
@@ -167,73 +174,24 @@ function promptEvent() {
   console.log(reportMsg)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.querySelector('#commentForm').addEventListener("submit", async function (event) {
-  event.preventDefault();
+document.querySelector("#commentForm").addEventListener("submit", async function (event) {
+  event.preventDefault()
 
   const eventID = window.location.search.substr(9)
-  const form = event.target;
-  const comment = form.comment.value;
+  const form = event.target
+  const comment = form.comment.value
   console.log(eventID)
 
-  const res = await fetch ('/comment', {
-    method:"POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({comment,eventID})
+  const res = await fetch("/comment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ comment, eventID }),
   })
 
   const result = await res.json()
   if (result.success) {
-    alert("Comment Created");
-    location.reload();
+    alert("Comment Created")
+    location.reload()
   } else {
     alert("Fail to comment")
   }
@@ -242,9 +200,11 @@ document.querySelector('#commentForm').addEventListener("submit", async function
 async function loadComment(eventid) {
   const resp = await fetch("/createEvent/check")
   const result = await resp.json()
-  if (result.success) { // have ac, show comment
+  if (result.success) {
+    // have ac, show comment
     addComment(eventid)
-  } else { // no ac, not gonna show comment
+  } else {
+    // no ac, not gonna show comment
     HideComment()
   }
 }
@@ -255,12 +215,23 @@ async function addComment(eventid) {
   const results = Checkresults.result
 
   if (Checkresults.success) {
-  let html = ''
-  for (const result of results) {
-    const realBDay = new Date(result.created_at)
-    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+'('+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()+')'
-    console.log(result)
-    html += `
+    let html = ""
+    for (const result of results) {
+      const realBDay = new Date(result.created_at)
+      const finalDate =
+        realBDay.getFullYear().toString() +
+        "-" +
+        (realBDay.getMonth() + 1).toString() +
+        "-" +
+        realBDay.getDate().toString() +
+        " " +
+        "(" +
+        realBDay.getHours().toString() +
+        ":" +
+        realBDay.getMinutes().toString() +
+        ")"
+      console.log(result)
+      html += `
     <div id = "user"> 
     <p>${result.last_name} ${result.first_name} posted on ${finalDate}</p>
     </div>
@@ -269,20 +240,17 @@ async function addComment(eventid) {
     </p>
     </div>
     `
+    }
+    document.querySelector("#Comment-Area").innerHTML = html
+  } else {
+    document.querySelector("#Comment-Area").innerHTML = "<p>No Comment Yet</p>"
   }
-  document.querySelector('#Comment-Area').innerHTML = html;
-} else {
-  document.querySelector('#Comment-Area').innerHTML = "<p>No Comment Yet</p>";
-}
-
 }
 
 async function HideComment() {
   const HTML = `<p>Please login to see comment</p>`
-  document.querySelector('#Comment-Area').innerHTML = HTML
+  document.querySelector("#Comment-Area").innerHTML = HTML
 
-  const DisableHTML = ''
-  document.querySelector('#commentForm').innerHTML = DisableHTML
+  const DisableHTML = ""
+  document.querySelector("#commentForm").innerHTML = DisableHTML
 }
-
-
