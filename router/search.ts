@@ -10,7 +10,7 @@ export const search = express.Router()
 search.get('/keyword', async (req, res)=> {
     const keyword = req.query.keyword
     console.log(keyword)
-    const matchedEvent = await client.query("select * from events")
+    const matchedEvent = await client.query("select * from events where name ILIKE $1", [`%${keyword}%`])
     console.log(matchedEvent.rows)
     res.json(matchedEvent.rows)
 
