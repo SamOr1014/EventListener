@@ -51,11 +51,11 @@ async function loadEventsWithAc() {
     htmlStr +=
       /*html*/
       `
-      <div class="col-md-4">
+      <div class="col-md-4" data-id="${result.id}">
       <div class="card" data-id="${result.id}">
       <img src = "${image}" class="card-img-top" />
 
-      <div class="card-body" >
+      <div class="card-body" data-id="${result.id}">
         <h5 class="card-title">${result.name}</h5>
         <p class="card-text">
           Date: ${finalDate}<br>
@@ -119,11 +119,11 @@ async function postAllEvents() {
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
     htmlStr += /*html*/       `
-    <div class="col-md-4">
+    <div class="col-md-4" data-id="${result.id}">
     <div class="card" data-id="${result.id}">
     <img src = "${image}" class="card-img-top" />
 
-    <div class="card-body" >
+    <div class="card-body" data-id="${result.id}" >
       <h5 class="card-title">${result.name}</h5>
       <p class="card-text">
         Date: ${finalDate}<br>

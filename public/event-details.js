@@ -106,12 +106,13 @@ async function userProfileInEventDetails(eventid) {
 `
   // console.log(htmlProfileCard)
 }
+
 // check login or not
 async function CheckLogin() {
   const resp = await fetch("/createEvent/check")
   const result = await resp.json()
   if (result.success) {
-    checkAppied()
+    checkApplied()
   } else {
     needTologin()
   }
@@ -124,45 +125,59 @@ async function needTologin() {
   })
 }
 
-async function checkAppiedStatus() {
+async function checkAppliedStatus() {
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
   const applyStatus = await resp.json()
-  console.log(applyStatus)
+  // return processed = false which means user applied but not being accepted
+  // console.log(applyStatus)
 }
 
-async function checkAppied() {
+async function checkApplied() {
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/checkApply?eventid=${eventid}`)
   const applyStatus = await resp.json()
+  // if applied return {success:true}
+  // if not applied return {success:false}
+  console.log(applyStatus)
+  let applyButton = document.querySelector("#apply-now")
   // have ac and applied
-  if (applyStatus.success) {
-    // checkAppiedStatus()
-    checkAppiedStatus()
-  } else {
+  if (applyStatus.success === true) {
+    await checkAppliedStatus()
+    applyButton.disabled = true
+    applyButton.innerText = "Pending"
+  } else if (applyStatus.success === false) {
     // have ac and not applied
-    document.querySelector("#apply-now").addEventListener("click", async function (event) {
+    // click button to insert data
+    applyButton.addEventListener("click", async function (event) {
       event.preventDefault()
       const eventid = window.location.search.substr(9)
-      const response = await fetch(`/event/applyButton?eventid=${eventid}`, {
+      const getEvent = await fetch(`/event/singleEvent?eventid=${eventid}`)
+      const resultGetEvent = await getEvent.json()
+      const organiserid = resultGetEvent.organiser_id
+      // console.log(organiserid)
+      const response = await fetch(`/event/applyButton`, {
         method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          organiserid,
+          eventid,
+        }),
       })
       const result = await response.json()
+      console.log(result.success)
       if (result.success) {
         alert("Joined")
+        applyButton.disabled = true
+        applyButton.innerText = "Pending"
       } else {
         alert("fail")
       }
     })
   }
 }
-// check applied status
-// async function checkAppiedStatus() {
-//   const eventid = window.location.search.substr(9)
-//   const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
-//   const applyStatus = await resp.json()
-// }
 
+// report function
 let reportMsg = ""
 
 function promptEvent() {
@@ -175,6 +190,7 @@ function promptEvent() {
   console.log(reportMsg)
 }
 
+// comment function
 document.querySelector("#commentForm").addEventListener("submit", async function (event) {
   event.preventDefault()
 
