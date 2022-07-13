@@ -162,7 +162,7 @@ p {
 html {
   min-height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
-    url(/night-view-victoria-harbor-hong-kong.jpg);
+    url(/src/night-view-victoria-harbor-hong-kong.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
