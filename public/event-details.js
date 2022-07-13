@@ -38,10 +38,10 @@ async function loadEventDetails(eventid) {
   let year = realBDay.getFullYear().toString()
   let month = ("0" + (realBDay.getMonth() + 1).toString())
   let date = ("0" + realBDay.getDate().toString())
-  let hour = ("0" +realBDay.getHours().toString())
+  let hour = ("0" + realBDay.getHours().toString())
   let mins = ("0" + realBDay.getMinutes().toString())
-  const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2)
-  const finalTime = hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2)
+  const finalDate = year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2)
+  const finalTime = hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2)
 
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
 
@@ -103,8 +103,7 @@ async function userProfileInEventDetails(eventid) {
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
-    <div id="follow-div"><button uid="${
-      userInfo.id
+    <div id="follow-div"><button uid="${userInfo.id
     }" class="btn btn-info" id="follow-btn">Follow</button></div>
   </div>
 `
@@ -298,19 +297,14 @@ async function addComment(eventid) {
   if (Checkresults.success) {
     let html = ""
     for (const result of results) {
-      const realBDay = new Date(result.created_at)
-      const finalDate =
-        realBDay.getFullYear().toString() +
-        "-" +
-        (realBDay.getMonth() + 1).toString() +
-        "-" +
-        realBDay.getDate().toString() +
-        " " +
-        "(" +
-        realBDay.getHours().toString() +
-        ":" +
-        realBDay.getMinutes().toString() +
-        ")"
+      const realBDay = new Date(result.date)
+      let year = realBDay.getFullYear().toString()
+      let month = ("0" + (realBDay.getMonth() + 1).toString())
+      let date = ("0" + realBDay.getDate().toString())
+      let hour = ("0" + realBDay.getHours().toString())
+      let mins = ("0" + realBDay.getMinutes().toString())
+      const finalDate = year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2) + " (" + hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2) + ")"
+
       let image = result.profile_img ? result.profile_img : "/profile-pic.jpg"
 
       html += `<div class="d-flex flex-column">
