@@ -26,7 +26,7 @@ function loadPage(result) {
             <p class="card-text">Event ID : ${event.id}</p>
             <p class="card-text">Venue: ${event.venue}</p>
             <p class="card-text">Organiser ID: ${event.organiser_id}</p>
-            <p><a href="#" class="card-text">Link to the Event</a></p>
+            <p><a href="/event-details.html?eventid=${event.id}" class="card-text">Link to the Event</a></p>
             <div class="d-flex justify-content-start ">${delButton}${activeButton}</div>
           </div>
         </div>

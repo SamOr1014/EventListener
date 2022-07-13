@@ -95,19 +95,19 @@ async function userProfileInEventDetails(eventid) {
   console.log(userInfo)
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
   htmlProfileCard.innerHTML = `
-  <a href="#">
+  <div id="profile-img">
     <img
       src="${image}"
       class="card-img-top w-100 rounded-circle"
       alt="..."
     />
-  </a>
-  <div class="card-body">
+  </div>
+  <div class="card-body w-100">
     <div><h5 class="card-title">Name:${userInfo.first_name + " " + userInfo.last_name}</h5></div>
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
-    <button class="btn btn-info" id="follow-btn">Follow</button>
+    <button class="btn btn-secondary mt-2" id="follow-btn">Follow</button>
   </div>
 `
   // console.log(htmlProfileCard)
@@ -130,28 +130,40 @@ async function needTologin() {
     window.location.href = "/signup.html"
   })
 }
-
 async function checkAppliedStatus() {
+  let applyButton = document.querySelector("#apply-now")
   const eventid = window.location.search.substr(9)
-  const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
+  const resp = await fetch(`/event/approve?eventid=${eventid}`)
   const applyStatus = await resp.json()
-  // return processed = false which means user applied but not being accepted
-  // console.log(applyStatus)
+  if (applyStatus.approve) {
+    applyButton.disabled = true
+    applyButton.innerText = "Approved!!"
+  } else {
+    applyButton.disabled = true
+    applyButton.innerText = "pending"
+  }
 }
 
+// async function checkAppliedStatus() {
+//   const eventid = window.location.search.substr(9)
+//   const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
+//   const applyStatus = await resp.json()
+//   // return processed = false which means user applied but not being accepted
+//   // console.log(applyStatus)
+// }
+
 async function checkApplied() {
+  let applyButton = document.querySelector("#apply-now")
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/checkApply?eventid=${eventid}`)
   const applyStatus = await resp.json()
   // if applied return {success:true}
   // if not applied return {success:false}
   console.log(applyStatus)
-  let applyButton = document.querySelector("#apply-now")
+  // let applyButton = document.querySelector("#apply-now")
   // have ac and applied
   if (applyStatus.success === true) {
     await checkAppliedStatus()
-    applyButton.disabled = true
-    applyButton.innerText = "Pending"
   } else if (applyStatus.success === false) {
     // have ac and not applied
     // click button to insert data
@@ -161,7 +173,6 @@ async function checkApplied() {
       const getEvent = await fetch(`/event/singleEvent?eventid=${eventid}`)
       const resultGetEvent = await getEvent.json()
       const organiserid = resultGetEvent.organiser_id
-      // console.log(organiserid)
       const response = await fetch(`/event/applyButton`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -257,7 +268,6 @@ async function addComment(eventid) {
 
       html += `<div class="d-flex flex-column">
     <div id ="user"> 
-
     <p>    <img
     src="${image}"
     alt=""
@@ -279,7 +289,7 @@ async function addComment(eventid) {
 }
 
 async function HideComment() {
-  const HTML = `<div class="text-center">Please login to see comment</div>`
+  const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
   document.querySelector("#Comment-Area").innerHTML = HTML
 
   const DisableHTML = ""

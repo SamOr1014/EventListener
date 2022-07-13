@@ -120,7 +120,7 @@ async function loadkeyword(keyword) {
     htmlStr =
       /*html*/
       `
-    <div class="col-md-3 mt-3" data-id="${result.id}">
+    <div class="col-md-4 mt-3" data-id="${result.id}">
      <div class="card" data-id="${result.id}">
      <img src = "${image}" class="card-img-top" />
 
