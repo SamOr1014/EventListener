@@ -168,6 +168,9 @@ async function loadHeaderAccountButton(){
 
 loadHeaderAccountButton()
 addHeaderEventListeners()
+document.querySelector("#create-event").addEventListener("click", async() => {
+  await CheckLogin()
+})
 
 document.querySelector("#explore").addEventListener("click", () => {
   window.location.href = "/explore"
@@ -184,9 +187,6 @@ async function CheckLogin() {
   }
 }
 
-document.querySelector("#create-event").addEventListener("click", () => {
-  CheckLogin()
-})
 
 
 
