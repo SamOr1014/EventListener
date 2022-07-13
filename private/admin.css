@@ -3,6 +3,7 @@
 
 body{
   font-family: 'Secular One', sans-serif;
+  color: white;
 }
 
 body {
@@ -21,7 +22,22 @@ body {
 .nav-link{
     font-size: 1.3rem;
 }
-
+.card{
+    border: #232526 solid 1px;
+    background: #141e30; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #243b55,
+      #141e30
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #243b55,
+      #141e30
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow: white 0px 0px 10px;
+    border: white solid 1px;
+}
 /* css for other elements */
 #user-icon {
     margin-left: 4%;

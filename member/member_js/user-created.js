@@ -46,6 +46,7 @@ async function loadCreatedEvent() {
           </div>
           
           <div class="col-md-4 p-2">
+          <a href="/event-details.html?eventid=${event.id}">Link</a>
           <div><h4>Venue: </h4></div>
           <div><h5>@ ${event.venue}</h5></div>
           <div><h4>Date: </h4></div>

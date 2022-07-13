@@ -73,6 +73,28 @@ body {
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
 }
+#Profile button,
+#privacy-panel-email button,
+#privacy-panel-password button,
+#privacy-panel-other button{
+  background-color: rgba(13, 60, 136, 0.475) !important;
+  border: rgba(13, 60, 136, 0.475) !important;
+  box-shadow: white 0px 0px 10px;
+  border: white solid 1px;
+  height: 45px;
+}
+.btn-primary {
+  background-color: rgba(13, 60, 136, 0.475) !important;
+  border: rgba(13, 60, 136, 0.475) !important;
+  box-shadow: white 0px 0px 10px;
+  border: white solid 1px;
+}
+.btn-danger {
+  background-color: rgba(136, 13, 60, 0.475) !important;
+  border: rgba(136, 13, 60, 0.475) !important;
+  box-shadow: white 0px 0px 10px;
+  border: white solid 1px;
+}
 #followers {
   aspect-ratio: 1/1;
   height: 10px;
@@ -128,7 +150,11 @@ body {
 #privacy-panel-other div {
   margin-bottom: 1rem;
 }
-
+.col-md-4 a {
+  color: rgb(255, 251, 3);
+  text-shadow: 0px 0px 10px rgb(255, 251, 3) ;
+  font-size: 1.3rem;
+}
 .card {
   background: #141e30; /* fallback for old browsers */
   background: -webkit-linear-gradient(
