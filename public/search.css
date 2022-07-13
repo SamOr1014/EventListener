@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 body{
   font-family: 'Secular One', sans-serif;
@@ -59,21 +60,9 @@ body {
     height: 100%;
 }
 
-<<<<<<< HEAD
-.card-img-top {
-    height: 50%;
-    opacity: 1;
-}
-
-.card-img-top:hover {
-    transition: opacity 0.3s ease-in-out;
-    /* transition: 0.3s; */
-    opacity: 0.5;
-}
-=======
 .card {
     margin-top: 2%;
-    box-shadow: 0px 0px 5px 5px #ffffff;
+    box-shadow: #ffffff 0px 0px 10px, rgb(38 53 77) 0px 0px 50px;
     border-radius: 0.5rem;
     background: #141e30; /* fallback for old browsers */
     background: -webkit-linear-gradient(
@@ -89,4 +78,13 @@ body {
   
     cursor: pointer;
   }
->>>>>>> 743e56d910f16f053895819adf568dd804b94d95
+#search-title, #result-type {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'Lobster', cursive;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    text-decoration: none !important;
+    text-shadow: #FFF 0px 0px 5px, #0e90dc 0px 0px 20px, #0e90dc 0px 0px 30px, #0e90dc 0px 0px 40px, #0e90dc 0px 0px 50px;
+
+}

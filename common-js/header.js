@@ -25,7 +25,7 @@ function addHeaderAccountListenerFalse() {
 function addHeaderAccountListenerTrue(){
     //add to those login status true button
     document.querySelector('#account-detail').addEventListener('click', ()=> {
-      window.location.href = '/account'
+      window.location.href = '/user-account.html'
     })
     document.querySelector('#logout').addEventListener('click', ()=> {
       window.location.href = '/logout'
