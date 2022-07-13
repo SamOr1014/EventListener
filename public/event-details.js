@@ -213,7 +213,10 @@ async function checkApplied() {
         applyButton.disabled = true
         applyButton.innerText = "Pending"
       } else {
-        alert("fail")
+        if (result.message){
+          alert(result.message)
+        }
+        else {alert("fail")}
       }
     })
   }
