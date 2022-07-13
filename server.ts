@@ -25,7 +25,7 @@ import { search } from "./router/search"
 import { admin } from "./router/admin"
 import { explore } from "./router/explore"
 import { createEvent } from "./router/createEvent"
-import {comment} from "./router/comment"
+import { comment } from "./router/comment"
 
 //import guards
 import { isLoggedin, isAdmin } from "./guard"
@@ -89,21 +89,20 @@ app.use("/login", login)
 app.use("/explore", explore)
 app.use("/event", event)
 app.use("/comment", comment)
+app.use("/followers", followers)
 // app.use("/event-details", eventDetails)
 
 //Router can only be use by user
-app.use("/account", isLoggedin, account)
-app.use("/followers", followers)
-app.use("/admin", isLoggedin, isAdmin, admin)
 app.use("/createEvent", createEvent)
-app.use(express.static("public"))
+app.use("/account", isLoggedin, account)
+app.use("/admin", isLoggedin, isAdmin, admin)
 
+app.use(express.static("public"))
 app.use(express.static("common-js"))
 app.use(express.static("src"))
 app.use(express.static("uploads"))
 app.use(isLoggedin, express.static("member"))
 app.use(isLoggedin, isAdmin, express.static("private"))
-
 
 //Listening to Port 8080
 const PORT = 8080
