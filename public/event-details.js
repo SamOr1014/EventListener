@@ -4,6 +4,30 @@ window.onload = () => {
   CheckLogin()
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
+  document.querySelector("#commentForm").addEventListener("submit", async function (event) {
+    event.preventDefault()
+    
+    const eventID = window.location.search.substr(9)
+    const form = event.target
+    const comment = form.comment.value
+    console.log(eventID)
+    
+    const res = await fetch("/comment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ comment, eventID }),
+    })
+    
+    const result = await res.json()
+    if (result.success) {
+      const eventid = window.location.search.substr(9)
+      document.querySelector('#comment').value = ""
+      loadComment(eventid)
+    } else {
+      document.querySelector('#comment').value = ""
+      alert("Fail to comment")
+    }
+  })
   loadComment(eventid)
 }
 
@@ -249,28 +273,28 @@ async function loadFollower() {
 }
 
 // comment function
-document.querySelector("#commentForm").addEventListener("submit", async function (event) {
-  event.preventDefault()
+// document.querySelector("#commentForm").addEventListener("submit", async function (event) {
+//   event.preventDefault()
 
-  const eventID = window.location.search.substr(9)
-  const form = event.target
-  const comment = form.comment.value
-  console.log(eventID)
+//   const eventID = window.location.search.substr(9)
+//   const form = event.target
+//   const comment = form.comment.value
+//   console.log(eventID)
 
-  const res = await fetch("/comment", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ comment, eventID }),
-  })
+//   const res = await fetch("/comment", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ comment, eventID }),
+//   })
 
-  const result = await res.json()
-  if (result.success) {
-    const eventid = window.location.search.substr(9)
-    loadComment(eventid)
-  } else {
-    alert("Fail to comment")
-  }
-})
+//   const result = await res.json()
+//   if (result.success) {
+//     const eventid = window.location.search.substr(9)
+//     loadComment(eventid)
+//   } else {
+//     alert("Fail to comment")
+//   }
+// })
 
 async function loadComment(eventid) {
   const resp = await fetch("/createEvent/check")
@@ -297,7 +321,7 @@ async function addComment(eventid) {
   if (Checkresults.success) {
     let html = ""
     for (const result of results) {
-      const realBDay = new Date(result.date)
+      const realBDay = new Date(result.created_at)
       let year = realBDay.getFullYear().toString()
       let month = ("0" + (realBDay.getMonth() + 1).toString())
       let date = ("0" + realBDay.getDate().toString())

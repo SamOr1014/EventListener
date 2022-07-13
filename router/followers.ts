@@ -14,7 +14,11 @@ followers.get("/", async (req, res) => {
 
 followers.post("/", async (req, res) => {
   const userID = req.session["user"].ID
-  const followerID = req.query.organiserid
+  const followerID:any = req.query.organiserid
+  if (parseInt(userID) === parseInt(followerID)){
+    res.json({ message: "U can't follow yourself" })
+    return
+  }
   const checkFollow = await client.query(
     `select * from follower_relation where user_id = $1 and follower_id=$2`,
     [userID, followerID]
