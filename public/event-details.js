@@ -1,10 +1,10 @@
-window.onload = async () => {
+window.onload = () => {
   const eventid = window.location.search.substr(9)
   console.log(eventid)
-  await CheckLogin()
-  await loadEventDetails(eventid)
-  await userProfileInEventDetails(eventid)
-  await loadComment(eventid)
+  CheckLogin()
+  loadEventDetails(eventid)
+  userProfileInEventDetails(eventid)
+  loadComment(eventid)
 }
 
 async function loadEventDetails(eventid) {
@@ -40,38 +40,45 @@ async function loadEventDetails(eventid) {
   const finalDate =
     realBDay.getFullYear().toString() +
     "-" +
-    (realBDay.getMonth() + 1).toString() +
+    ("0" + (realBDay.getMonth() + 1).toString()).substring(-2) +
     "-" +
-    realBDay.getDate().toString() +
-    " " +
-    realBDay.getHours().toString() +
+    ("0" + realBDay.getDate().toString()).substring(-2)
+  const finalTime =
+    ("0" + realBDay.getHours().toString()).substring(-2) +
     ":" +
-    realBDay.getMinutes().toString()
+    ("0" + realBDay.getMinutes().toString()).substring(-2)
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
 
   htmlStr += /*html */ `
-  <div id="event-left">
-   <img src="${image}" width="100%" alt="..." />
-    <div class="event-detailsInfo">
+  <div id="event-left" class="d-flex flex-column">
+  <div class="col-md-12"><img class="w-100" src="${image}" alt="..." /></img></div>
+    <div class="col-md-12 event-detailsInfo">
      <div class="event-name">Event Name: ${events.name}</div>
-       <div id="event-content-text">
-         <div class="time">Time:${finalDate}</div>
+       <div id="event-content-text" class="mt-4">
+         <div class="time">Date:</div>
          <ul>
-         <li></li>
+         <li>${finalDate}</li>
          </ul>
-         <div class="venue">Venue: ${events.venue}</div>
+         <div class="time">Time:</div>
          <ul>
-         <li></li>
+         <li>${finalTime}</li>
          </ul>
-         <div class="fee">Fee: ${Amount}</div>
+         <div class="venue">Venue: </div>
          <ul>
-         <li></li>
+         <li>${events.venue}</li>
          </ul>
-         <div class="max-pp">Max-participants: ${events.max_participant}</div>
+         <div class="fee">Fee: </div>
          <ul>
-         <li></li>
+         <li>${Amount}</li>
          </ul>
-         <div class="description">Description: ${events.bio}</div>
+         <div class="max-pp">Max-participants: </div>
+         <ul>
+         <li>${events.max_participant}</li>
+         </ul>
+         <div class="description">Description:</div>
+         <ul>
+         <li>${events.bio}</li>
+         </ul>
       </div>
     </div>
   </div>`
@@ -87,7 +94,6 @@ async function userProfileInEventDetails(eventid) {
   const userInfo = await profile.json()
   console.log(userInfo)
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
-  // htmlProfileCard.innerHTML = ""
   htmlProfileCard.innerHTML = `
   <a href="#">
     <img
@@ -101,6 +107,7 @@ async function userProfileInEventDetails(eventid) {
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
+    <button class="btn btn-info" id="follow-btn">Follow</button>
   </div>
 `
   // console.log(htmlProfileCard)
@@ -119,8 +126,8 @@ async function CheckLogin() {
 // check if not login and click apply button
 async function needTologin() {
   document.querySelector("#apply-now").addEventListener("click", async function (event) {
-    window.location.href = "/signup.html"
     alert("please sign in first!")
+    window.location.href = "/signup.html"
   })
 }
 async function checkAppliedStatus() {
@@ -217,8 +224,8 @@ document.querySelector("#commentForm").addEventListener("submit", async function
 
   const result = await res.json()
   if (result.success) {
-    alert("Comment Created")
-    location.reload()
+    const eventid = window.location.search.substr(9)
+    loadComment(eventid)
   } else {
     alert("Fail to comment")
   }
@@ -257,14 +264,22 @@ async function addComment(eventid) {
         ":" +
         realBDay.getMinutes().toString() +
         ")"
-      console.log(result)
-      html += `
-    <div id = "user"> 
-    <p>${result.last_name} ${result.first_name} posted on ${finalDate}</p>
+      let image = result.profile_img ? result.profile_img : "/profile-pic.jpg"
+
+      html += `<div class="d-flex flex-column">
+    <div id ="user"> 
+
+    <p>    <img
+    src="${image}"
+    alt=""
+    class="rounded-circle me-2"
+    width="32"
+    height="32"
+  />${result.last_name} ${result.first_name} posted on ${finalDate}</p>
     </div>
-    <div id = "postedComment">
-    <p>${result.comment}
-    </p>
+    <div id="postedComment" class="mb-5">
+    ${result.comment}
+    </div>
     </div>
     `
     }
@@ -275,7 +290,7 @@ async function addComment(eventid) {
 }
 
 async function HideComment() {
-  const HTML = `<p>Please login to see comment</p>`
+  const HTML = `<div class="text-center">Please login to see comment</div>`
   document.querySelector("#Comment-Area").innerHTML = HTML
 
   const DisableHTML = ""
