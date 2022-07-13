@@ -119,12 +119,27 @@ async function postAllEvents() {
     }
     const path = result.image
     const realBDay = new Date(result.date)
+<<<<<<< HEAD
     let year = realBDay.getFullYear().toString()
     let month = ("0" + (realBDay.getMonth() + 1).toString())
     let date = ("0" + realBDay.getDate().toString())
     let hour = ("0" +realBDay.getHours().toString())
     let mins = ("0" + realBDay.getMinutes().toString())
     const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2) + " (" + hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2) + ")"
+=======
+    const finalDate =
+      realBDay.getFullYear().toString() +
+      "-" +
+      (realBDay.getMonth() + 1).toString() +
+      "-" +
+      realBDay.getDate().toString() +
+      " " +
+      "(" +
+      ("0" + realBDay.getHours().toString()).substring(-1) +
+      ":" +
+      ("0" + realBDay.getMinutes().toString()).substring(-1) +
+      ")"
+>>>>>>> 654a67cad1e781106ad21c4ad7f0e9eb32adf526
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 

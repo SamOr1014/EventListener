@@ -169,8 +169,8 @@ event.post("/", formidableMiddleware, async (req, res) => {
 
 event.get("/FollowerEvent", async (req, res) => {
   console.log(`UserID:${req.session["user"].ID}`)
-  const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.user_id =  t1.organiser_id 
-  WHERE (t2.follower_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false AND t1.date > $2);`
+  const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.follower_id = t1.organiser_id 
+  WHERE (t2.user_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false AND t1.date > $2);`
   const Followers = await client.query(FollowersSQL, [req.session["user"].ID, dateTime])
   console.log(Followers.rows)
   res.json(Followers.rows)
