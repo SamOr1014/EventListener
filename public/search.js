@@ -51,11 +51,11 @@ async function loadgenre(genre) {
     htmlStr =
       /*html*/
       `
-    <div class="col-md-3 mt-3">
+    <div class="col-md-3 mt-3" data-id="${result.id}">
      <div class="card" data-id="${result.id}">
      <img src = "${image}" class="card-img-top" />
 
-     <div class="card-body" >
+     <div class="card-body" data-id="${result.id}">
        <h5 class="card-title">${result.name}</h5>
        <p class="card-text">
          Date: ${finalDate}<br>
@@ -120,11 +120,11 @@ async function loadkeyword(keyword) {
     htmlStr =
       /*html*/
       `
-    <div class="col-md-3 mt-3">
+    <div class="col-md-3 mt-3" data-id="${result.id}">
      <div class="card" data-id="${result.id}">
      <img src = "${image}" class="card-img-top" />
 
-     <div class="card-body" >
+     <div class="card-body" data-id="${result.id}">
        <h5 class="card-title">${result.name}</h5>
        <p class="card-text">
          Date: ${finalDate}<br>
