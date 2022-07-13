@@ -132,9 +132,9 @@ async function postAllEvents() {
       realBDay.getDate().toString() +
       " " +
       "(" +
-      ("0" + realBDay.getHours().toString()).substring(-2) +
+      ("0" + realBDay.getHours().toString()).substring(-1) +
       ":" +
-      ("0" + realBDay.getMinutes().toString()).substring(-2) +
+      ("0" + realBDay.getMinutes().toString()).substring(-1) +
       ")"
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
