@@ -14,7 +14,7 @@ async function loadAllRequestOfJoiningEvent() {
             <p class="card-text">Event ID: ${request.event_id}</p>
             <p class="card-text">Event Name: ${request.name}</p>
             <a href="#" eid="${request.event_id}" ruid="${request.user_id}" reqid="${request.id}" id="approve" class="btn btn-primary">Approve</a>
-            <a href="#" eid="${request.event_id}" ruid="${request.user_id}" reqid="${request.id}" id="dismiss" class="btn btn-primary">Dismiss</a>
+            <a href="#" eid="${request.event_id}" ruid="${request.user_id}" reqid="${request.id}" id="dismiss" class="btn btn-danger">Dismiss</a>
           </div>
         </div>
       </div>`

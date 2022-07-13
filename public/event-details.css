@@ -34,11 +34,6 @@ body {
 #user-icon {
   margin-left: 1vw;
 }
-
-#Profile {
-  color: black;
-}
-
 .event-name {
   font-size: 40px;
   font-weight: bold;
@@ -54,7 +49,26 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
 }
-
+#Profile{
+  border: #232526 solid 1px;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: white 0px 0px 10px;
+  border: white solid 1px;
+}
+#profile-img, #profile-img img {
+  box-shadow: white 0px -1px 1px;
+  color: white;
+}
 #status {
   font-size: 34px;
   margin: 3rem;
@@ -73,13 +87,20 @@ body {
 
 #event-left,
 #event-left img {
+  border: #232526 solid 1px;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
-  border-radius: 2rem;
-  background: #0F2027;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
 }
 
 p {
@@ -94,6 +115,10 @@ p {
 #postedComment {
   padding-left: 40px;
   font-size: 1rem;
+}
+
+#no-login-msg{
+  font-size: 2.5rem;
 }
 
 #comment-board {
