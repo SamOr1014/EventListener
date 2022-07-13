@@ -70,10 +70,15 @@
           </li>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input id="header-search" type="search" class="form-control form-control-dark text-white bg-dark"
-            placeholder="Search..." aria-label="Search" />
-        </form>
+        <div class="mx-2">
+          <input
+            id="header-search"
+            type="search"
+            class="form-control form-control-dark text-white bg-dark"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+        </div>
 
         <div id="account" class="text-end d-flex"></div>
       </div>
@@ -114,7 +119,7 @@
           </datalist><br>
 
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="participants" name="participants" placeholder="participants"
+            <input type="number" class="form-control" id="participants" name="participants" placeholder="participants" min="0"
               required>
             <label for="floatingInput" id="LabelText">Number of participants</label>
           </div>

@@ -10,10 +10,18 @@ async function loadSearchResult() {
 }
 
 async function loadgenre(genre) {
+<<<<<<< HEAD
   genre = genre.replace("_", " ")
   document.querySelector("#result-type").innerHTML = `<h2><u><strong>${
     genre[0].toUpperCase() + genre.substring(1)
   }</strong><u></h2>`
+=======
+  let genreWord = genre[0].toUpperCase() + genre.substring(1)
+  genreWord = genreWord.replace("_", " ")
+  document.querySelector("#result-type").innerHTML = `"${
+    genreWord
+  }"`
+>>>>>>> 15eb8a1287d083af35277502105948757b4dc588
   const resp = await fetch(`/search/genres?genre=${genre}`)
   const results = await resp.json()
 
@@ -50,11 +58,11 @@ async function loadgenre(genre) {
     htmlStr =
       /*html*/
       `
-    <div class="col-md-3 mt-3">
+    <div class="col-md-3 mt-3" data-id="${result.id}">
      <div class="card" data-id="${result.id}">
      <img src = "${image}" class="card-img-top" />
 
-     <div class="card-body" >
+     <div class="card-body" data-id="${result.id}">
        <h5 class="card-title">${result.name}</h5>
        <p class="card-text">
          Date: ${finalDate}<br>
@@ -80,7 +88,7 @@ async function loadgenre(genre) {
 
 async function loadkeyword(keyword) {
   console.log("keyword", keyword)
-  document.querySelector("#result-type").innerHTML = `<h2>${keyword}</h2>`
+  document.querySelector("#result-type").innerHTML = `"${keyword}"`
 
   const resp = await fetch(`/search/keyword?keyword=${keyword}`)
   const results = await resp.json()
@@ -119,11 +127,11 @@ async function loadkeyword(keyword) {
     htmlStr =
       /*html*/
       `
-    <div class="col-md-3 mt-3">
+    <div class="col-md-3 mt-3" data-id="${result.id}">
      <div class="card" data-id="${result.id}">
      <img src = "${image}" class="card-img-top" />
 
-     <div class="card-body" >
+     <div class="card-body" data-id="${result.id}">
        <h5 class="card-title">${result.name}</h5>
        <p class="card-text">
          Date: ${finalDate}<br>

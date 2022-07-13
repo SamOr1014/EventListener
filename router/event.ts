@@ -35,24 +35,39 @@ event.get("/", (req, res) => {
 })
 
 //Approving users to join event
-event.put('/approve', async(req, res)=> {
+event.put("/approve", async (req, res) => {
   console.log(req.body)
   const eventid = req.body.eventid
   const reqUserid = req.body.reqUserid
   const reqid = req.body.reqid
   const approve = req.query.approve
-  if(!approve) {
-    res.json({success: false, message: 'Invalid query'})
+  if (!approve) {
+    res.json({ success: false, message: "Invalid query" })
   }
-  if (approve === 'yes'){
-    await client.query('update users_request set processed = true where id = $1', [reqid])
-    await client.query('insert into users_joined (user_id, event_id) values ($1, $2)',[reqUserid, eventid])
-    res.json({message: `Approve User ID ${reqUserid} joined Event ID ${eventid}`})
+  if (approve === "yes") {
+    await client.query("update users_request set processed = true where id = $1", [reqid])
+    await client.query("insert into users_joined (user_id, event_id) values ($1, $2)", [
+      reqUserid,
+      eventid,
+    ])
+    res.json({ message: `Approve User ID ${reqUserid} joined Event ID ${eventid}` })
+  } else if (approve === "no") {
+    await client.query("update users_request set processed = true where id = $1", [reqid])
+    res.json({ message: `Dismiss User ID ${reqUserid}'s Request` })
   }
-  else if (approve === 'no'){
-    await client.query('update users_request set processed = true where id = $1', [reqid])
-    res.json({message : `Dismiss User ID ${reqUserid}'s Request`})
-  }                       
+})
+
+// user applied and being approved
+event.get("/approve", async (req, res) => {
+  const userid = req.session["user"].ID
+  const eventid = req.query.eventid
+  const userJoinedSQL = /*sql */ `SELECT * FROM users_joined where user_id =$1 and event_id=$2;`
+  const userJoined = await client.query(userJoinedSQL, [userid, eventid])
+  if (userJoined.rowCount > 0) {
+    res.json({ approve: true })
+  } else {
+    res.json({ approve: false })
+  }
 })
 
 //selecting all active and not banned events
@@ -167,20 +182,19 @@ event.get("/FollowerEvent", async (req, res) => {
 
 event.post("/applyButton", async (req, res) => {
   const userid = req.session["user"].ID
-  const eventid = req.query.eventid
-  console.log(userid, eventid)
-  const applyButtonSQL = /*sql */ `INSERT INTO users_request (user_id, event_id, processed) VALUES($1, $2, $3)`
-  await client.query(applyButtonSQL, [userid, eventid, false])
-  // console.log(applyButton.rows)
+  const eventid = req.body.eventid
+  const organiserid = req.body.organiserid
+  console.log(organiserid)
+  const applyButtonSQL = /*sql */ `INSERT INTO users_request (user_id, event_id, processed, organiser_id, created_at, updated_at) VALUES($1, $2, $3, $4, now(), now())`
+  await client.query(applyButtonSQL, [userid, eventid, false, organiserid])
   res.json({ success: true })
 })
-
+// check user applied or not
 event.get("/checkApply", async (req, res) => {
   const userid = req.session["user"].ID
   const eventid = req.query.eventid
   const SQLcheckApply = /*sql */ `SELECT * FROM users_request where users_request.user_id =$1 and users_request.event_id=$2`
   const checkApply = await client.query(SQLcheckApply, [userid, eventid])
-  // console.log(`count${checkApply.rowCount}`)
   if (checkApply.rowCount > 0) {
     res.json({ success: true })
   } else {
@@ -188,6 +202,7 @@ event.get("/checkApply", async (req, res) => {
   }
 })
 
+// check applied user, being confirmed by organizer or not
 event.get("/checkAppliedStatus", async (req, res) => {
   const userid = req.session["user"].ID
   const eventid = req.query.eventid
