@@ -46,18 +46,13 @@ async function loadEventsWithAc() {
     }
     const image = result.image ? `/${result.image}` : `/${defaulePath}`
     const realBDay = new Date(result.date)
-    const finalDate =
-      realBDay.getFullYear().toString() +
-      "-" +
-      (realBDay.getMonth() + 1).toString() +
-      "-" +
-      realBDay.getDate().toString() +
-      " " +
-      "(" +
-      ("0" + realBDay.getHours().toString()).substring(-2) +
-      ":" +
-      ("0" + realBDay.getMinutes().toString()).substring(-2) +
-      ")"
+    let year = realBDay.getFullYear().toString()
+    let month = ("0" + (realBDay.getMonth() + 1).toString())
+    let date = ("0" + realBDay.getDate().toString())
+    let hour = ("0" +realBDay.getHours().toString())
+    let mins = ("0" + realBDay.getMinutes().toString())
+    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2) + " (" + hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2) + ")"
+
     htmlStr +=
       /*html*/
       `
@@ -124,18 +119,12 @@ async function postAllEvents() {
     }
     const path = result.image
     const realBDay = new Date(result.date)
-    const finalDate =
-      realBDay.getFullYear().toString() +
-      "-" +
-      (realBDay.getMonth() + 1).toString() +
-      "-" +
-      realBDay.getDate().toString() +
-      " " +
-      "(" +
-      ("0" + realBDay.getHours().toString()).substring(-2) +
-      ":" +
-      ("0" + realBDay.getMinutes().toString()).substring(-2) +
-      ")"
+    let year = realBDay.getFullYear().toString()
+    let month = ("0" + (realBDay.getMonth() + 1).toString())
+    let date = ("0" + realBDay.getDate().toString())
+    let hour = ("0" +realBDay.getHours().toString())
+    let mins = ("0" + realBDay.getMinutes().toString())
+    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2) + " (" + hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2) + ")"
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 

@@ -9,10 +9,8 @@ window.onload = () => {
 }
 
 async function loadEventDetails(eventid) {
-  console.log("fetching")
   const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
   const events = await resp.json()
-  console.log("event:", events)
   // console.log("event[0]:", events[0])
   let htmlStr = ""
   if (events.fee === 0) {
@@ -38,17 +36,13 @@ async function loadEventDetails(eventid) {
     defaulePath = "others.jpg"
   }
   const realBDay = new Date(events.date)
-  const finalDate =
-    realBDay.getFullYear().toString() +
-    "-" +
-    ("0" + (realBDay.getMonth() + 1).toString()).substring(-2) +
-    "-" +
-    ("0" + realBDay.getDate().toString()).substring(-2)
-
-  const finalTime =
-    ("0" + realBDay.getHours().toString()).substring(-2) +
-    ":" +
-    ("0" + realBDay.getMinutes().toString()).substring(-2)
+  let year = realBDay.getFullYear().toString()
+  let month = ("0" + (realBDay.getMonth() + 1).toString())
+  let date = ("0" + realBDay.getDate().toString())
+  let hour = ("0" +realBDay.getHours().toString())
+  let mins = ("0" + realBDay.getMinutes().toString())
+  const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2)
+  const finalTime = hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2)
 
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
 
