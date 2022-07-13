@@ -99,10 +99,10 @@ app.use("/createEvent", createEvent)
 app.use(express.static("public"))
 
 app.use(express.static("common-js"))
-app.use(isLoggedin, express.static("member"))
 app.use(express.static("src"))
 app.use(express.static("uploads"))
 
+app.use(isLoggedin, express.static("member"))
 app.use(isLoggedin, isAdmin, express.static("private"))
 
 
