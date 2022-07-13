@@ -108,7 +108,7 @@ admin.put("/reports/solvedeactiveevent", async (req, res) => {
 
 admin.get("/reports/details", async (req, res) => {
   const reportsDetail = await client.query(
-    "select reports.id, reports.user_id, reports.reason, reports.event_id  from reports inner join events on reports.event_id = events.id where reports.solved = false and events.is_active = true order by reports.id asc;"
+    "select reports.id, reports.user_id, reports.reason, reports.event_id from reports inner join events on reports.event_id = events.id where reports.solved = false and events.is_active = true order by reports.id asc;"
   )
   console.log(reportsDetail.rows)
   res.json(reportsDetail.rows)
