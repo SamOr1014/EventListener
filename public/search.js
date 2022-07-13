@@ -10,6 +10,7 @@ async function loadSearchResult() {
 }
 
 async function loadgenre(genre) {
+  genre = genre.replace("_", " ")
   document.querySelector("#result-type").innerHTML = `<h2><u><strong>${
     genre[0].toUpperCase() + genre.substring(1)
   }</strong><u></h2>`
