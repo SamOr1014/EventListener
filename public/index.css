@@ -47,13 +47,14 @@ x-sign.huge-title {
 
 x-sign.card-title {
   color: rgb(255, 255, 255);
-  --color1: rgb(243, 243, 243);
-  --color2: rgb(229, 235, 166);
-  --color3: rgb(218, 230, 143);
-  --color4: rgb(183, 255, 0);
+  --color1: #bc13fe;
+  --color2: #bc13fe;
+  --color3: #bc13fe;
+  --color4: #bc13fe;
   font-family: Londrina Outline;
   font-size: 3rem;
 }
+
 /* css for header plus navbar */
 #logo {
   font-family: 'Permanent Marker', cursive;
@@ -124,8 +125,13 @@ p {
   height: 200px;
   border: 0.2rem solid #fff;
   border-radius: 2rem;
-  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bbaf54,
-    0 0 0.8rem #d5d535, 0 0 2.8rem #dde031, inset 0 0 1.3rem #e4f803;
+  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #bc13fe,
+            0 0 0.8rem #bc13fe,
+            0 0 2.8rem #bc13fe,
+            inset 0 0 1.3rem #bc13fe; 
+
 }
 
 .card > div {
@@ -156,7 +162,7 @@ p {
 html {
   min-height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
-    url(https://img.wallpapersafari.com/desktop/1920/1080/85/79/Y7ZOUQ.jpg);
+    url(https://img.freepik.com/free-photo/night-view-victoria-harbor-hong-kong_53876-146261.jpg?t=st=1657632070~exp=1657632670~hmac=90fb3dc2ac02013c5d1bdc2bdc354077a8d616f4c4088d4a80448ee874c93127&w=2000);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
