@@ -123,28 +123,40 @@ async function needTologin() {
     alert("please sign in first!")
   })
 }
-
 async function checkAppliedStatus() {
+  let applyButton = document.querySelector("#apply-now")
   const eventid = window.location.search.substr(9)
-  const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
+  const resp = await fetch(`/event/approve?eventid=${eventid}`)
   const applyStatus = await resp.json()
-  // return processed = false which means user applied but not being accepted
-  // console.log(applyStatus)
+  if (applyStatus.approve) {
+    applyButton.disabled = true
+    applyButton.innerText = "Approved!!"
+  } else {
+    applyButton.disabled = true
+    applyButton.innerText = "pending"
+  }
 }
 
+// async function checkAppliedStatus() {
+//   const eventid = window.location.search.substr(9)
+//   const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
+//   const applyStatus = await resp.json()
+//   // return processed = false which means user applied but not being accepted
+//   // console.log(applyStatus)
+// }
+
 async function checkApplied() {
+  let applyButton = document.querySelector("#apply-now")
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/checkApply?eventid=${eventid}`)
   const applyStatus = await resp.json()
   // if applied return {success:true}
   // if not applied return {success:false}
   console.log(applyStatus)
-  let applyButton = document.querySelector("#apply-now")
+  // let applyButton = document.querySelector("#apply-now")
   // have ac and applied
   if (applyStatus.success === true) {
     await checkAppliedStatus()
-    applyButton.disabled = true
-    applyButton.innerText = "Pending"
   } else if (applyStatus.success === false) {
     // have ac and not applied
     // click button to insert data
@@ -154,7 +166,6 @@ async function checkApplied() {
       const getEvent = await fetch(`/event/singleEvent?eventid=${eventid}`)
       const resultGetEvent = await getEvent.json()
       const organiserid = resultGetEvent.organiser_id
-      // console.log(organiserid)
       const response = await fetch(`/event/applyButton`, {
         method: "POST",
         headers: { "Content-type": "application/json" },

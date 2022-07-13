@@ -57,6 +57,19 @@ event.put("/approve", async (req, res) => {
   }
 })
 
+// user applied and being approved
+event.get("/approve", async (req, res) => {
+  const userid = req.session["user"].ID
+  const eventid = req.query.eventid
+  const userJoinedSQL = /*sql */ `SELECT * FROM users_joined where user_id =$1 and event_id=$2;`
+  const userJoined = await client.query(userJoinedSQL, [userid, eventid])
+  if (userJoined.rowCount > 0) {
+    res.json({ approve: true })
+  } else {
+    res.json({ approve: false })
+  }
+})
+
 //selecting all active and not banned events
 event.get("/allEvents", async (req, res) => {
   const allEvent = await client.query(
