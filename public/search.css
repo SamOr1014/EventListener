@@ -78,8 +78,6 @@ body {
   
     cursor: pointer;
   }
-<<<<<<< HEAD
-=======
 #search-title, #result-type {
     font-size: 3rem;
     font-weight: bold;
@@ -90,4 +88,3 @@ body {
     text-shadow: #FFF 0px 0px 5px, #0e90dc 0px 0px 20px, #0e90dc 0px 0px 30px, #0e90dc 0px 0px 40px, #0e90dc 0px 0px 50px;
 
 }
->>>>>>> 15eb8a1287d083af35277502105948757b4dc588

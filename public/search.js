@@ -10,18 +10,11 @@ async function loadSearchResult() {
 }
 
 async function loadgenre(genre) {
-<<<<<<< HEAD
-  genre = genre.replace("_", " ")
-  document.querySelector("#result-type").innerHTML = `<h2><u><strong>${
-    genre[0].toUpperCase() + genre.substring(1)
-  }</strong><u></h2>`
-=======
   let genreWord = genre[0].toUpperCase() + genre.substring(1)
   genreWord = genreWord.replace("_", " ")
   document.querySelector("#result-type").innerHTML = `"${
     genreWord
   }"`
->>>>>>> 15eb8a1287d083af35277502105948757b4dc588
   const resp = await fetch(`/search/genres?genre=${genre}`)
   const results = await resp.json()
 
