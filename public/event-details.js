@@ -107,7 +107,7 @@ async function userProfileInEventDetails(eventid) {
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
-    <button class="btn btn-info mt-2" id="follow-btn">Follow</button>
+    <button class="btn btn-secondary mt-2" id="follow-btn">Follow</button>
   </div>
 `
   // console.log(htmlProfileCard)
@@ -289,7 +289,7 @@ async function addComment(eventid) {
 }
 
 async function HideComment() {
-  const HTML = `<div class="text-center">Please login to see comment</div>`
+  const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
   document.querySelector("#Comment-Area").innerHTML = HTML
 
   const DisableHTML = ""

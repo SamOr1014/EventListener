@@ -51,7 +51,17 @@ body {
 }
 #Profile{
   border: #232526 solid 1px;
-  background: #0a0a0a;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
 }
@@ -77,13 +87,20 @@ body {
 
 #event-left,
 #event-left img {
+  border: #232526 solid 1px;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
-  border-radius: 2rem;
-  background: #0F2027;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
 }
 
 p {
@@ -98,6 +115,10 @@ p {
 #postedComment {
   padding-left: 40px;
   font-size: 1rem;
+}
+
+#no-login-msg{
+  font-size: 2.5rem;
 }
 
 #comment-board {
