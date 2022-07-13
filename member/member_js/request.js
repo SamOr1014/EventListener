@@ -5,7 +5,7 @@ async function loadAllRequestOfJoiningEvent() {
     document.querySelector('#showing-panel').innerHTML += `<div class="text-center mt-3"><h3>HERE ARE ALL THE REQUEST BY OTHER USERS</h3></div>`
     for (let request of result){
         document.querySelector('#showing-panel').innerHTML+= `<div class="col-md-3 report-cards">
-        <div class="card">
+        <div class="card m-1">
           <div class="card-body">
             <h4>Request ${request.id}</h4>
             <p class="card-text">Request User ID: ${request.user_id} </p>

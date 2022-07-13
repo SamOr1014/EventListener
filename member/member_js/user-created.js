@@ -50,7 +50,7 @@ async function loadCreatedEvent() {
           <div><h4>Time: </h4></div>
           <div><h5>at ${finalTime}</h5></div>
           <div><h4>Event Bio:</h4></div>
-          <div class="col-md-4 p-2 w-100">
+          <div class="col-md-4 w-100">
               <div id="bio-text">${event.bio}</div>
           </div>
           </div>

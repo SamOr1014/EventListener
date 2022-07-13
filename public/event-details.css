@@ -50,6 +50,7 @@ body {
   font-weight: 500;
 }
 #Profile{
+  padding: 3%;
   border: #232526 solid 1px;
   background: #141e30; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -65,10 +66,7 @@ body {
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
 }
-#profile-img, #profile-img img {
-  box-shadow: white 0px -1px 1px;
-  color: white;
-}
+
 #status {
   font-size: 34px;
   margin: 3rem;
@@ -106,7 +104,12 @@ body {
 p {
   margin-bottom: 0px !important;
 }
-
+.card-title{
+  font-size: 2rem;
+}
+.card-text{
+  font-size: 1.2rem;
+}
 #user p {
   text-align: start;
   font-weight: bold;

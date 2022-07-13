@@ -99,7 +99,7 @@ async function userProfileInEventDetails(eventid) {
     />
   </div>
   <div class="card-body w-100">
-    <div><h5 class="card-title">Name:${userInfo.first_name + " " + userInfo.last_name}</h5></div>
+    <div><h5 class="card-title">${userInfo.first_name + " " + userInfo.last_name}</h5></div>
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
