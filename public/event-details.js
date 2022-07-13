@@ -95,19 +95,19 @@ async function userProfileInEventDetails(eventid) {
   console.log(userInfo)
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
   htmlProfileCard.innerHTML = `
-  <a href="#">
+  <div id="profile-img">
     <img
       src="${image}"
       class="card-img-top w-100 rounded-circle"
       alt="..."
     />
-  </a>
-  <div class="card-body">
+  </div>
+  <div class="card-body w-100">
     <div><h5 class="card-title">Name:${userInfo.first_name + " " + userInfo.last_name}</h5></div>
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
-    <button class="btn btn-info" id="follow-btn">Follow</button>
+    <button class="btn btn-info mt-2" id="follow-btn">Follow</button>
   </div>
 `
   // console.log(htmlProfileCard)
@@ -268,7 +268,6 @@ async function addComment(eventid) {
 
       html += `<div class="d-flex flex-column">
     <div id ="user"> 
-
     <p>    <img
     src="${image}"
     alt=""

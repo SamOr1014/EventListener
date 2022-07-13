@@ -34,11 +34,6 @@ body {
 #user-icon {
   margin-left: 1vw;
 }
-
-#Profile {
-  color: black;
-}
-
 .event-name {
   font-size: 40px;
   font-weight: bold;
@@ -54,7 +49,16 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
 }
-
+#Profile{
+  border: #232526 solid 1px;
+  background: #0a0a0a;
+  box-shadow: white 0px 0px 10px;
+  border: white solid 1px;
+}
+#profile-img, #profile-img img {
+  box-shadow: white 0px -1px 1px;
+  color: white;
+}
 #status {
   font-size: 34px;
   margin: 3rem;
