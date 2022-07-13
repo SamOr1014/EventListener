@@ -15,7 +15,6 @@ async function getUserInfo() {
 }
 
 async function loadEventsWithAc() {
-
   console.log(user.ID)
   console.log(user.username)
   const resp = await fetch("event/FollowerEvent")
@@ -47,7 +46,18 @@ async function loadEventsWithAc() {
     }
     const image = result.image ? `/${result.image}` : `/${defaulePath}`
     const realBDay = new Date(result.date)
-    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+'('+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()+')'
+    const finalDate =
+      realBDay.getFullYear().toString() +
+      "-" +
+      (realBDay.getMonth() + 1).toString() +
+      "-" +
+      realBDay.getDate().toString() +
+      " " +
+      "(" +
+      ("0" + realBDay.getHours().toString()).substring(-2) +
+      ":" +
+      ("0" + realBDay.getMinutes().toString()).substring(-2) +
+      ")"
     htmlStr +=
       /*html*/
       `
@@ -114,11 +124,22 @@ async function postAllEvents() {
     }
     const path = result.image
     const realBDay = new Date(result.date)
-    const finalDate = realBDay.getFullYear().toString()+"-"+(realBDay.getMonth()+ 1).toString() +"-"+realBDay.getDate().toString()+' '+'('+realBDay.getHours().toString()+':'+realBDay.getMinutes().toString()+')'
+    const finalDate =
+      realBDay.getFullYear().toString() +
+      "-" +
+      (realBDay.getMonth() + 1).toString() +
+      "-" +
+      realBDay.getDate().toString() +
+      " " +
+      "(" +
+      ("0" + realBDay.getHours().toString()).substring(-2) +
+      ":" +
+      ("0" + realBDay.getMinutes().toString()).substring(-2) +
+      ")"
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
-    htmlStr += /*html*/       `
+    htmlStr += /*html*/ `
     <div class="col-md-4" data-id="${result.id}">
     <div class="card" data-id="${result.id}">
     <img src = "${image}" class="card-img-top" />
@@ -167,6 +188,5 @@ document.querySelector("#create-event").addEventListener("click", () => {
 })
 
 async function disableTitle() {
-  document.querySelector("#FollowTitle").innerHTML = ''
+  document.querySelector("#FollowTitle").innerHTML = ""
 }
-

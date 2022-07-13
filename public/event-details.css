@@ -1,15 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 
-body{
+body {
   font-family: 'Secular One', sans-serif;
 }
 body {
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: white;
-  }
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
 
 /* css for header plus navbar */
 #logo {
@@ -26,19 +34,8 @@ body {
 #user-icon {
   margin-left: 1vw;
 }
-#event-details {
-  margin-top: 80px;
-  /* background-color: aqua; */
-}
-.event-left {
-  width: 50%;
-  /* margin-right: 300px; */
-}
-#event-left img {
-  max-width: 500px;
-  max-height: 400px;
-}
-#Profile{
+
+#Profile {
   color: black;
 }
 
@@ -47,19 +44,17 @@ body {
   font-weight: bold;
   text-align: center;
 }
-#apply-now {
+#apply-now,
+#report {
   width: 200px;
   height: 50px;
 }
 #event-content-text {
   padding: 2rem;
-  font-size: 20px;
+  font-size: 1.5rem;
   font-weight: 500;
 }
-#event-content-text ul {
-  margin: 0;
-  padding-left: 24px;
-}
+
 #status {
   font-size: 34px;
   margin: 3rem;
@@ -69,20 +64,27 @@ body {
 }
 #event-content-text ul {
   list-style-type: none;
+  margin-top: 0.5rem;
 }
-
 #Comment-Area {
-  border: solid 5px black;
-  margin-top:30px;
-  margin-bottom: 30px;
+  border-top: grey solid 1px;
 }
-
-#Comment-Area p {
-  text-align: center;
-  font-weight: bold;
-  font-size: 20px;
+#Comment-Area div {
+  font-size: 2rem;
 }
-
+#event-details {
+ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#event-left,
+#event-left img {
+  box-shadow: white 0px 0px 10px;
+  border: white solid 1px;
+  border-radius: 2rem;
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
 #user p {
   text-align: start;
   font-weight: bold;
