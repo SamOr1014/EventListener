@@ -94,7 +94,6 @@ async function userProfileInEventDetails(eventid) {
   const userInfo = await profile.json()
   console.log(userInfo)
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
-  // htmlProfileCard.innerHTML = ""
   htmlProfileCard.innerHTML = `
   <a href="#">
     <img
@@ -254,14 +253,22 @@ async function addComment(eventid) {
         ":" +
         realBDay.getMinutes().toString() +
         ")"
-      console.log(result)
-      html += `
-    <div id = "user"> 
-    <p>${result.last_name} ${result.first_name} posted on ${finalDate}</p>
+      let image = result.profile_img ? result.profile_img : "/profile-pic.jpg"
+
+      html += `<div class="d-flex flex-column">
+    <div id ="user"> 
+
+    <p>    <img
+    src="${image}"
+    alt=""
+    class="rounded-circle me-2"
+    width="32"
+    height="32"
+  />${result.last_name} ${result.first_name} posted on ${finalDate}</p>
     </div>
-    <div id = "postedComment">
-    <p>${result.comment}
-    </p>
+    <div id="postedComment" class="mb-5">
+    ${result.comment}
+    </div>
     </div>
     `
     }

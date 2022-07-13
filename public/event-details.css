@@ -69,12 +69,8 @@ body {
 #Comment-Area {
   border-top: grey solid 1px;
 }
-#Comment-Area div {
-  font-size: 2rem;
-}
-#event-details {
- /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
+
+
 #event-left,
 #event-left img {
   box-shadow: white 0px 0px 10px;
@@ -85,20 +81,21 @@ body {
   background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   
 }
+
+p {
+  margin-bottom: 0px !important;
+}
+
 #user p {
   text-align: start;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1rem;
 }
 #postedComment {
-  border-bottom: 2px solid black;
+  padding-left: 40px;
+  font-size: 1rem;
 }
-#postedComment p {
-  text-align: start;
-  font-weight: bold;
-  font-size: 10px;
-  color: brown;
-}
+
 #comment-board {
   display: flex;
   flex-direction: column;
