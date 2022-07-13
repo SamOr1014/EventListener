@@ -5,7 +5,6 @@ window.onload = () => {
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
   loadComment(eventid)
-  loadFollower()
 }
 
 async function loadEventDetails(eventid) {
@@ -90,7 +89,6 @@ async function userProfileInEventDetails(eventid) {
   //   method: "GET",
   // })
   const userInfo = await profile.json()
-  console.log(userInfo)
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
   htmlProfileCard.innerHTML = `
   <div id="profile-img">
@@ -164,11 +162,7 @@ async function checkApplied() {
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/checkApply?eventid=${eventid}`)
   const applyStatus = await resp.json()
-  // if applied return {success:true}
-  // if not applied return {success:false}
-  console.log(applyStatus)
-  // let applyButton = document.querySelector("#apply-now")
-  // have ac and applied
+
   if (applyStatus.success === true) {
     await checkAppliedStatus()
   } else if (applyStatus.success === false) {
@@ -239,13 +233,11 @@ async function promptEvent() {
 async function loadFollower() {
   const login = await fetch(`/status`)
   const loginStatus = await login.json()
-  console.log(loginStatus)
   if (!loginStatus.login) {
     document.querySelector("#follow-div").innerHTML = ""
     return
   } else {
-    const uid = document.querySelector("#follow-btn").attributes["uid"].value
-    console.log(uid)
+    const uid = await document.querySelector("#follow-btn").attributes["uid"].value
     const followingJson = await fetch(`/followers/check?followerID=${uid}`)
     const following = await followingJson.json()
     if (following.success) {
@@ -285,10 +277,15 @@ async function loadComment(eventid) {
   const result = await resp.json()
   if (result.success) {
     // have ac, show comment
-    addComment(eventid)
+    await addComment(eventid)
+    return
   } else {
     // no ac, not gonna show comment
-    HideComment()
+    const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
+    document.querySelector("#Comment-Area").innerHTML = HTML
+  
+    const DisableHTML = ""
+    document.querySelector("#commentForm").innerHTML = DisableHTML
   }
 }
 
@@ -328,11 +325,12 @@ async function addComment(eventid) {
     }
     document.querySelector("#Comment-Area").innerHTML = html
   } else {
-    document.querySelector("#Comment-Area").innerHTML = "<p>No Comment Yet</p>"
+    let area = await document.querySelector("#Comment-Area").innerHTML 
+    area = "<p>No Comment Yet</p>"
   }
 }
 
-async function HideComment() {
+function HideComment() {
   const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
   document.querySelector("#Comment-Area").innerHTML = HTML
 
