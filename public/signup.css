@@ -69,7 +69,7 @@ body {
 }
 
 #signUpBoard {
-    border: 2px black solid;
+    border: 2px rgb(255, 255, 255) solid;
     box-shadow: 0px 0px 15px 5px #ffffff;
     display: flex;
     flex-wrap: wrap row;
@@ -80,7 +80,7 @@ body {
 }
 
 #loginBoard {
-    border: 2px black solid;
+    border: 2px rgb(255, 255, 255) solid;
     box-shadow: 0px 0px 15px 5px #ffffff;
     display: flex;
     flex-wrap: wrap row;
