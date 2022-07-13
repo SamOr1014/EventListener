@@ -5,6 +5,7 @@ window.onload = () => {
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
   loadComment(eventid)
+  loadFollower()
 }
 
 async function loadEventDetails(eventid) {
@@ -43,17 +44,19 @@ async function loadEventDetails(eventid) {
     ("0" + (realBDay.getMonth() + 1).toString()).substring(-2) +
     "-" +
     ("0" + realBDay.getDate().toString()).substring(-2)
+
   const finalTime =
     ("0" + realBDay.getHours().toString()).substring(-2) +
     ":" +
     ("0" + realBDay.getMinutes().toString()).substring(-2)
+
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
 
   htmlStr += /*html */ `
   <div id="event-left" class="d-flex flex-column">
   <div class="col-md-12"><img class="w-100" src="${image}" alt="..." /></img></div>
     <div class="col-md-12 event-detailsInfo">
-     <div class="event-name">Event Name: ${events.name}</div>
+     <div class="event-name">${events.name}</div>
        <div id="event-content-text" class="mt-4">
          <div class="time">Date:</div>
          <ul>
@@ -82,6 +85,7 @@ async function loadEventDetails(eventid) {
       </div>
     </div>
   </div>`
+  loadFollower()
   document.querySelector("#event-details").innerHTML = htmlStr
 }
 
@@ -107,10 +111,20 @@ async function userProfileInEventDetails(eventid) {
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
-    <button class="btn btn-info" id="follow-btn">Follow</button>
+    <div id="follow-div"><button uid="${
+      userInfo.id
+    }" class="btn btn-info" id="follow-btn">Follow</button></div>
   </div>
 `
-  // console.log(htmlProfileCard)
+  document.querySelector("#follow-btn").addEventListener("click", async (e) => {
+    const fid = document.querySelector("#follow-btn").attributes["uid"].value
+    const message = await fetch(`/followers?organiserid=${fid}`, {
+      method: "POST",
+    })
+    const realMsg = await message.json()
+    alert(realMsg.message)
+    loadFollower()
+  })
 }
 
 // check login or not
@@ -195,16 +209,58 @@ async function checkApplied() {
 }
 
 // report function
-let reportMsg = ""
-
-function promptEvent() {
-  reportMsg = prompt("May i have the Reasons?")
-  if (reportMsg == null || reportMsg == "") {
-    alert("Sorry, I haven't get your msg")
-  } else {
-    alert("Your have reported!")
+async function promptEvent() {
+  const login = await fetch(`/status`)
+  const loginStatus = await login.json()
+  if (!loginStatus.login) {
+    alert("please sign in first!")
+    window.location.href = "/signup.html"
+    return
   }
-  console.log(reportMsg)
+  let reportReason = ""
+  reportReason = prompt("May i have the Reasons?")
+  if (!reportReason) {
+    alert("Sorry, I haven't get your msg")
+  }
+  console.log(reportReason)
+
+  const eventid = window.location.search.substr(9)
+  const resp = await fetch(`/event/reports`, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify({
+      eventid,
+      reportReason,
+    }),
+  })
+  const result = await resp.json()
+  if (!result.success) {
+    alert("please sign in first!")
+    window.location.href = "/signup.html"
+  } else {
+    alert("you have reported")
+  }
+}
+
+// follow function
+async function loadFollower() {
+  const login = await fetch(`/status`)
+  const loginStatus = await login.json()
+  console.log(loginStatus)
+  if (!loginStatus.login) {
+    document.querySelector("#follow-div").innerHTML = ""
+    return
+  } else {
+    const uid = document.querySelector("#follow-btn").attributes["uid"].value
+    console.log(uid)
+    const followingJson = await fetch(`/followers/check?followerID=${uid}`)
+    const following = await followingJson.json()
+    if (following.success) {
+      document.querySelector("#follow-btn").innerHTML = "Unfollow"
+    } else {
+      document.querySelector("#follow-btn").innerHTML = "Follow"
+    }
+  }
 }
 
 // comment function
