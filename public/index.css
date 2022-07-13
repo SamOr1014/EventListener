@@ -162,7 +162,7 @@ p {
 html {
   min-height: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
-    url(https://img.freepik.com/free-photo/night-view-victoria-harbor-hong-kong_53876-146261.jpg?t=st=1657632070~exp=1657632670~hmac=90fb3dc2ac02013c5d1bdc2bdc354077a8d616f4c4088d4a80448ee874c93127&w=2000);
+    url(/night-view-victoria-harbor-hong-kong.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
