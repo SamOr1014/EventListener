@@ -213,8 +213,8 @@ document.querySelector("#commentForm").addEventListener("submit", async function
 
   const result = await res.json()
   if (result.success) {
-    alert("Comment Created")
-    location.reload()
+    const eventid = window.location.search.substr(9)
+    loadComment(eventid)
   } else {
     alert("Fail to comment")
   }
