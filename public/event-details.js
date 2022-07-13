@@ -101,6 +101,7 @@ async function userProfileInEventDetails(eventid) {
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
+    <button class="btn btn-info" id="follow-btn">Follow</button>
   </div>
 `
   // console.log(htmlProfileCard)
