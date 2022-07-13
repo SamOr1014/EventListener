@@ -174,7 +174,7 @@ document.querySelector("#explore").addEventListener("click", () => {
 })
 
 async function CheckLogin() {
-  const resp = await fetch("/createEvent/check")
+  const resp = await fetch("/createEvent")
   const result = await resp.json()
   if (result.success) {
     window.location.href = "/createEvent.html"

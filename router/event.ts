@@ -210,3 +210,31 @@ event.get("/checkAppliedStatus", async (req, res) => {
   const checkAppliedStatus = await client.query(SQLcheckAppliedStatus, [userid, eventid])
   res.json(checkAppliedStatus.rows[0].processed)
 })
+
+event.post("/applyButton", async (req, res) => {
+  const userid = req.session["user"].ID
+  const eventid = req.body.eventid
+  const organiserid = req.body.organiserid
+  // console.log(organiserid)
+  const applyButtonSQL = /*sql */ `INSERT INTO users_request (user_id, event_id, processed, organiser_id, created_at, updated_at) VALUES($1, $2, $3, $4, now(), now())`
+  await client.query(applyButtonSQL, [userid, eventid, false, organiserid])
+  res.json({ success: true })
+})
+
+event.post("/reports", async (req, res) => {
+  try {
+    const userid = req.session["user"]?.ID
+    if (!userid) {
+      res.json({ success: false })
+      return
+    }
+    const eventid = req.body.eventid
+    const reportReason = req.body.reportReason
+    const reportsSQL = /*sql */ `INSERT INTO reports (user_id, event_id, reason, solved) VALUES ($1, $2, $3, false)`
+    await client.query(reportsSQL, [userid, eventid, reportReason])
+    res.json({ success: true })
+  } catch (err) {
+    console.error(err)
+  } finally {
+  }
+})
