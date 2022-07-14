@@ -124,6 +124,6 @@ html {
     #000000 0px 0px 40px, #030303 0px 0px 50px;
 }
 .card-img-top{
-  height: 180px;
+  height: 200px !important;
   object-fit: cover;
 }

@@ -123,6 +123,7 @@ async function loadHeaderAccountButton(){
         <img
           src="${image}"
           alt=""
+          style="object-fit: cover;"
           class="rounded-circle me-2"
           width="32"
           height="32"

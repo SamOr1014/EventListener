@@ -183,4 +183,6 @@ body {
 }
 .card-img-top{
   object-fit: cover;
+  aspect-ratio: 1/1 !important;
+  width: 100% !important;
 }

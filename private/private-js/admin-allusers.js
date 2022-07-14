@@ -10,7 +10,7 @@ async function loadAllUsersAdmin(){
         let statusButton = user.is_banned? "Unban":"Ban"
         let buttonClass = user.is_banned? "primary":"danger"
         if (user.is_admin){
-          document.querySelector('#showing-panel').innerHTML += `<div class="col-md-3 user-cards mb-2" userid="">
+          document.querySelector('#showing-panel').innerHTML += `<div class="col-md-4 user-cards mb-2" userid="">
           <div class="card">
             <div class="card-body">
               <p class="card-title">Name: ${user.first_name + " " + user.last_name}</p>
@@ -23,7 +23,7 @@ async function loadAllUsersAdmin(){
       </div>
       `
         } else {
-        document.querySelector('#showing-panel').innerHTML += `<div class="col-md-3 user-cards mb-2" userid="">
+        document.querySelector('#showing-panel').innerHTML += `<div class="col-md-4 user-cards mb-2" userid="">
         <div class="card">
           <div class="card-body">
             <p class="card-title">Name: ${user.first_name + " " + user.last_name}</p>

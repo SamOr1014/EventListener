@@ -113,7 +113,7 @@ html {
   height: 40px;
 }
 .card-img-top{
-  height: 250px;
+  height: 300px !important;
   object-fit: cover;
 }
 .popular {
