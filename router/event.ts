@@ -107,7 +107,6 @@ event.get("/joinedEvent/upcoming", async (req, res) => {
 
 event.get("/singleEvent", async (req, res) => {
   const eventid = req.query.eventid
-  console.log(eventid)
   const getEventDetails = await client.query(/*sql */ `SELECT * FROM EVENTS WHERE ID =$1;`, [
     eventid,
   ])

@@ -5,7 +5,7 @@ async function loadPrivacyProfilePage(){
         method: 'GET'
     })
     const userInfo = await profile.json()
-    let image = userInfo.profile_img ? ("/" + userInfo.profile_img): "/profile-pic.jpg"
+    let image = userInfo.profile_img ? `/${userInfo.profile_img}`: "/profile-pic.jpg"
     const realBDay = new Date(userInfo.birthday)
     let year = realBDay.getFullYear().toString()
     let month = ("0" + (realBDay.getMonth() + 1).toString())

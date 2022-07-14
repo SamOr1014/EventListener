@@ -112,4 +112,3 @@ async function addEventListenerToDelEvent() {
 
 loadActiveEventAdmin()
 
-console.log("loading all event")

@@ -3,7 +3,6 @@ async function loadAllUsersAdmin(){
         method: 'GET'
     })
     const usersDetail = await usersFromServer.json()
-    console.log(usersDetail);
     document.querySelector('#showing-panel').innerHTML = ""
     document.querySelector('#showing-panel').innerHTML += `<div class="col-md-12 text-center" id="title">USERS PANEL</div>`
     for (let user of usersDetail){
@@ -68,8 +67,4 @@ async function addEventListenerToBan(){
 
 
 loadAllUsersAdmin()
-
-
-
-console.log('loading all users')
 
