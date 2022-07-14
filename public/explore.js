@@ -31,7 +31,7 @@ async function loadEventsWithAc() {
       defaulePath = "board-game.jpg"
     } else if (result.type === "water_activities") {
       defaulePath = "water.jpg"
-    } else if (result.type === "gambling") {
+    } else if (result.type === "gaming") {
       defaulePath = "gambling.jpg"
     } else if (result.type === "party") {
       defaulePath = "party.jpg"
