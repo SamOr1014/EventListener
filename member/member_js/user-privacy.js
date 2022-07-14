@@ -21,7 +21,7 @@ async function loadPrivacyProfilePage(){
       }
 
     document.querySelector('#profile-name').innerHTML = `<h2>${userInfo.first_name + " " + userInfo.last_name}</h2>`
-    document.querySelector('#pf-pic').src = image
+    document.querySelector('#pf-pic').src = "/"+image
     document.querySelector('#b-day').innerHTML += " "+finalDate
     document.querySelector('#cur-user-id').innerHTML += " "+userInfo.id
     document.querySelector('#bio').innerHTML = bio
@@ -47,25 +47,18 @@ async function loadEventListenerPrivacyPage() {
         e.preventDefault()
 
         const form = e.target
+        const formData = new FormData()
+        formData.append("firstName", form['first-name'].value);
+        formData.append("lastName", form['last-name'].value);
+        formData.append("phone", form['phone'].value);
+        formData.append("birthday", form['birthday'].value);
+        formData.append("bio",form['bio'].value);
+        formData.append("image", form.image.files[0])
 
-        const firstName = form['first-name'].value
-        const lastName = form['last-name'].value
-        const phone = form['phone'].value
-        const birthday = form['birthday'].value
-        const bio = form['bio'].value
-
+        console.log(formData)
         const submitChangeProfile = await fetch("/account/profile",{
             method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                firstName,
-                lastName,
-                phone,
-                birthday,
-                bio,
-            }), 
+            body: formData,
         })
         const submitResponese = await submitChangeProfile.json()
         if (submitResponese.success){

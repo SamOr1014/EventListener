@@ -1,6 +1,7 @@
 import express from "express"
 import { client } from "../server"
 import { isLoggedin } from "../guard"
+import { formidableMiddleware } from "./event";
 import { hashPassword } from '../public/hash';
 export const account = express.Router()
 
@@ -48,22 +49,30 @@ account.get("/joined", (req, res) => {
   res.redirect("user-joined.html")
 })
 
-account.put("/profile", async (req, res) => {
+account.put("/profile", formidableMiddleware ,async (req, res) => {
   let userid = req.session["user"].ID
   if(!userid){
     res.json({success: false, message: "Invalid UserID"})
     return
   }
-  const firstName = req.body.firstName
-  const lastName = req.body.lastName
-  const phone = req.body.phone
-  const birthday = req.body.birthday
+  const form = req.form!
+  const firstName = form.fields.firstName
+  const lastName = form.fields.lastName
+  const phone = form.fields.phone
+  const birthday = form.fields.birthday
   if (!firstName||!lastName||!phone||!birthday){
     res.json({success: false, message: "Invalid Information Provided! Please try again"})
     return
   }
-  const bio = req.body.bio
-  await client.query('update users set first_name = $1, last_name = $2, phone = $3, birthday = $4, bio = $5 where id = $6 ',[firstName, lastName, phone, birthday, bio, userid])
+  const bio = form.fields.bio
+  const image = form.files.image?.["newFilename"]
+  if (image){
+    await client.query('update users set profile_img = $1', [image])
+    await client.query('update users set first_name = $1, last_name = $2, phone = $3, birthday = $4, bio = $5 where id = $6 ',[firstName, lastName, phone, birthday, bio, userid])
+  }else {
+    await client.query('update users set first_name = $1, last_name = $2, phone = $3, birthday = $4, bio = $5 where id = $6 ',[firstName, lastName, phone, birthday, bio, userid])
+  }
+
   res.json({success: true})
 })
 //user change password

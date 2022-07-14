@@ -13,7 +13,7 @@ async function loadUserProfile() {
     (realBDay.getMonth() + 1).toString() +
     "-" +
     realBDay.getDate().toString()
-  let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
+  let image = userInfo.profile_img ? "/" + userInfo.profile_img : "/profile-pic.jpg"
   if (userInfo.bio === null) {
     bio = "這人很懶，什麼也沒有"
   } else {
