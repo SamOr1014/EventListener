@@ -105,6 +105,7 @@ app.use("/explore", explore)
 app.use("/event", event)
 app.use("/comment", comment)
 app.use("/followers", followers)
+app.use(express.static("uploads"))
 // app.use("/event-details", eventDetails)
 
 //Router can only be use by user
@@ -115,7 +116,7 @@ app.use("/admin", isLoggedin, isAdmin, admin)
 app.use(express.static("public"))
 app.use(express.static("common-js"))
 app.use(express.static("src"))
-app.use(express.static("uploads"))
+
 app.use(isLoggedin, express.static("member"))
 app.use(isLoggedin, isAdmin, express.static("private"))
 
