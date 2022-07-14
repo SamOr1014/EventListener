@@ -1,11 +1,7 @@
 window.onload = () => {
   const eventid = window.location.search.substr(9)
-<<<<<<< HEAD
   console.log(eventid)
   CheckLoginNow()
-=======
-  CheckLogin()
->>>>>>> b72572c865f0a24fef7b3aa7b09461bdd04698a0
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
   document.querySelector("#commentForm").addEventListener("submit", async function (event) {
