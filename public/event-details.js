@@ -1,6 +1,5 @@
 window.onload = () => {
   const eventid = window.location.search.substr(9)
-  console.log(eventid)
   CheckLogin()
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
@@ -10,7 +9,6 @@ window.onload = () => {
     const eventID = window.location.search.substr(9)
     const form = event.target
     const comment = form.comment.value
-    console.log(eventID)
     
     const res = await fetch("/comment", {
       method: "POST",
@@ -34,7 +32,7 @@ window.onload = () => {
 async function loadEventDetails(eventid) {
   const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
   const events = await resp.json()
-  // console.log("event[0]:", events[0])
+
   let htmlStr = ""
   if (events.fee === 0) {
     Amount = "Free"
@@ -114,6 +112,12 @@ async function userProfileInEventDetails(eventid) {
   // })
   const userInfo = await profile.json()
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
+  console.log(userInfo.bio)
+  if (userInfo.bio === null) {
+    bio = "這人很懶，什麼也沒有"
+  } else {
+    bio = userInfo.bio
+  }
   htmlProfileCard.innerHTML = `
   <div id="profile-img">
     <img
@@ -126,9 +130,9 @@ async function userProfileInEventDetails(eventid) {
     <div><h5 class="card-title">${userInfo.first_name + " " + userInfo.last_name}</h5></div>
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
-    <p class="card-text">Bio : ${userInfo.bio}</p>
+    <p class="card-text">Bio : ${bio}</p>
     <div id="follow-div"><button uid="${userInfo.id
-    }" class="btn btn-info" id="follow-btn">Follow</button></div>
+}" class="btn btn-info" id="follow-btn">Follow</button></div>
   </div>
 `
   document.querySelector("#follow-btn").addEventListener("click", async (e) => {
@@ -207,7 +211,6 @@ async function checkApplied() {
         }),
       })
       const result = await response.json()
-      console.log(result.success)
       if (result.success) {
         alert("Joined")
         applyButton.disabled = true
@@ -236,7 +239,6 @@ async function promptEvent() {
   if (!reportReason) {
     alert("Sorry, I haven't get your msg")
   }
-  console.log(reportReason)
 
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/reports`, {

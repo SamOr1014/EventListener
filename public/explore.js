@@ -15,8 +15,6 @@ async function getUserInfo() {
 }
 
 async function loadEventsWithAc() {
-  console.log(user.ID)
-  console.log(user.username)
   const resp = await fetch("event/FollowerEvent")
   const results = await resp.json()
   let htmlStr = ``
@@ -77,7 +75,6 @@ async function loadEventsWithAc() {
   document.querySelectorAll(".card").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
-      console.log(id)
       const resp = await fetch(`/event/details/${id}`, { method: "GET" })
       if (resp.status === 400) {
         const result = await resp.json()
@@ -93,7 +90,6 @@ async function postAllEvents() {
   const results = await resp.json()
   let htmlStr = ""
   for (const result of results) {
-    console.log(result)
     if (result.fee === 0) {
       Amount = "Free"
     } else {
@@ -150,7 +146,6 @@ async function postAllEvents() {
   document.querySelectorAll(".card").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
-      console.log(id)
       // const resp = await fetch(`/event/details?id=${id}`, { method: "GET" })
       window.location.href = `/event-details.html?eventid=${id}`
     })

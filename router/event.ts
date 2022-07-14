@@ -163,7 +163,6 @@ event.post("/", formidableMiddleware, async (req, res) => {
   } catch (err) {
     console.error(err.message)
   } finally {
-    console.log("Event created")
   }
 })
 
@@ -172,7 +171,6 @@ event.get("/FollowerEvent", async (req, res) => {
   const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.follower_id = t1.organiser_id 
   WHERE (t2.user_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false AND t1.date > $2);`
   const Followers = await client.query(FollowersSQL, [req.session["user"].ID, dateTime])
-  console.log(Followers.rows)
   res.json(Followers.rows)
   // SELECT * FROM events inner join follower_relation on events.is_deleted = false and events.is_active = true and events.is_full = false && on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = 1
   // SELECT * FROM events join follower_relation on events.is_active = true JOIN events follower_relation on events.organiser_id = follower_relation.user_id WHERE follower_relation.follower_id = 1

@@ -75,7 +75,6 @@ async function loadgenre(genre) {
   document.querySelectorAll(".card").forEach((ele) => {
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
-      console.log(id)
       // const resp = await fetch(`/event/details?id=${id}`, { method: "GET" })
       window.location.href = `/event-details.html?eventid=${id}`
     })
@@ -83,12 +82,11 @@ async function loadgenre(genre) {
 }
 
 async function loadkeyword(keyword) {
-  console.log("keyword", keyword)
   document.querySelector("#result-type").innerHTML = `"${keyword}"`
 
   const resp = await fetch(`/search/keyword?keyword=${keyword}`)
   const results = await resp.json()
-  console.log(results)
+
 
   let htmlStr = ""
   for (const result of results) {
@@ -146,7 +144,6 @@ async function loadkeyword(keyword) {
   document.querySelectorAll(".card").forEach((ele) => {
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
-      console.log(id)
       // const resp = await fetch(`/event/details?id=${id}`, { method: "GET" })
       window.location.href = `/event-details.html?eventid=${id}`
     })
