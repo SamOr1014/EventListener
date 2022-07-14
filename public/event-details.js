@@ -211,7 +211,7 @@ async function checkApplied() {
       })
       const result = await response.json()
       if (result.success) {
-        alert("Joined")
+        alert("you applied")
         applyButton.disabled = true
         applyButton.innerText = "Pending"
       } else {
