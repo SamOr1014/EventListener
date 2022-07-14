@@ -114,6 +114,12 @@ event.get("/singleEvent", async (req, res) => {
   res.json(getEventDetails.rows[0])
 })
 
+event.get("/headcount", async (req, res)=> {
+  const eventid = req.query.eventid
+  const headcount = await client.query('select count(*) from users_joined where event_id = $1;', [eventid])
+  res.json(headcount.rows[0])
+})
+
 event.get("/organiser", async (req, res) => {
   const eventid = req.query.eventid
   const getOrganiserId = await client.query(

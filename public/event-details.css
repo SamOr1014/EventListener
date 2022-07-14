@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
-
+@media screen and (max-width: 450px){
+  #place-left{
+    font-size: 1rem !important;
+    left: 3%;
+    top: -6% !important;
+  }
+}
 body {
   font-family: 'Secular One', sans-serif;
 }
@@ -134,4 +140,15 @@ p {
   object-fit: cover;
   aspect-ratio: 1/1 !important;
   width: 100% !important;
+}
+#place-left{
+  padding: 1%;
+  font-size: 1.5rem;
+  left: 3%;
+  top: -7%;
+  background-color: rgb(127, 19, 19);
+  border: rgb(127, 19, 19);
+  box-shadow: rgb(255, 4, 0) 0px 0px 10px;
+  border-radius: 5rem;
+  width: 35%;
 }

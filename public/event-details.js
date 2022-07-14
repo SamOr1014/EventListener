@@ -1,6 +1,5 @@
 window.onload = () => {
   const eventid = window.location.search.substr(9)
-  console.log(eventid)
   CheckLoginNow()
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
@@ -33,6 +32,9 @@ window.onload = () => {
 async function loadEventDetails(eventid) {
   const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
   const events = await resp.json()
+  const headcountInfo = await fetch(`/event/headcount?eventid=${eventid}`)
+  const headcount = await headcountInfo.json()
+  const placeLeft = parseInt(events.max_participant) - parseInt(headcount.count)
   let htmlStr = ""
   if (events.fee === 0) {
     Amount = "Free"
@@ -70,10 +72,12 @@ async function loadEventDetails(eventid) {
 
   htmlStr += /*html */ `
   <div id="event-left" class="d-flex flex-column">
-  <div class="col-md-12"><img class="w-100" src="${image}" alt="..." /></img></div>
-    <div class="col-md-12 event-detailsInfo">
-     <div class="event-name" class="mt-2" >${events.name}</div>
-       <div id="event-content-text" class="mt-2">
+  <div class="col-md-12 mb-4"><img class="w-100" src="${image}" alt="..." /></img></div>
+    <div class="col-md-12 event-detailsInfo position-relative">
+     <div class="event-name" class="mt-2" >${events.name}
+     <div id="place-left" class="position-absolute">${placeLeft } Place Left!!</div>
+     </div>
+       <div id="event-content-text" class="mt-2 ">
          <div class="time">Date:</div>
          <ul>
          <li>${finalDate}</li>
