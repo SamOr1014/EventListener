@@ -10,7 +10,7 @@ window.onload = () => {
     const eventID = window.location.search.substr(9)
     const form = event.target
     const comment = form.comment.value
-    
+
     const res = await fetch("/comment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -129,8 +129,9 @@ async function userProfileInEventDetails(eventid) {
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${bio}</p>
-    <div id="follow-div"><button uid="${userInfo.id
-}" class="btn btn-info" id="follow-btn">Follow</button></div>
+    <div id="follow-div"><button uid="${
+      userInfo.id
+    }" class="btn btn-info" id="follow-btn">Follow</button></div>
   </div>
 `
   document.querySelector("#follow-btn").addEventListener("click", async (e) => {
@@ -211,7 +212,7 @@ async function checkApplied() {
       })
       const result = await response.json()
       if (result.success) {
-        alert("Joined")
+        alert("you applied")
         applyButton.disabled = true
         applyButton.innerText = "Pending"
       } else {
