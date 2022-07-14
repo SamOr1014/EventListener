@@ -29,7 +29,7 @@ async function loadEventsWithAc() {
       defaulePath = "sports.jpg"
     } else if (result.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (result.type === "water_activity") {
+    } else if (result.type === "water_activities") {
       defaulePath = "water.jpg"
     } else if (result.type === "gambling") {
       defaulePath = "gambling.jpg"
@@ -37,7 +37,7 @@ async function loadEventsWithAc() {
       defaulePath = "party.jpg"
     } else if (result.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (result.type === "online_activity") {
+    } else if (result.type === "online_activities") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"
@@ -110,7 +110,7 @@ async function postAllEvents() {
       defaulePath = "sports.jpg"
     } else if (result.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (result.type === "water_activity") {
+    } else if (result.type === "water_activities") {
       defaulePath = "water.jpg"
     } else if (result.type === "gambling") {
       defaulePath = "gambling.jpg"
@@ -118,7 +118,7 @@ async function postAllEvents() {
       defaulePath = "party.jpg"
     } else if (result.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (result.type === "online_activity") {
+    } else if (result.type === "online_activities") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"

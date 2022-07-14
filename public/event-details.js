@@ -39,11 +39,11 @@ async function loadEventDetails(eventid) {
   } else {
     Amount = `HKD${events.fee}`
   }
-  if (events.type === "Sport") {
+  if (events.type === "sport") {
     defaulePath = "sports.jpg"
   } else if (events.type === "board_game") {
     defaulePath = "board-game.jpg"
-  } else if (events.type === "water_activity") {
+  } else if (events.type === "water_activities") {
     defaulePath = "water.jpg"
   } else if (events.type === "gaming") {
     defaulePath = "gambling.jpg"
@@ -51,7 +51,7 @@ async function loadEventDetails(eventid) {
     defaulePath = "party.jpg"
   } else if (events.type === "workshop") {
     defaulePath = "workshop.jpg"
-  } else if (events.type === "online_activity") {
+  } else if (events.type === "online_activities") {
     defaulePath = "online.jpg"
   } else {
     defaulePath = "others.jpg"
@@ -238,8 +238,9 @@ async function promptEvent() {
   reportReason = prompt("May i have the Reasons?")
   if (!reportReason) {
     alert("Sorry, I haven't get your msg")
+    return
   }
-
+  else {
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/reports`, {
     method: "POST",
@@ -257,7 +258,7 @@ async function promptEvent() {
     alert("you have reported")
   }
 }
-
+}
 // follow function
 async function loadFollower() {
   const login = await fetch(`/status`)
