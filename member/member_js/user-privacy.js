@@ -14,12 +14,17 @@ async function loadPrivacyProfilePage(){
     let mins = ("0" + realBDay.getMinutes().toString())
     const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2)
     const finalTime = hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2)
+    if (userInfo.bio === null) {
+        bio = "這人很懶，什麼也沒有"
+      } else {
+        bio = userInfo.bio
+      }
 
     document.querySelector('#profile-name').innerHTML = `<h2>${userInfo.first_name + " " + userInfo.last_name}</h2>`
     document.querySelector('#pf-pic').src = "/"+image
     document.querySelector('#b-day').innerHTML += " "+finalDate
     document.querySelector('#cur-user-id').innerHTML += " "+userInfo.id
-    document.querySelector('#bio').innerHTML = userInfo.bio
+    document.querySelector('#bio').innerHTML = bio
     document.querySelector('#email').innerHTML = userInfo.email
     document.querySelector('#phone').innerHTML += " " + userInfo.phone
     document.querySelector('#gender').innerHTML += " " + userInfo.gender

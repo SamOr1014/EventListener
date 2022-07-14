@@ -1,8 +1,8 @@
 import express from 'express'
-import { checkPassword } from '../public/hash'
+import { checkPassword,hashPassword } from '../public/hash'
 import { client } from '../server'
-
-
+import crypto from "crypto";
+import fetch from "cross-fetch";
 export const login = express.Router()
 
 
@@ -50,3 +50,31 @@ login.post('/', async (req, res) => {
     }
 
 })
+
+async function loginGoogle(req: express.Request, res: express.Response) {
+    const accessToken = req.session?.["grant"].response.access_token;
+    const fetchRes = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const result = await fetchRes.json();
+    const users = (
+      await client.query(`SELECT * FROM users WHERE users.email = $1`, [result.email])
+    ).rows;
+    let user = users[0];
+    if (!user) {
+      // Create the user when the user does not exist
+      let tempPassword = crypto.randomBytes(20).toString("hex");
+      let hashedPassword = await hashPassword(tempPassword);
+  await client.query(`INSERT INTO users (last_name, first_name,gender,birthday,phone,email,password, is_Admin, is_banned) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+            [result.family_name, result.given_name, "F", "1989-06-04", "60789581", result.email, hashedPassword,false,false])
+    }
+    if (req.session) {
+        req.session["user"] = { ID: user.id, username: user.email }
+    }
+    res.redirect("/")
+  }
+
+login.get("/google", loginGoogle);

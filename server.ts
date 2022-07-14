@@ -6,7 +6,7 @@ import fs from "fs"
 import dotenv from "dotenv"
 dotenv.config()
 import pg from "pg"
-
+import grant from 'grant';
 //database
 export const client = new pg.Client({
   database: process.env.DB_NAME,
@@ -82,14 +82,30 @@ app.get("/status", (req, res) => {
   }
 })
 
+const grantExpress = grant.express({
+  "defaults":{
+      "origin": "http://localhost:8080",
+      "transport": "session",
+      "state": true,
+  },
+  "google":{
+      "key": process.env.GOOGLE_CLIENT_ID || "",
+      "secret": process.env.GOOGLE_CLIENT_SECRET || "",
+      "scope": ["profile","email"],
+      "callback": "/login/google"
+  }
+});
+
 //Router can be used by Non-user
 app.use("/register", register)
 app.use("/search", search)
 app.use("/login", login)
+app.use(grantExpress as express.RequestHandler);
 app.use("/explore", explore)
 app.use("/event", event)
 app.use("/comment", comment)
 app.use("/followers", followers)
+app.use(express.static("uploads"))
 // app.use("/event-details", eventDetails)
 
 //Router can only be use by user
@@ -100,7 +116,7 @@ app.use("/admin", isLoggedin, isAdmin, admin)
 app.use(express.static("public"))
 app.use(express.static("common-js"))
 app.use(express.static("src"))
-app.use(express.static("uploads"))
+
 app.use(isLoggedin, express.static("member"))
 app.use(isLoggedin, isAdmin, express.static("private"))
 
@@ -109,3 +125,4 @@ const PORT = 8080
 app.listen(PORT, () => {
   console.log(`This server is currently listening at Port ${PORT}`)
 })
+
