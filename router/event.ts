@@ -117,7 +117,7 @@ event.get("/singleEvent", async (req, res) => {
 event.get("/organiser", async (req, res) => {
   const eventid = req.query.eventid
   const getOrganiserId = await client.query(
-    /*sql */ `SELECT t1.id, t1.last_name, t1.first_name, t1.phone, t1.email, t1.bio from users as t1 INNER JOIN events as t2 on t2.organiser_id = t1.id WHERE (t2.id = $1)`,
+    /*sql */ `SELECT t1.id, t1.last_name, t1.first_name, t1.phone, t1.email, t1.bio,t1.profile_img from users as t1 INNER JOIN events as t2 on t2.organiser_id = t1.id WHERE (t2.id = $1)`,
     [eventid]
   )
   res.json(getOrganiserId.rows[0])

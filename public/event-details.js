@@ -109,7 +109,7 @@ async function userProfileInEventDetails(eventid) {
   let htmlProfileCard = document.querySelector("#Profile")
   const profile = await fetch(`/event/organiser?eventid=${eventid}`)
   const userInfo = await profile.json()
-  let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
+  let image = userInfo.profile_img ? "/" + userInfo.profile_img : "/profile-pic.jpg"
   console.log(userInfo.bio)
   if (userInfo.bio === null) {
     bio = "這人很懶，什麼也沒有"
