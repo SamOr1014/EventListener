@@ -18,7 +18,7 @@ async function loadJoinedEvent() {
       defaulePath = "sports.jpg"
     } else if (event.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (event.type === "water_activity") {
+    } else if (event.type === "water_activities") {
       defaulePath = "water.jpg"
     } else if (event.type === "gambling") {
       defaulePath = "gambling.jpg"
@@ -26,7 +26,7 @@ async function loadJoinedEvent() {
       defaulePath = "party.jpg"
     } else if (event.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (event.type === "online_activity") {
+    } else if (event.type === "online_activities") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"

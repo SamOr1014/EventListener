@@ -37,7 +37,6 @@ async function loadHeaderAccountButton(){
         method: 'GET'
     })
     const userLoginStatus = await status.json()
-    console.log(userLoginStatus.login)
     //true fetch user's profile and get his profile pic and name
     if(userLoginStatus.login){
         //the login status is true so load the user profile
@@ -123,6 +122,7 @@ async function loadHeaderAccountButton(){
         <img
           src="${image}"
           alt=""
+          style="object-fit: cover;"
           class="rounded-circle me-2"
           width="32"
           height="32"
@@ -185,9 +185,3 @@ document.querySelector("#create-event").addEventListener("click", async() => {
 document.querySelector("#explore").addEventListener("click", () => {
   window.location.href = "/explore"
 })
-
-
-
-
-
-console.log("You loaded header.js")

@@ -181,3 +181,8 @@ body {
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
 }
+.card-img-top{
+  object-fit: cover;
+  aspect-ratio: 1/1 !important;
+  width: 100% !important;
+}

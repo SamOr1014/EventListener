@@ -1,5 +1,5 @@
 psql -U postgres;
-create database wsj_proj;
+create database wsp_proj;
 \c wsj_proj;
 create table users (
     id serial primary key,

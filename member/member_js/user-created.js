@@ -10,15 +10,15 @@ async function loadCreatedEvent() {
       defaulePath = "sports.jpg"
     } else if (event.type === "board_game") {
       defaulePath = "board-game.jpg"
-    } else if (event.type === "water_activity") {
+    } else if (event.type === "water_activities") {
       defaulePath = "water.jpg"
-    } else if (event.type === "gambling") {
+    } else if (event.type === "gaming") {
       defaulePath = "gambling.jpg"
     } else if (event.type === "party") {
       defaulePath = "party.jpg"
     } else if (event.type === "workshop") {
       defaulePath = "workshop.jpg"
-    } else if (event.type === "online_activity") {
+    } else if (event.type === "online_activities") {
       defaulePath = "online.jpg"
     } else {
       defaulePath = "others.jpg"

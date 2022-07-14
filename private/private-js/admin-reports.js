@@ -55,5 +55,3 @@ async function addEventListenerToDismissAndDeactive() {
 }
 
 loadAllReportsAdmin()
-
-console.log("loading all users")

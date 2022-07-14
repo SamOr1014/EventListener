@@ -26,7 +26,6 @@ async function addEventListenerToGenre() {
 }
 
 function loadTItleAnimation() {
-  console.log("loaded title")
   const signs = document.querySelectorAll("x-sign")
   const randomIn = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 

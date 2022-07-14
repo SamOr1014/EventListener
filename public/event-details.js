@@ -1,6 +1,5 @@
 window.onload = () => {
   const eventid = window.location.search.substr(9)
-  console.log(eventid)
   CheckLoginNow()
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
@@ -33,17 +32,20 @@ window.onload = () => {
 async function loadEventDetails(eventid) {
   const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
   const events = await resp.json()
+  const headcountInfo = await fetch(`/event/headcount?eventid=${eventid}`)
+  const headcount = await headcountInfo.json()
+  const placeLeft = parseInt(events.max_participant) - parseInt(headcount.count)
   let htmlStr = ""
   if (events.fee === 0) {
     Amount = "Free"
   } else {
     Amount = `HKD${events.fee}`
   }
-  if (events.type === "Sport") {
+  if (events.type === "sport") {
     defaulePath = "sports.jpg"
   } else if (events.type === "board_game") {
     defaulePath = "board-game.jpg"
-  } else if (events.type === "water_activity") {
+  } else if (events.type === "water_activities") {
     defaulePath = "water.jpg"
   } else if (events.type === "gaming") {
     defaulePath = "gambling.jpg"
@@ -51,7 +53,7 @@ async function loadEventDetails(eventid) {
     defaulePath = "party.jpg"
   } else if (events.type === "workshop") {
     defaulePath = "workshop.jpg"
-  } else if (events.type === "online_activity") {
+  } else if (events.type === "online_activities") {
     defaulePath = "online.jpg"
   } else {
     defaulePath = "others.jpg"
@@ -70,10 +72,12 @@ async function loadEventDetails(eventid) {
 
   htmlStr += /*html */ `
   <div id="event-left" class="d-flex flex-column">
-  <div class="col-md-12"><img class="w-100" src="${image}" alt="..." /></img></div>
-    <div class="col-md-12 event-detailsInfo">
-     <div class="event-name">${events.name}</div>
-       <div id="event-content-text" class="mt-4">
+  <div class="col-md-12 mb-4"><img class="w-100" src="${image}" alt="..." /></img></div>
+    <div class="col-md-12 event-detailsInfo position-relative">
+     <div class="event-name" class="mt-2" >${events.name}
+     <div id="place-left" class="position-absolute">${placeLeft } Place Left!!</div>
+     </div>
+       <div id="event-content-text" class="mt-2 ">
          <div class="time">Date:</div>
          <ul>
          <li>${finalDate}</li>
@@ -120,7 +124,7 @@ async function userProfileInEventDetails(eventid) {
   <div id="profile-img">
     <img
       src="${image}"
-      class="card-img-top w-100 rounded-circle"
+      class="card-img-top w-100 h-100 rounded-circle"
       alt="..."
     />
   </div>
@@ -239,8 +243,9 @@ async function promptEvent() {
   reportReason = prompt("May i have the Reasons?")
   if (!reportReason) {
     alert("Sorry, I haven't get your msg")
+    return
   }
-
+  else {
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/reports`, {
     method: "POST",
@@ -258,7 +263,7 @@ async function promptEvent() {
     alert("you have reported")
   }
 }
-
+}
 // follow function
 async function loadFollower() {
   const login = await fetch(`/status`)
