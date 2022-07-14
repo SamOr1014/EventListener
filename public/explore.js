@@ -15,8 +15,6 @@ async function getUserInfo() {
 }
 
 async function loadEventsWithAc() {
-  console.log(user.ID)
-  console.log(user.username)
   const resp = await fetch("event/FollowerEvent")
   const results = await resp.json()
   let htmlStr = ``
@@ -47,11 +45,21 @@ async function loadEventsWithAc() {
     const image = result.image ? `/${result.image}` : `/${defaulePath}`
     const realBDay = new Date(result.date)
     let year = realBDay.getFullYear().toString()
-    let month = ("0" + (realBDay.getMonth() + 1).toString())
-    let date = ("0" + realBDay.getDate().toString())
-    let hour = ("0" +realBDay.getHours().toString())
-    let mins = ("0" + realBDay.getMinutes().toString())
-    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2) + " (" + hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2) + ")"
+    let month = "0" + (realBDay.getMonth() + 1).toString()
+    let date = "0" + realBDay.getDate().toString()
+    let hour = "0" + realBDay.getHours().toString()
+    let mins = "0" + realBDay.getMinutes().toString()
+    const finalDate =
+      year +
+      "-" +
+      month.substring(month.length - 2) +
+      "-" +
+      date.substring(date.length - 2) +
+      " (" +
+      hour.substring(hour.length - 2) +
+      ":" +
+      mins.substring(mins.length - 2) +
+      ")"
 
     htmlStr +=
       /*html*/
@@ -77,7 +85,6 @@ async function loadEventsWithAc() {
   document.querySelectorAll(".card").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
-      console.log(id)
       const resp = await fetch(`/event/details/${id}`, { method: "GET" })
       if (resp.status === 400) {
         const result = await resp.json()
@@ -93,7 +100,6 @@ async function postAllEvents() {
   const results = await resp.json()
   let htmlStr = ""
   for (const result of results) {
-    console.log(result)
     if (result.fee === 0) {
       Amount = "Free"
     } else {
@@ -120,11 +126,21 @@ async function postAllEvents() {
     const path = result.image
     const realBDay = new Date(result.date)
     let year = realBDay.getFullYear().toString()
-    let month = ("0" + (realBDay.getMonth() + 1).toString())
-    let date = ("0" + realBDay.getDate().toString())
-    let hour = ("0" +realBDay.getHours().toString())
-    let mins = ("0" + realBDay.getMinutes().toString())
-    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2) + " (" + hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2) + ")"
+    let month = "0" + (realBDay.getMonth() + 1).toString()
+    let date = "0" + realBDay.getDate().toString()
+    let hour = "0" + realBDay.getHours().toString()
+    let mins = "0" + realBDay.getMinutes().toString()
+    const finalDate =
+      year +
+      "-" +
+      month.substring(month.length - 2) +
+      "-" +
+      date.substring(date.length - 2) +
+      " (" +
+      hour.substring(hour.length - 2) +
+      ":" +
+      mins.substring(mins.length - 2) +
+      ")"
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
@@ -150,7 +166,6 @@ async function postAllEvents() {
   document.querySelectorAll(".card").forEach((ele) =>
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
-      console.log(id)
       // const resp = await fetch(`/event/details?id=${id}`, { method: "GET" })
       window.location.href = `/event-details.html?eventid=${id}`
     })
@@ -161,20 +176,20 @@ document.querySelector("#explore").addEventListener("click", () => {
   window.location.href = "/explore"
 })
 
-async function CheckLogin() {
-  const resp = await fetch("/createEvent/check")
-  const result = await resp.json()
-  if (result.success) {
-    window.location.href = "/createEvent.html"
-  } else {
-    window.location.href = "/signup.html"
-    alert("Please sign in first")
-  }
-}
+// async function CheckLogin() {
+//   const resp = await fetch("/createEvent/check")
+//   const result = await resp.json()
+//   if (result.success) {
+//     window.location.href = "/createEvent.html"
+//   } else {
+//     window.location.href = "/signup.html"
+//     alert("Please sign in first")
+//   }
+// }
 
-document.querySelector("#create-event").addEventListener("click", () => {
-  CheckLogin()
-})
+// document.querySelector("#create-event").addEventListener("click", () => {
+//   CheckLogin()
+// })
 
 async function disableTitle() {
   document.querySelector("#FollowTitle").innerHTML = ""

@@ -10,7 +10,6 @@ export function isLoggedin(req:Request, res:Response, next:NextFunction) {
 }
 
 export async function isLoggedinForExplore (req:Request, res:Response, next:NextFunction) {
-    console.log("Texting for MiddleWare")
     if (!req.session["user"]) {
         res.status(401).json({ success: false, message: "Visitor" });
         return;

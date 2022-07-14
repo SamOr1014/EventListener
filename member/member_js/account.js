@@ -14,6 +14,11 @@ async function loadUserProfile() {
     "-" +
     realBDay.getDate().toString()
   let image = userInfo.profile_img ? "/" + userInfo.profile_img : "/profile-pic.jpg"
+  if (userInfo.bio === null) {
+    bio = "這人很懶，什麼也沒有"
+  } else {
+    bio = userInfo.bio
+  }
   htmlProfileCard.innerHTML = ""
   htmlProfileCard.innerHTML += `            <img
     src="${image}"
@@ -27,7 +32,7 @@ async function loadUserProfile() {
     <div id="profile-birthday" class="card-text mb-2">Birthday :${finalDate}</div>
     <div id="profile-email" class="card-text mb-2">Email :${userInfo.email}</div>
     <div class="card-text mb-2">Bio :</div>
-    <div id="profile-bio" class="card-text mb-2">${userInfo.bio}</div>
+    <div id="profile-bio" class="card-text mb-2">${bio}</div>
   </div>`
 }
 

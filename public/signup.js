@@ -1,4 +1,4 @@
-console.log("testing")
+
 
 window.onload =() => {
   adjustTime()

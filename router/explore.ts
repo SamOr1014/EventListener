@@ -22,6 +22,5 @@ explore.get('/getUser',isLoggedinForExplore, getUserInfo) // Check if login for 
 
 explore.use('/', (req, res) => {
   res.redirect('explore.html')
-  console.log("Testing123")
 
 })
