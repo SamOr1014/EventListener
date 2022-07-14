@@ -72,8 +72,8 @@ async function loadEventDetails(eventid) {
   <div id="event-left" class="d-flex flex-column">
   <div class="col-md-12"><img class="w-100" src="${image}" alt="..." /></img></div>
     <div class="col-md-12 event-detailsInfo">
-     <div class="event-name">${events.name}</div>
-       <div id="event-content-text" class="mt-4">
+     <div class="event-name" class="mt-2" >${events.name}</div>
+       <div id="event-content-text" class="mt-2">
          <div class="time">Date:</div>
          <ul>
          <li>${finalDate}</li>
