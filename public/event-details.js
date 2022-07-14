@@ -120,7 +120,7 @@ async function userProfileInEventDetails(eventid) {
   <div id="profile-img">
     <img
       src="${image}"
-      class="card-img-top w-100 rounded-circle"
+      class="card-img-top w-100 h-100 rounded-circle"
       alt="..."
     />
   </div>

@@ -71,6 +71,14 @@ body {
     height: 100%;
 }
 
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
 .card {
     margin-top: 2%;
     box-shadow: #ffffff 0px 0px 10px, rgb(38 53 77) 0px 0px 50px;

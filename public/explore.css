@@ -86,8 +86,12 @@ html {
   font-size: 1.5rem;
 }
 .card-title {
-  font-size: 2rem;
-  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
 .card-body {
   justify-items: end;
