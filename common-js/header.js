@@ -50,7 +50,7 @@ async function loadHeaderAccountButton(){
           image = "/profile-pic.jpg"
         }
         else {
-          image = userInfo.profile_img
+          image = "/" + userInfo.profile_img
         }
         //insert the three buttons according if they are admin
         let buttons = !userInfo.is_admin?`        <button
@@ -166,16 +166,6 @@ async function loadHeaderAccountButton(){
     }
 }
 
-loadHeaderAccountButton()
-addHeaderEventListeners()
-document.querySelector("#create-event").addEventListener("click", async() => {
-  await CheckLogin()
-})
-
-document.querySelector("#explore").addEventListener("click", () => {
-  window.location.href = "/explore"
-})
-
 async function CheckLogin() {
   const resp = await fetch("/createEvent")
   const result = await resp.json()
@@ -186,6 +176,16 @@ async function CheckLogin() {
     window.location.href = "/signup.html"
   }
 }
+loadHeaderAccountButton()
+addHeaderEventListeners()
+document.querySelector("#create-event").addEventListener("click", async() => {
+  CheckLogin()
+})
+
+document.querySelector("#explore").addEventListener("click", () => {
+  window.location.href = "/explore"
+})
+
 
 
 

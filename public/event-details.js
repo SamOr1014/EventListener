@@ -1,7 +1,7 @@
 window.onload = () => {
   const eventid = window.location.search.substr(9)
   console.log(eventid)
-  CheckLogin()
+  CheckLoginNow()
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
   document.querySelector("#commentForm").addEventListener("submit", async function (event) {
@@ -143,7 +143,7 @@ async function userProfileInEventDetails(eventid) {
 }
 
 // check login or not
-async function CheckLogin() {
+async function CheckLoginNow() {
   const resp = await fetch("/createEvent/check")
   const result = await resp.json()
   if (result.success) {

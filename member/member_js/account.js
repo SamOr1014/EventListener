@@ -13,7 +13,7 @@ async function loadUserProfile() {
     (realBDay.getMonth() + 1).toString() +
     "-" +
     realBDay.getDate().toString()
-  let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
+  let image = userInfo.profile_img ? "/" + userInfo.profile_img : "/profile-pic.jpg"
   htmlProfileCard.innerHTML = ""
   htmlProfileCard.innerHTML += `            <img
     src="${image}"
