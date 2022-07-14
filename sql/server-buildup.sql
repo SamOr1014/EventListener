@@ -1,6 +1,6 @@
-psql - U postgres;
+psql -U postgres;
 create database wsj_proj;
-\ c wsj_proj;
+\c wsj_proj;
 create table users (
     id serial primary key,
     last_name varchar(255),
