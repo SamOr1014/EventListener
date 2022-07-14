@@ -2,7 +2,7 @@ function loadPage(result) {
   document.querySelector(
     "#showing-panel"
   ).innerHTML = `<div class="col-md-12 text-center" id="title">EVENTS PANEL</div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-3">
     <button id="show-active" class="btn btn-primary m-1">See Active</button>
     <button id="show-inactive" class="btn btn-primary m-1">See Inactive</button>
     <button id="show-deleted" class="btn btn-primary m-1">See Deleted</button>
@@ -19,7 +19,7 @@ function loadPage(result) {
 
     document.querySelector(
       "#showing-panel"
-    ).innerHTML += `          <div class="col-md-4 report-cards">
+    ).innerHTML += `          <div class="col-md-4 report-cards mt-2">
         <div eventid="${event.id}" class="card">
           <div class="card-body">
             <h4>${event.name}</h4>
