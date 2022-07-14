@@ -60,6 +60,7 @@ async function loginGoogle(req: express.Request, res: express.Response) {
       },
     });
     const result = await fetchRes.json();
+    console.log(result)
     const users = (
       await client.query(`SELECT * FROM users WHERE users.email = $1`, [result.email])
     ).rows;
@@ -68,11 +69,12 @@ async function loginGoogle(req: express.Request, res: express.Response) {
       // Create the user when the user does not exist
       let tempPassword = crypto.randomBytes(20).toString("hex");
       let hashedPassword = await hashPassword(tempPassword);
-  await client.query(`INSERT INTO users (last_name, first_name,gender,birthday,phone,email,password, is_Admin, is_banned) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+        await client.query(`INSERT INTO users (last_name, first_name,gender,birthday,phone,email,password, is_Admin, is_banned) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
             [result.family_name, result.given_name, "F", "1989-06-04", "60789581", result.email, hashedPassword,false,false])
     }
     if (req.session) {
-        req.session["user"] = { ID: user.id, username: user.email }
+        const user = await client.query(`select * from users where email = $1;`, [result.email])
+        req.session["user"] = { ID: user.rows[0].id, username: user.rows[0].email }
     }
     res.redirect("/")
   }

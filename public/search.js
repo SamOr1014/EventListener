@@ -17,7 +17,9 @@ async function loadgenre(genre) {
   }"`
   const resp = await fetch(`/search/genres?genre=${genre}`)
   const results = await resp.json()
-
+  if (!results){
+    document.querySelector('#content-board').innerHTML += `<div id="null-result" class="text-center">No Result</div>`
+  }
   let htmlStr = ""
   for (const result of results) {
     const realBDay = new Date(result.date)
@@ -28,7 +30,6 @@ async function loadgenre(genre) {
     let mins = ("0" + realBDay.getMinutes().toString())
     const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2)
     const finalTime = hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2)
-
 
     if (result.type === "sport") {
       defaultPath = "sports.jpg"
@@ -86,7 +87,7 @@ async function loadkeyword(keyword) {
 
   const resp = await fetch(`/search/keyword?keyword=${keyword}`)
   const results = await resp.json()
-
+  document.querySelector('#content-board').innerHTML += `<div id="null-result" class="text-center">No Result</div>`
 
   let htmlStr = ""
   for (const result of results) {
