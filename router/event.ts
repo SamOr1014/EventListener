@@ -186,7 +186,6 @@ event.post("/applyButton", async (req, res) => {
     res.json({ success: false, message: "U can't join your own event" })
     return
   }
-  console.log(organiserid)
   const applyButtonSQL = /*sql */ `INSERT INTO users_request (user_id, event_id, processed, organiser_id, created_at, updated_at) VALUES($1, $2, $3, $4, now(), now())`
   await client.query(applyButtonSQL, [userid, eventid, false, organiserid])
   res.json({ success: true })

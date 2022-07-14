@@ -78,12 +78,12 @@ body {
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
 }
-#Profile button,
-#privacy-panel-email button,
-#privacy-panel-password button,
-#privacy-panel-other button{
-  background-color: rgba(13, 60, 136, 0.475) !important;
-  border: rgba(13, 60, 136, 0.475) !important;
+#Profile button.btn,
+#privacy-panel-email button.btn,
+#privacy-panel-password button.btn,
+#privacy-panel-other button.btn{
+  background-color: rgba(13, 60, 136, 0.475) ;
+  border: rgba(13, 60, 136, 0.475);
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
   height: 45px;
@@ -100,6 +100,7 @@ body {
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
 }
+
 #followers {
   aspect-ratio: 1/1;
   height: 10px;
