@@ -169,8 +169,8 @@ event.post("/", formidableMiddleware, async (req, res) => {
 
 event.get("/FollowerEvent", async (req, res) => {
   console.log(`UserID:${req.session["user"].ID}`)
-  const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.user_id =  t1.organiser_id 
-  WHERE (t2.follower_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false AND t1.date > $2);`
+  const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.follower_id = t1.organiser_id 
+  WHERE (t2.user_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false AND t1.date > $2);`
   const Followers = await client.query(FollowersSQL, [req.session["user"].ID, dateTime])
   console.log(Followers.rows)
   res.json(Followers.rows)
@@ -184,6 +184,10 @@ event.post("/applyButton", async (req, res) => {
   const userid = req.session["user"].ID
   const eventid = req.body.eventid
   const organiserid = req.body.organiserid
+  if (parseInt(userid) === parseInt(organiserid)){
+    res.json({ success: false, message: "U can't join your own event" })
+    return
+  }
   console.log(organiserid)
   const applyButtonSQL = /*sql */ `INSERT INTO users_request (user_id, event_id, processed, organiser_id, created_at, updated_at) VALUES($1, $2, $3, $4, now(), now())`
   await client.query(applyButtonSQL, [userid, eventid, false, organiserid])

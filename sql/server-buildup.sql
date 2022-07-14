@@ -66,7 +66,7 @@ create table event_comment (
     user_id int,
     foreign key (user_id) references users (id),
     comment text,
-    created_at timestamp DEFAULT CURRENT_TIMESTAMP
+    created_at timestamp
 );
 create table reports (
     id serial primary key,

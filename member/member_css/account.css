@@ -5,7 +5,11 @@ body {
   font-family: 'Secular One', sans-serif;
   color: white;
 }
-
+@media screen and (max-width: 770px){
+  #joined-event-col .col-md-4{
+    width: 100%;
+  }
+}
 @media screen and (max-width: 450px) {
   #joined-event-col {
     flex-direction: column;
@@ -20,6 +24,7 @@ body {
     text-align: center;
     width: 100%;
   }
+
 }
 
 body {
@@ -101,12 +106,16 @@ body {
 }
 
 #follower-list {
+  font-size: 1.1rem;
   height: 200px;
   list-style-type: none;
   overflow-y: scroll;
 }
+#follower-list li{
+  margin-bottom: 3px;
+}
 #bio-text {
-  height: 250px;
+  height: 100px;
   overflow-y: scroll;
 }
 

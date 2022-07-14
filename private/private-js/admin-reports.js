@@ -4,7 +4,6 @@ async function loadAllReportsAdmin() {
     method: "GET",
   })
   const reportsDetail = await reportsFromServer.json()
-  console.log(reportsDetail)
   document.querySelector("#showing-panel").innerHTML += `<div id="title" class="text-center">REPORTS</div>`
   for (let report of reportsDetail) {
     document.querySelector(

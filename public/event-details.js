@@ -4,15 +4,36 @@ window.onload = () => {
   CheckLogin()
   loadEventDetails(eventid)
   userProfileInEventDetails(eventid)
+  document.querySelector("#commentForm").addEventListener("submit", async function (event) {
+    event.preventDefault()
+    
+    const eventID = window.location.search.substr(9)
+    const form = event.target
+    const comment = form.comment.value
+    console.log(eventID)
+    
+    const res = await fetch("/comment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ comment, eventID }),
+    })
+    
+    const result = await res.json()
+    if (result.success) {
+      const eventid = window.location.search.substr(9)
+      document.querySelector('#comment').value = ""
+      loadComment(eventid)
+    } else {
+      document.querySelector('#comment').value = ""
+      alert("Fail to comment")
+    }
+  })
   loadComment(eventid)
-  loadFollower()
 }
 
 async function loadEventDetails(eventid) {
-  console.log("fetching")
   const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
   const events = await resp.json()
-  console.log("event:", events)
   // console.log("event[0]:", events[0])
   let htmlStr = ""
   if (events.fee === 0) {
@@ -38,17 +59,13 @@ async function loadEventDetails(eventid) {
     defaulePath = "others.jpg"
   }
   const realBDay = new Date(events.date)
-  const finalDate =
-    realBDay.getFullYear().toString() +
-    "-" +
-    ("0" + (realBDay.getMonth() + 1).toString()).substring(-2) +
-    "-" +
-    ("0" + realBDay.getDate().toString()).substring(-2)
-
-  const finalTime =
-    ("0" + realBDay.getHours().toString()).substring(-2) +
-    ":" +
-    ("0" + realBDay.getMinutes().toString()).substring(-2)
+  let year = realBDay.getFullYear().toString()
+  let month = ("0" + (realBDay.getMonth() + 1).toString())
+  let date = ("0" + realBDay.getDate().toString())
+  let hour = ("0" + realBDay.getHours().toString())
+  let mins = ("0" + realBDay.getMinutes().toString())
+  const finalDate = year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2)
+  const finalTime = hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2)
 
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
 
@@ -96,7 +113,6 @@ async function userProfileInEventDetails(eventid) {
   //   method: "GET",
   // })
   const userInfo = await profile.json()
-  console.log(userInfo)
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
   htmlProfileCard.innerHTML = `
   <div id="profile-img">
@@ -107,12 +123,11 @@ async function userProfileInEventDetails(eventid) {
     />
   </div>
   <div class="card-body w-100">
-    <div><h5 class="card-title">Name:${userInfo.first_name + " " + userInfo.last_name}</h5></div>
+    <div><h5 class="card-title">${userInfo.first_name + " " + userInfo.last_name}</h5></div>
     <p class="card-text">Contact:${userInfo.phone}</p>
     <p class="card-text">Email : ${userInfo.email}</p>
     <p class="card-text">Bio : ${userInfo.bio}</p>
-    <div id="follow-div"><button uid="${
-      userInfo.id
+    <div id="follow-div"><button uid="${userInfo.id
     }" class="btn btn-info" id="follow-btn">Follow</button></div>
   </div>
 `
@@ -171,11 +186,7 @@ async function checkApplied() {
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/checkApply?eventid=${eventid}`)
   const applyStatus = await resp.json()
-  // if applied return {success:true}
-  // if not applied return {success:false}
-  console.log(applyStatus)
-  // let applyButton = document.querySelector("#apply-now")
-  // have ac and applied
+
   if (applyStatus.success === true) {
     await checkAppliedStatus()
   } else if (applyStatus.success === false) {
@@ -202,7 +213,10 @@ async function checkApplied() {
         applyButton.disabled = true
         applyButton.innerText = "Pending"
       } else {
-        alert("fail")
+        if (result.message){
+          alert(result.message)
+        }
+        else {alert("fail")}
       }
     })
   }
@@ -246,13 +260,11 @@ async function promptEvent() {
 async function loadFollower() {
   const login = await fetch(`/status`)
   const loginStatus = await login.json()
-  console.log(loginStatus)
   if (!loginStatus.login) {
     document.querySelector("#follow-div").innerHTML = ""
     return
   } else {
-    const uid = document.querySelector("#follow-btn").attributes["uid"].value
-    console.log(uid)
+    const uid = await document.querySelector("#follow-btn").attributes["uid"].value
     const followingJson = await fetch(`/followers/check?followerID=${uid}`)
     const following = await followingJson.json()
     if (following.success) {
@@ -264,38 +276,43 @@ async function loadFollower() {
 }
 
 // comment function
-document.querySelector("#commentForm").addEventListener("submit", async function (event) {
-  event.preventDefault()
+// document.querySelector("#commentForm").addEventListener("submit", async function (event) {
+//   event.preventDefault()
 
-  const eventID = window.location.search.substr(9)
-  const form = event.target
-  const comment = form.comment.value
-  console.log(eventID)
+//   const eventID = window.location.search.substr(9)
+//   const form = event.target
+//   const comment = form.comment.value
+//   console.log(eventID)
 
-  const res = await fetch("/comment", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ comment, eventID }),
-  })
+//   const res = await fetch("/comment", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ comment, eventID }),
+//   })
 
-  const result = await res.json()
-  if (result.success) {
-    const eventid = window.location.search.substr(9)
-    loadComment(eventid)
-  } else {
-    alert("Fail to comment")
-  }
-})
+//   const result = await res.json()
+//   if (result.success) {
+//     const eventid = window.location.search.substr(9)
+//     loadComment(eventid)
+//   } else {
+//     alert("Fail to comment")
+//   }
+// })
 
 async function loadComment(eventid) {
   const resp = await fetch("/createEvent/check")
   const result = await resp.json()
   if (result.success) {
     // have ac, show comment
-    addComment(eventid)
+    await addComment(eventid)
+    return
   } else {
     // no ac, not gonna show comment
-    HideComment()
+    const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
+    document.querySelector("#Comment-Area").innerHTML = HTML
+  
+    const DisableHTML = ""
+    document.querySelector("#commentForm").innerHTML = DisableHTML
   }
 }
 
@@ -308,18 +325,13 @@ async function addComment(eventid) {
     let html = ""
     for (const result of results) {
       const realBDay = new Date(result.created_at)
-      const finalDate =
-        realBDay.getFullYear().toString() +
-        "-" +
-        (realBDay.getMonth() + 1).toString() +
-        "-" +
-        realBDay.getDate().toString() +
-        " " +
-        "(" +
-        realBDay.getHours().toString() +
-        ":" +
-        realBDay.getMinutes().toString() +
-        ")"
+      let year = realBDay.getFullYear().toString()
+      let month = ("0" + (realBDay.getMonth() + 1).toString())
+      let date = ("0" + realBDay.getDate().toString())
+      let hour = ("0" + realBDay.getHours().toString())
+      let mins = ("0" + realBDay.getMinutes().toString())
+      const finalDate = year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2) + " (" + hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2) + ")"
+
       let image = result.profile_img ? result.profile_img : "/profile-pic.jpg"
 
       html += `<div class="d-flex flex-column">
@@ -340,11 +352,12 @@ async function addComment(eventid) {
     }
     document.querySelector("#Comment-Area").innerHTML = html
   } else {
-    document.querySelector("#Comment-Area").innerHTML = "<p>No Comment Yet</p>"
+    let area = await document.querySelector("#Comment-Area").innerHTML 
+    area = "<p>No Comment Yet</p>"
   }
 }
 
-async function HideComment() {
+function HideComment() {
   const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
   document.querySelector("#Comment-Area").innerHTML = HTML
 
