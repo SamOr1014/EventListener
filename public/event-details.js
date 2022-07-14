@@ -5,7 +5,7 @@ window.onload = () => {
   userProfileInEventDetails(eventid)
   document.querySelector("#commentForm").addEventListener("submit", async function (event) {
     event.preventDefault()
-    
+
     const eventID = window.location.search.substr(9)
     const form = event.target
     const comment = form.comment.value
@@ -15,14 +15,14 @@ window.onload = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ comment, eventID }),
     })
-    
+
     const result = await res.json()
     if (result.success) {
       const eventid = window.location.search.substr(9)
-      document.querySelector('#comment').value = ""
+      document.querySelector("#comment").value = ""
       loadComment(eventid)
     } else {
-      document.querySelector('#comment').value = ""
+      document.querySelector("#comment").value = ""
       alert("Fail to comment")
     }
   })
@@ -32,7 +32,6 @@ window.onload = () => {
 async function loadEventDetails(eventid) {
   const resp = await fetch(`/event/singleEvent?eventid=${eventid}`)
   const events = await resp.json()
-
   let htmlStr = ""
   if (events.fee === 0) {
     Amount = "Free"
@@ -41,28 +40,29 @@ async function loadEventDetails(eventid) {
   }
   if (events.type === "Sport") {
     defaulePath = "sports.jpg"
-  } else if (events.type === "Board_game") {
+  } else if (events.type === "board_game") {
     defaulePath = "board-game.jpg"
-  } else if (events.type === "Water_activity") {
+  } else if (events.type === "water_activity") {
     defaulePath = "water.jpg"
-  } else if (events.type === "Gaming") {
+  } else if (events.type === "gaming") {
     defaulePath = "gambling.jpg"
-  } else if (events.type === "Party") {
+  } else if (events.type === "party") {
     defaulePath = "party.jpg"
-  } else if (events.type === "Workshop") {
+  } else if (events.type === "workshop") {
     defaulePath = "workshop.jpg"
-  } else if (events.type === "Online_activity") {
+  } else if (events.type === "online_activity") {
     defaulePath = "online.jpg"
   } else {
     defaulePath = "others.jpg"
   }
   const realBDay = new Date(events.date)
   let year = realBDay.getFullYear().toString()
-  let month = ("0" + (realBDay.getMonth() + 1).toString())
-  let date = ("0" + realBDay.getDate().toString())
-  let hour = ("0" + realBDay.getHours().toString())
-  let mins = ("0" + realBDay.getMinutes().toString())
-  const finalDate = year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2)
+  let month = "0" + (realBDay.getMonth() + 1).toString()
+  let date = "0" + realBDay.getDate().toString()
+  let hour = "0" + realBDay.getHours().toString()
+  let mins = "0" + realBDay.getMinutes().toString()
+  const finalDate =
+    year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2)
   const finalTime = hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2)
 
   const image = events.image ? `/${events.image}` : `/${defaulePath}`
@@ -107,9 +107,6 @@ async function loadEventDetails(eventid) {
 async function userProfileInEventDetails(eventid) {
   let htmlProfileCard = document.querySelector("#Profile")
   const profile = await fetch(`/event/organiser?eventid=${eventid}`)
-  // const profile = await fetch(`/account/userdetail`, {
-  //   method: "GET",
-  // })
   const userInfo = await profile.json()
   let image = userInfo.profile_img ? userInfo.profile_img : "/profile-pic.jpg"
   console.log(userInfo.bio)
@@ -156,6 +153,7 @@ async function CheckLogin() {
     needTologin()
   }
 }
+
 // check if not login and click apply button
 async function needTologin() {
   document.querySelector("#apply-now").addEventListener("click", async function (event) {
@@ -216,10 +214,11 @@ async function checkApplied() {
         applyButton.disabled = true
         applyButton.innerText = "Pending"
       } else {
-        if (result.message){
+        if (result.message) {
           alert(result.message)
+        } else {
+          alert("fail")
         }
-        else {alert("fail")}
       }
     })
   }
@@ -312,7 +311,7 @@ async function loadComment(eventid) {
     // no ac, not gonna show comment
     const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
     document.querySelector("#Comment-Area").innerHTML = HTML
-  
+
     const DisableHTML = ""
     document.querySelector("#commentForm").innerHTML = DisableHTML
   }
@@ -328,11 +327,21 @@ async function addComment(eventid) {
     for (const result of results) {
       const realBDay = new Date(result.created_at)
       let year = realBDay.getFullYear().toString()
-      let month = ("0" + (realBDay.getMonth() + 1).toString())
-      let date = ("0" + realBDay.getDate().toString())
-      let hour = ("0" + realBDay.getHours().toString())
-      let mins = ("0" + realBDay.getMinutes().toString())
-      const finalDate = year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2) + " (" + hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2) + ")"
+      let month = "0" + (realBDay.getMonth() + 1).toString()
+      let date = "0" + realBDay.getDate().toString()
+      let hour = "0" + realBDay.getHours().toString()
+      let mins = "0" + realBDay.getMinutes().toString()
+      const finalDate =
+        year +
+        "-" +
+        month.substring(month.length - 2) +
+        "-" +
+        date.substring(date.length - 2) +
+        " (" +
+        hour.substring(hour.length - 2) +
+        ":" +
+        mins.substring(mins.length - 2) +
+        ")"
 
       let image = result.profile_img ? result.profile_img : "/profile-pic.jpg"
 
@@ -354,7 +363,7 @@ async function addComment(eventid) {
     }
     document.querySelector("#Comment-Area").innerHTML = html
   } else {
-    let area = await document.querySelector("#Comment-Area").innerHTML 
+    let area = await document.querySelector("#Comment-Area").innerHTML
     area = "<p>No Comment Yet</p>"
   }
 }
