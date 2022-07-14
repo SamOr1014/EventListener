@@ -1,7 +1,5 @@
-import express from 'express'
+import express from "express"
 // import { client } from '../server'
-
-
 
 export const createEvent = express.Router()
 
@@ -11,4 +9,4 @@ createEvent.use("/", (req, res) => {
   } else {
     res.json({ success: false })
   }
-});
+})

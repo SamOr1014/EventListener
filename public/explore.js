@@ -47,11 +47,21 @@ async function loadEventsWithAc() {
     const image = result.image ? `/${result.image}` : `/${defaulePath}`
     const realBDay = new Date(result.date)
     let year = realBDay.getFullYear().toString()
-    let month = ("0" + (realBDay.getMonth() + 1).toString())
-    let date = ("0" + realBDay.getDate().toString())
-    let hour = ("0" +realBDay.getHours().toString())
-    let mins = ("0" + realBDay.getMinutes().toString())
-    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2) + " (" + hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2) + ")"
+    let month = "0" + (realBDay.getMonth() + 1).toString()
+    let date = "0" + realBDay.getDate().toString()
+    let hour = "0" + realBDay.getHours().toString()
+    let mins = "0" + realBDay.getMinutes().toString()
+    const finalDate =
+      year +
+      "-" +
+      month.substring(month.length - 2) +
+      "-" +
+      date.substring(date.length - 2) +
+      " (" +
+      hour.substring(hour.length - 2) +
+      ":" +
+      mins.substring(mins.length - 2) +
+      ")"
 
     htmlStr +=
       /*html*/
@@ -120,11 +130,21 @@ async function postAllEvents() {
     const path = result.image
     const realBDay = new Date(result.date)
     let year = realBDay.getFullYear().toString()
-    let month = ("0" + (realBDay.getMonth() + 1).toString())
-    let date = ("0" + realBDay.getDate().toString())
-    let hour = ("0" +realBDay.getHours().toString())
-    let mins = ("0" + realBDay.getMinutes().toString())
-    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2) + " (" + hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2) + ")"
+    let month = "0" + (realBDay.getMonth() + 1).toString()
+    let date = "0" + realBDay.getDate().toString()
+    let hour = "0" + realBDay.getHours().toString()
+    let mins = "0" + realBDay.getMinutes().toString()
+    const finalDate =
+      year +
+      "-" +
+      month.substring(month.length - 2) +
+      "-" +
+      date.substring(date.length - 2) +
+      " (" +
+      hour.substring(hour.length - 2) +
+      ":" +
+      mins.substring(mins.length - 2) +
+      ")"
 
     const image = result.image ? `/${path}` : `/${defaulePath}`
 
@@ -161,20 +181,20 @@ document.querySelector("#explore").addEventListener("click", () => {
   window.location.href = "/explore"
 })
 
-async function CheckLogin() {
-  const resp = await fetch("/createEvent/check")
-  const result = await resp.json()
-  if (result.success) {
-    window.location.href = "/createEvent.html"
-  } else {
-    window.location.href = "/signup.html"
-    alert("Please sign in first")
-  }
-}
+// async function CheckLogin() {
+//   const resp = await fetch("/createEvent/check")
+//   const result = await resp.json()
+//   if (result.success) {
+//     window.location.href = "/createEvent.html"
+//   } else {
+//     window.location.href = "/signup.html"
+//     alert("Please sign in first")
+//   }
+// }
 
-document.querySelector("#create-event").addEventListener("click", () => {
-  CheckLogin()
-})
+// document.querySelector("#create-event").addEventListener("click", () => {
+//   CheckLogin()
+// })
 
 async function disableTitle() {
   document.querySelector("#FollowTitle").innerHTML = ""
