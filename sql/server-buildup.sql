@@ -77,14 +77,14 @@ create table reports (
     reason text,
     solved boolean
 );
-create table genre (
-    id serial primary key,
-    name varchar(255)
-);
-create table event_genre (
-    id serial primary key,
-    event_id int,
-    foreign key (event_id) references events (id),
-    genre_id int,
-    foreign key (genre_id) references genre (id)
-);
+-- create table genre (
+--     id serial primary key,
+--     name varchar(255)
+-- );
+-- create table event_genre (
+--     id serial primary key,
+--     event_id int,
+--     foreign key (event_id) references events (id),
+--     genre_id int,
+--     foreign key (genre_id) references genre (id)
+-- );
