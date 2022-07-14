@@ -67,7 +67,7 @@ account.put("/profile", formidableMiddleware ,async (req, res) => {
   const bio = form.fields.bio
   const image = form.files.image?.["newFilename"]
   if (image){
-    await client.query('update users set profile_img = $1', [image])
+    await client.query('update users set profile_img = $1 where id = $2', [image, userid])
     await client.query('update users set first_name = $1, last_name = $2, phone = $3, birthday = $4, bio = $5 where id = $6 ',[firstName, lastName, phone, birthday, bio, userid])
   }else {
     await client.query('update users set first_name = $1, last_name = $2, phone = $3, birthday = $4, bio = $5 where id = $6 ',[firstName, lastName, phone, birthday, bio, userid])

@@ -5,7 +5,6 @@ async function loadUserProfile() {
     method: "GET",
   })
   const userInfo = await profile.json()
-  console.log(userInfo)
   const realBDay = new Date(userInfo.birthday)
   const finalDate =
     realBDay.getFullYear().toString() +
