@@ -10,7 +10,6 @@ register.get("/", (req, res) => {
 
 register.post("/", async (req, res) => {
   try {
-    console.log("Testing")
     const last_name = req.body.LastName
     const first_name = req.body.FirstName
     const gender = req.body.Gender
@@ -24,7 +23,6 @@ register.post("/", async (req, res) => {
     const FindifExistedSQL = `SELECT * FROM USERS WHERE users.email = $1`
 
     let newAc = await client.query(FindifExistedSQL, [Email])
-    console.log(newAc.rowCount)
 
     // If email used, send message to js
     if (newAc.rowCount > 0) {
@@ -47,7 +45,5 @@ register.post("/", async (req, res) => {
     }
   } catch (err) {
     console.error(err.message)
-  } finally {
-    console.log("Final testing")
   }
 })

@@ -52,7 +52,7 @@ async function loadHeaderAccountButton() {
     //insert the three buttons according if they are admin
     let buttons = !userInfo.is_admin
       ? `        <button
-        id="account-detail" 
+        id="account-detail"
         type="button"
         class="btn btn-outline-light me-2"
       >
@@ -102,7 +102,7 @@ async function loadHeaderAccountButton() {
         </ul>
       </div>`
       : `        <button
-      id="account-detail" 
+      id="account-detail"
       type="button"
       class="btn btn-outline-light me-2"
     >
@@ -167,6 +167,7 @@ async function loadHeaderAccountButton() {
 
 async function CheckLogin() {
   const resp = await fetch("/createEvent")
+  console.log(resp)
   const result = await resp.json()
   if (result.success) {
     window.location.href = "/createEvent.html"
@@ -175,6 +176,7 @@ async function CheckLogin() {
     window.location.href = "/signup.html"
   }
 }
+
 loadHeaderAccountButton()
 addHeaderEventListeners()
 document.querySelector("#create-event").addEventListener("click", async () => {

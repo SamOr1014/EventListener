@@ -167,6 +167,7 @@ async function needTologin() {
     window.location.href = "/signup.html"
   })
 }
+
 async function checkAppliedStatus() {
   let applyButton = document.querySelector("#apply-now")
   const eventid = window.location.search.substr(9)
@@ -181,53 +182,43 @@ async function checkAppliedStatus() {
   }
 }
 
-// async function checkAppliedStatus() {
-//   const eventid = window.location.search.substr(9)
-//   const resp = await fetch(`/event/checkAppliedStatus?eventid=${eventid}`)
-//   const applyStatus = await resp.json()
-//   // return processed = false which means user applied but not being accepted
-//   // console.log(applyStatus)
-// }
-
 async function checkApplied() {
   let applyButton = document.querySelector("#apply-now")
   const eventid = window.location.search.substr(9)
   const resp = await fetch(`/event/checkApply?eventid=${eventid}`)
   const applyStatus = await resp.json()
 
-  if (applyStatus.success === true) {
+  if (applyStatus.success) {
     await checkAppliedStatus()
-  } else if (applyStatus.success === false) {
-    // have ac and not applied
-    // click button to insert data
-    applyButton.addEventListener("click", async function (event) {
-      event.preventDefault()
-      const eventid = window.location.search.substr(9)
-      const getEvent = await fetch(`/event/singleEvent?eventid=${eventid}`)
-      const resultGetEvent = await getEvent.json()
-      const organiserid = resultGetEvent.organiser_id
-      const response = await fetch(`/event/applyButton`, {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          organiserid,
-          eventid,
-        }),
-      })
-      const result = await response.json()
-      if (result.success) {
-        alert("you applied")
-        applyButton.disabled = true
-        applyButton.innerText = "Pending"
-      } else {
-        if (result.message) {
-          alert(result.message)
-        } else {
-          alert("fail")
-        }
-      }
-    })
+    return
   }
+
+  // have ac and not applied
+  // click button to insert data
+  applyButton.addEventListener("click", async function (event) {
+    event.preventDefault()
+    const eventid = window.location.search.substr(9)
+    const getEvent = await fetch(`/event/singleEvent?eventid=${eventid}`)
+    const resultGetEvent = await getEvent.json()
+    const organiserid = resultGetEvent.organiser_id
+    const response = await fetch(`/event/applyButton`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ organiserid, eventid }),
+    })
+    const result = await response.json()
+    if (result.success) {
+      alert("you applied")
+      applyButton.disabled = true
+      applyButton.innerText = "Pending"
+    } else {
+      if (result.message) {
+        alert(result.message)
+      } else {
+        alert("fail")
+      }
+    }
+  })
 }
 
 // report function
@@ -274,37 +265,9 @@ async function loadFollower() {
     const uid = await document.querySelector("#follow-btn").attributes["uid"].value
     const followingJson = await fetch(`/followers/check?followerID=${uid}`)
     const following = await followingJson.json()
-    if (following.success) {
-      document.querySelector("#follow-btn").innerHTML = "Unfollow"
-    } else {
-      document.querySelector("#follow-btn").innerHTML = "Follow"
-    }
+    document.querySelector("#follow-btn").innerHTML = following.success ? "Unfollow" : "Follow"
   }
 }
-
-// comment function
-// document.querySelector("#commentForm").addEventListener("submit", async function (event) {
-//   event.preventDefault()
-
-//   const eventID = window.location.search.substr(9)
-//   const form = event.target
-//   const comment = form.comment.value
-//   console.log(eventID)
-
-//   const res = await fetch("/comment", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ comment, eventID }),
-//   })
-
-//   const result = await res.json()
-//   if (result.success) {
-//     const eventid = window.location.search.substr(9)
-//     loadComment(eventid)
-//   } else {
-//     alert("Fail to comment")
-//   }
-// })
 
 async function loadComment(eventid) {
   const resp = await fetch("/createEvent/check")
@@ -352,7 +315,7 @@ async function addComment(eventid) {
       let image = result.profile_img ? result.profile_img : "/profile-pic.jpg"
 
       html += `<div class="d-flex flex-column">
-    <div id ="user"> 
+    <div id ="user">
     <p>    <img
     src="${image}"
     alt=""
@@ -369,7 +332,7 @@ async function addComment(eventid) {
     }
     document.querySelector("#Comment-Area").innerHTML = html
   } else {
-    let area = await document.querySelector("#Comment-Area").innerHTML
+    let area = document.querySelector("#Comment-Area").innerHTML
     area = "<p>No Comment Yet</p>"
   }
 }
@@ -378,6 +341,6 @@ function HideComment() {
   const HTML = `<div id="no-login-msg" class="text-center">Please login to see comment</div>`
   document.querySelector("#Comment-Area").innerHTML = HTML
 
-  const DisableHTML = ""
-  document.querySelector("#commentForm").innerHTML = DisableHTML
+  const disableHTML = ""
+  document.querySelector("#commentForm").innerHTML = disableHTML
 }

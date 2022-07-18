@@ -3,7 +3,10 @@ import { form } from "../server"
 import { Request, Response, NextFunction } from "express"
 import type { Fields, Files } from "formidable"
 import { client } from "../server"
+import { eventApproval } from "./event/approval.router"
+
 export const event = express.Router()
+event.use("/:eid/approval", eventApproval)
 
 export let dateTime = new Date()
 
@@ -30,27 +33,28 @@ export const formidableMiddleware = (req: Request, res: Response, next: NextFunc
   })
 }
 
-event.get("/", (req, res) => {
-  // res.redirect("createEvent.html");
-})
-
 //Approving users to join event
 event.put("/approve", async (req, res) => {
   console.log(req.body)
-  const eventid = req.body.eventid
+  const eventId = req.body.eventid
   const reqUserid = req.body.reqUserid
   const reqid = req.body.reqid
   const approve = req.query.approve
+
   if (!approve) {
     res.json({ success: false, message: "Invalid query" })
+    return
   }
+
   if (approve === "yes") {
+    // transaction
     await client.query("update users_request set processed = true where id = $1", [reqid])
     await client.query("insert into users_joined (user_id, event_id) values ($1, $2)", [
       reqUserid,
-      eventid,
+      eventId,
     ])
-    res.json({ message: `Approve User ID ${reqUserid} joined Event ID ${eventid}` })
+
+    res.json({ message: `Approve User ID ${reqUserid} joined Event ID ${eventId}` })
   } else if (approve === "no") {
     await client.query("update users_request set processed = true where id = $1", [reqid])
     res.json({ message: `Dismiss User ID ${reqUserid}'s Request` })
@@ -63,11 +67,7 @@ event.get("/approve", async (req, res) => {
   const eventid = req.query.eventid
   const userJoinedSQL = /*sql */ `SELECT * FROM users_joined where user_id =$1 and event_id=$2;`
   const userJoined = await client.query(userJoinedSQL, [userid, eventid])
-  if (userJoined.rowCount > 0) {
-    res.json({ approve: true })
-  } else {
-    res.json({ approve: false })
-  }
+  res.json({ approve: userJoined.rowCount > 0 })
 })
 
 //selecting all active and not banned events
@@ -105,10 +105,10 @@ event.get("/joinedEvent/upcoming", async (req, res) => {
   res.json(userJoined.rows)
 })
 
-event.get("/singleEvent", async (req, res) => {
-  const eventid = req.query.eventid
+event.get("/singleEvent/:eid", async (req, res) => {
+  const eventId = req.params.eid
   const getEventDetails = await client.query(/*sql */ `SELECT * FROM EVENTS WHERE ID =$1;`, [
-    eventid,
+    eventId,
   ])
   res.json(getEventDetails.rows[0])
 })
@@ -131,9 +131,6 @@ event.get("/organiser", async (req, res) => {
   // console.log(getOrganiserId.rows[0])
 })
 
-event.use(express.static("public"))
-event.use(express.static("src"))
-event.use(express.static("uploads"))
 event.post("/", formidableMiddleware, async (req, res) => {
   try {
     const form = req.form!
@@ -169,13 +166,12 @@ event.post("/", formidableMiddleware, async (req, res) => {
     res.json({ success: true, message: "event created" })
   } catch (err) {
     console.error(err.message)
-  } finally {
   }
 })
 
 event.get("/FollowerEvent", async (req, res) => {
   console.log(`UserID:${req.session["user"].ID}`)
-  const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.follower_id = t1.organiser_id 
+  const FollowersSQL = `SELECT t1.id, t1.name, t1.date, t1.type, t1.fee, t1.venue, t1.image from events as t1 INNER JOIN follower_relation as t2 on t2.follower_id = t1.organiser_id
   WHERE (t2.user_id = $1 AND t1.is_active = true AND t1.is_full = false AND t1.is_deleted = false AND t1.date > $2);`
   const Followers = await client.query(FollowersSQL, [req.session["user"].ID, dateTime])
   res.json(Followers.rows)
@@ -189,10 +185,12 @@ event.post("/applyButton", async (req, res) => {
   const userid = req.session["user"].ID
   const eventid = req.body.eventid
   const organiserid = req.body.organiserid
+
   if (parseInt(userid) === parseInt(organiserid)) {
     res.json({ success: false, message: "U can't join your own event" })
     return
   }
+
   const applyButtonSQL = /*sql */ `INSERT INTO users_request (user_id, event_id, processed, organiser_id, created_at, updated_at) VALUES($1, $2, $3, $4, now(), now())`
   await client.query(applyButtonSQL, [userid, eventid, false, organiserid])
   res.json({ success: true })
@@ -200,9 +198,10 @@ event.post("/applyButton", async (req, res) => {
 // check user applied or not
 event.get("/checkApply", async (req, res) => {
   const userid = req.session["user"].ID
-  const eventid = req.query.eventid
+  const eventid = getQueryArrToString(req, "eventid")
   const SQLcheckApply = /*sql */ `SELECT * FROM users_request where users_request.user_id =$1 and users_request.event_id=$2`
   const checkApply = await client.query(SQLcheckApply, [userid, eventid])
+
   if (checkApply.rowCount > 0) {
     res.json({ success: true })
   } else {
@@ -246,3 +245,11 @@ event.post("/reports", async (req, res) => {
   } finally {
   }
 })
+
+function getQueryArrToString(req: express.Request, targetKey: string): string | undefined {
+  if (Array.isArray(req.query[targetKey])) {
+    return (req.query[targetKey] as Array<string>)[0]
+  }
+
+  return req.query[targetKey] as string | undefined
+}

@@ -25,7 +25,6 @@ import { followers } from "./router/followers"
 import { search } from "./router/search"
 import { admin } from "./router/admin"
 import { explore } from "./router/explore"
-import { createEvent } from "./router/createEvent"
 import { comment } from "./router/comment"
 
 //import guards
@@ -65,22 +64,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //main page
-app.get("/", (req, res) => {
-  res.redirect("index.html")
-})
-app.get("/main", (req, res) => {
-  res.send("main page")
-})
 app.get("/logout", (req, res) => {
-  req.session["user"] = ""
+  delete req.session["user"]
   res.redirect("/")
 })
+
 app.get("/status", (req, res) => {
-  if (req.session["user"]) {
-    res.json({ login: true })
-  } else {
-    res.json({ login: false })
-  }
+  res.json({ login: !!req.session["user"] })
 })
 
 const grantExpress = grant.express({
@@ -110,7 +100,6 @@ app.use(express.static("uploads"))
 // app.use("/event-details", eventDetails)
 
 //Router can only be use by user
-app.use("/createEvent", createEvent)
 app.use("/account", isLoggedin, account)
 app.use("/admin", isLoggedin, isAdmin, admin)
 

@@ -7,9 +7,32 @@ async function loadSearchResult() {
   } else if (typeArr[0] === "keyword") {
     loadkeyword(typeArr[1])
   }
+  // const searchParams = new URLSearchParams(window.location.search)
+  initSearchInput()
+}
+
+function initSearchInput() {
+  let timeoutId
+
+  document.querySelector("#header-search").addEventListener("keyup", (e) => {
+    if (timeoutId) {
+      console.log("clearTimeout")
+      clearTimeout(timeoutId)
+    }
+
+    timeoutId = setTimeout(() => {
+      console.log("search !!!")
+      console.log(e.target.value)
+    }, 500)
+  })
+}
+
+const mapping = {
+  sport: "sports.jpg",
 }
 
 async function loadgenre(genre) {
+  document.querySelector("#content-board").innerHTML = ""
   let genreWord = genre[0].toUpperCase() + genre.substring(1)
   genreWord = genreWord.replace("_", " ")
   document.querySelector("#result-type").innerHTML = `"${genreWord}"`
@@ -49,8 +72,8 @@ async function loadgenre(genre) {
     } else {
       defaultPath = "others.jpg"
     }
-    const path = result.image
 
+    const path = result.image
     const image = result.image ? `/${path}` : `/${defaultPath}`
 
     htmlStr =
@@ -74,6 +97,8 @@ async function loadgenre(genre) {
    `
     document.querySelector("#content-board").innerHTML += htmlStr
   }
+
+  // document.querySelector("#content-board").innerHTML += htmlStr
   document.querySelectorAll(".card").forEach((ele) => {
     ele.addEventListener("click", async (e) => {
       const id = e.target.parentElement.dataset.id
@@ -87,13 +112,17 @@ async function loadkeyword(keyword) {
   document.querySelector("#result-type").innerHTML = `"${keyword}"`
 
   const resp = await fetch(`/search/keyword?keyword=${keyword}`)
+  document.querySelector("#content-board").innerHTML = ""
+
   const results = await resp.json()
   if (results === null) {
     document.querySelector(
       "#content-board"
     ).innerHTML += `<div id="null-result" class="text-center">No Result</div>`
   }
+
   let htmlStr = ""
+
   for (const result of results) {
     const realBDay = new Date(result.date)
     let year = realBDay.getFullYear().toString()

@@ -45,10 +45,6 @@ function loadTItleAnimation() {
 addEventListenerToGenre()
 loadTItleAnimation()
 
-document.querySelector("#explore").addEventListener("click", () => {
-  window.location.href = "/explore"
-})
-
 // async function CheckLogin() {
 //   const resp = await fetch("/createEvent/check")
 //   const result = await resp.json()

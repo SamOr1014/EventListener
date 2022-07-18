@@ -19,6 +19,7 @@ followers.post("/", async (req, res) => {
     res.json({ message: "U can't follow yourself" })
     return
   }
+
   const checkFollow = await client.query(
     `select * from follower_relation where user_id = $1 and follower_id=$2`,
     [userID, followerID]
@@ -30,14 +31,12 @@ followers.post("/", async (req, res) => {
     ])
     res.json({ message: "Unfollowed" })
     return
-  } else {
-    await client.query("insert into follower_relation (user_id, follower_id) values ($1, $2)", [
-      userID,
-      followerID,
-    ])
-    res.json({ message: "Followed" })
-    return
   }
+  await client.query("insert into follower_relation (user_id, follower_id) values ($1, $2)", [
+    userID,
+    followerID,
+  ])
+  res.json({ message: "Followed" })
 })
 
 followers.get("/check", async (req, res) => {
