@@ -14,8 +14,8 @@ followers.get("/", async (req, res) => {
 
 followers.post("/", async (req, res) => {
   const userID = req.session["user"].ID
-  const followerID:any = req.query.organiserid
-  if (parseInt(userID) === parseInt(followerID)){
+  const followerID: any = req.query.organiserid
+  if (parseInt(userID) === parseInt(followerID)) {
     res.json({ message: "U can't follow yourself" })
     return
   }

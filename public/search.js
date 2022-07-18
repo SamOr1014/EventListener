@@ -12,24 +12,25 @@ async function loadSearchResult() {
 async function loadgenre(genre) {
   let genreWord = genre[0].toUpperCase() + genre.substring(1)
   genreWord = genreWord.replace("_", " ")
-  document.querySelector("#result-type").innerHTML = `"${
-    genreWord
-  }"`
+  document.querySelector("#result-type").innerHTML = `"${genreWord}"`
   const resp = await fetch(`/search/genres?genre=${genre}`)
   const results = await resp.json()
-  if (results === null){
-    document.querySelector('#content-board').innerHTML += `<div id="null-result" class="text-center">No Result</div>`
+  if (results === null) {
+    document.querySelector(
+      "#content-board"
+    ).innerHTML += `<div id="null-result" class="text-center">No Result</div>`
   }
   let htmlStr = ""
   for (const result of results) {
     const realBDay = new Date(result.date)
     let year = realBDay.getFullYear().toString()
-    let month = ("0" + (realBDay.getMonth() + 1).toString())
-    let date = ("0" + realBDay.getDate().toString())
-    let hour = ("0" +realBDay.getHours().toString())
-    let mins = ("0" + realBDay.getMinutes().toString())
-    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2)
-    const finalTime = hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2)
+    let month = "0" + (realBDay.getMonth() + 1).toString()
+    let date = "0" + realBDay.getDate().toString()
+    let hour = "0" + realBDay.getHours().toString()
+    let mins = "0" + realBDay.getMinutes().toString()
+    const finalDate =
+      year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2)
+    const finalTime = hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2)
 
     if (result.type === "sport") {
       defaultPath = "sports.jpg"
@@ -87,20 +88,23 @@ async function loadkeyword(keyword) {
 
   const resp = await fetch(`/search/keyword?keyword=${keyword}`)
   const results = await resp.json()
-  if (results === null){
-    document.querySelector('#content-board').innerHTML += `<div id="null-result" class="text-center">No Result</div>`
+  if (results === null) {
+    document.querySelector(
+      "#content-board"
+    ).innerHTML += `<div id="null-result" class="text-center">No Result</div>`
   }
   let htmlStr = ""
   for (const result of results) {
     const realBDay = new Date(result.date)
     let year = realBDay.getFullYear().toString()
-    let month = ("0" + (realBDay.getMonth() + 1).toString())
-    let date = ("0" + realBDay.getDate().toString())
-    let hour = ("0" +realBDay.getHours().toString())
-    let mins = ("0" + realBDay.getMinutes().toString())
-    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2)
-    const finalTime = hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2)
-    
+    let month = "0" + (realBDay.getMonth() + 1).toString()
+    let date = "0" + realBDay.getDate().toString()
+    let hour = "0" + realBDay.getHours().toString()
+    let mins = "0" + realBDay.getMinutes().toString()
+    const finalDate =
+      year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2)
+    const finalTime = hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2)
+
     if (result.type === "sport") {
       defaultPath = "sports.jpg"
     } else if (result.type === "board_game") {

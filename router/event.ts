@@ -113,9 +113,11 @@ event.get("/singleEvent", async (req, res) => {
   res.json(getEventDetails.rows[0])
 })
 
-event.get("/headcount", async (req, res)=> {
+event.get("/headcount", async (req, res) => {
   const eventid = req.query.eventid
-  const headcount = await client.query('select count(*) from users_joined where event_id = $1;', [eventid])
+  const headcount = await client.query("select count(*) from users_joined where event_id = $1;", [
+    eventid,
+  ])
   res.json(headcount.rows[0])
 })
 
@@ -187,7 +189,7 @@ event.post("/applyButton", async (req, res) => {
   const userid = req.session["user"].ID
   const eventid = req.body.eventid
   const organiserid = req.body.organiserid
-  if (parseInt(userid) === parseInt(organiserid)){
+  if (parseInt(userid) === parseInt(organiserid)) {
     res.json({ success: false, message: "U can't join your own event" })
     return
   }

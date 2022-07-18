@@ -74,13 +74,14 @@ async function loadUpComingEvent() {
     const image = event.image ? `/${event.image}` : `/${defaulePath}`
     const realBDay = new Date(event.date)
     let year = realBDay.getFullYear().toString()
-    let month = ("0" + (realBDay.getMonth() + 1).toString())
-    let date = ("0" + realBDay.getDate().toString())
-    let hour = ("0" +realBDay.getHours().toString())
-    let mins = ("0" + realBDay.getMinutes().toString())
-    const finalDate = year + "-" + month.substring(month.length-2) + "-" + date.substring(date.length-2)
-    const finalTime = hour.substring(hour.length-2) + ":" + mins.substring(mins.length-2)
-    
+    let month = "0" + (realBDay.getMonth() + 1).toString()
+    let date = "0" + realBDay.getDate().toString()
+    let hour = "0" + realBDay.getHours().toString()
+    let mins = "0" + realBDay.getMinutes().toString()
+    const finalDate =
+      year + "-" + month.substring(month.length - 2) + "-" + date.substring(date.length - 2)
+    const finalTime = hour.substring(hour.length - 2) + ":" + mins.substring(mins.length - 2)
+
     document.querySelector(
       "#upcoming-event"
     ).innerHTML += `<div id="account-panel" class="container-fluid d-flex mt-4 flex-column justify-content-center align-content-center">

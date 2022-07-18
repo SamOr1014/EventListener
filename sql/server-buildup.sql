@@ -1,13 +1,15 @@
-psql -U postgres;
-create database wsp_proj;
-\c wsj_proj;
+-- psql -U postgres;
+-- create database wsp_proj;
+
+-- \c wsj_proj;
+
 create table users (
     id serial primary key,
     last_name varchar(255),
     first_name varchar(255),
     phone varchar(255),
-    email varchar(255),
-    password varchar(255),
+    email varchar(255) UNIQUE NOT NULL,
+    password varchar(255) NOT NULL,
     bio text,
     profile_img text,
     gender text,
@@ -15,6 +17,7 @@ create table users (
     is_banned boolean,
     is_admin boolean
 );
+
 create table events (
     id serial primary key,
     name text,
@@ -25,7 +28,7 @@ create table events (
     venue text,
     fee integer,
     image text,
-    created_at timestamp,
+    created_at timestamp, -- DEFAULT CURRENT_TIMESTAMP
     updated_at timestamp DEFAULT CURRENT_TIMESTAMP not null,
     is_full boolean,
     is_active boolean,
@@ -33,6 +36,7 @@ create table events (
     organiser_id int,
     constraint organiser_id foreign key (organiser_id) references users(id)
 );
+
 create table users_request (
     id serial primary key,
     user_id int,
@@ -45,6 +49,7 @@ create table users_request (
     updated_at timestamp,
     processed boolean
 );
+
 create table users_joined (
     id serial primary key,
     user_id int,
@@ -52,6 +57,7 @@ create table users_joined (
     event_id int,
     foreign key (event_id) references events (id)
 );
+
 create table follower_relation (
     id serial primary key,
     user_id int,
@@ -59,6 +65,7 @@ create table follower_relation (
     follower_id int,
     foreign key (follower_id) references users (id)
 );
+
 create table event_comment (
     id serial primary key,
     event_id int,
@@ -68,6 +75,7 @@ create table event_comment (
     comment text,
     created_at timestamp
 );
+
 create table reports (
     id serial primary key,
     user_id int,
@@ -77,6 +85,7 @@ create table reports (
     reason text,
     solved boolean
 );
+
 -- create table genre (
 --     id serial primary key,
 --     name varchar(255)

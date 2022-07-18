@@ -1,19 +1,16 @@
-
-
-window.onload =() => {
+window.onload = () => {
   adjustTime()
 }
 
 function adjustTime() {
   let today = new Date()
-  let day = String(today.getDate() ).padStart(2, '0');
-  let month = String(today.getMonth() + 1).padStart(2, '0');
-  let year = today.getFullYear();
-  today = year + '-' + month + '-' + day;
+  let day = String(today.getDate()).padStart(2, "0")
+  let month = String(today.getMonth() + 1).padStart(2, "0")
+  let year = today.getFullYear()
+  today = year + "-" + month + "-" + day
   const updateTime = `<input type="date" id="birthday" name="birthday" max = ${today} required />`
-  document.querySelector('#eventDate').innerHTML = updateTime;
+  document.querySelector("#eventDate").innerHTML = updateTime
 }
-
 
 document.querySelector("#createAc").addEventListener("submit", async function (event) {
   event.preventDefault()

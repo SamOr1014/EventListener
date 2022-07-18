@@ -1,58 +1,57 @@
-function addHeaderEventListeners(){
-    //###############
-    //Event listeners
-    //###############
-    //search bar on header
+function addHeaderEventListeners() {
+  //###############
+  //Event listeners
+  //###############
+  //search bar on header
 
-    document.querySelector('#header-search').addEventListener('keyup', async (event) => {
-      const keyword = event.target.value
-      if (event.key === 'Enter'){
-        window.location.href = `/search.html?keyword=${keyword}`
-      }
-    })
-
-}   
+  document.querySelector("#header-search").addEventListener("keyup", async (event) => {
+    const keyword = event.target.value
+    if (event.key === "Enter") {
+      window.location.href = `/search.html?keyword=${keyword}`
+    }
+  })
+}
 function addHeaderAccountListenerFalse() {
-      //add to those login status false button
-      document.querySelector('#login-button-header').addEventListener('click', ()=> {
-        window.location.href = '/login'
-      })
-      document.querySelector('#signup-button-header').addEventListener('click', ()=> {
-        window.location.href = '/login'
-      })
+  //add to those login status false button
+  document.querySelector("#login-button-header").addEventListener("click", () => {
+    window.location.href = "/login"
+  })
+  document.querySelector("#signup-button-header").addEventListener("click", () => {
+    window.location.href = "/login"
+  })
 }
 
-function addHeaderAccountListenerTrue(){
-    //add to those login status true button
-    document.querySelector('#account-detail').addEventListener('click', ()=> {
-      window.location.href = '/user-account.html'
-    })
-    document.querySelector('#logout').addEventListener('click', ()=> {
-      window.location.href = '/logout'
-    })
+function addHeaderAccountListenerTrue() {
+  //add to those login status true button
+  document.querySelector("#account-detail").addEventListener("click", () => {
+    window.location.href = "/user-account.html"
+  })
+  document.querySelector("#logout").addEventListener("click", () => {
+    window.location.href = "/logout"
+  })
 }
-async function loadHeaderAccountButton(){
-    //check the login status first
-    const status = await fetch('/status', {
-        method: 'GET'
+async function loadHeaderAccountButton() {
+  //check the login status first
+  const status = await fetch("/status", {
+    method: "GET",
+  })
+  const userLoginStatus = await status.json()
+  //true fetch user's profile and get his profile pic and name
+  if (userLoginStatus.login) {
+    //the login status is true so load the user profile
+    const userInfoFromServer = await fetch("/account/userdetail", {
+      method: "GET",
     })
-    const userLoginStatus = await status.json()
-    //true fetch user's profile and get his profile pic and name
-    if(userLoginStatus.login){
-        //the login status is true so load the user profile
-        const userInfoFromServer = await fetch('/account/userdetail', {
-            method: 'GET'
-        })
-        let userInfo = await userInfoFromServer.json()
-        let image
-        if (!userInfo.profile_img){
-          image = "/profile-pic.jpg"
-        }
-        else {
-          image = "/" + userInfo.profile_img
-        }
-        //insert the three buttons according if they are admin
-        let buttons = !userInfo.is_admin?`        <button
+    let userInfo = await userInfoFromServer.json()
+    let image
+    if (!userInfo.profile_img) {
+      image = "/profile-pic.jpg"
+    } else {
+      image = "/" + userInfo.profile_img
+    }
+    //insert the three buttons according if they are admin
+    let buttons = !userInfo.is_admin
+      ? `        <button
         id="account-detail" 
         type="button"
         class="btn btn-outline-light me-2"
@@ -101,7 +100,8 @@ async function loadHeaderAccountButton(){
             >
           </li>
         </ul>
-      </div>`: `        <button
+      </div>`
+      : `        <button
       id="account-detail" 
       type="button"
       class="btn btn-outline-light me-2"
@@ -149,21 +149,20 @@ async function loadHeaderAccountButton(){
       </li>
       </ul>
     </div>`
-      document.querySelector('#account').innerHTML = buttons
-      addHeaderAccountListenerTrue()
-      addHeaderEventListeners()
-    }
-    else {
-        let buttons = `            <button type="button" id="login-button-header" class="btn btn-outline-light me-2">
+    document.querySelector("#account").innerHTML = buttons
+    addHeaderAccountListenerTrue()
+    addHeaderEventListeners()
+  } else {
+    let buttons = `            <button type="button" id="login-button-header" class="btn btn-outline-light me-2">
         Log in
       </button>
       <button type="button" id="signup-button-header" class="btn btn-warning">
         Sign up
         </button>`
-        document.querySelector('#account').innerHTML = buttons
-        addHeaderAccountListenerFalse()
-        addHeaderEventListeners()
-    }
+    document.querySelector("#account").innerHTML = buttons
+    addHeaderAccountListenerFalse()
+    addHeaderEventListeners()
+  }
 }
 
 async function CheckLogin() {
@@ -178,7 +177,7 @@ async function CheckLogin() {
 }
 loadHeaderAccountButton()
 addHeaderEventListeners()
-document.querySelector("#create-event").addEventListener("click", async() => {
+document.querySelector("#create-event").addEventListener("click", async () => {
   CheckLogin()
 })
 

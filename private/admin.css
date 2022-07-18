@@ -1,55 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 
-body{
+body {
   font-family: 'Secular One', sans-serif;
   color: white;
 }
 
 body {
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 /* css for header plus navbar */
-#logo  {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 3rem;
+#logo {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
 }
-#navigation{
-    padding-left: 3vw;
+#navigation {
+  padding-left: 3vw;
 }
-.nav-link{
-    font-size: 1.3rem;
+.nav-link {
+  font-size: 1.3rem;
 }
-.card{
-    border: #232526 solid 1px;
-    background: #141e30; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #243b55,
-      #141e30
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #243b55,
-      #141e30
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    box-shadow: white 0px 0px 10px;
-    border: white solid 1px;
+.card {
+  border: #232526 solid 1px;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: white 0px 0px 10px;
+  border: white solid 1px;
 }
 /* css for other elements */
 #user-icon {
-    margin-left: 4%;
+  margin-left: 4%;
 }
 
 #joined-event-col {
-    border: 5px solid rgba(63, 63, 63, 0.65);
-    padding: 1rem;
-    border-radius: 15px;
+  border: 5px solid rgba(63, 63, 63, 0.65);
+  padding: 1rem;
+  border-radius: 15px;
 }
 
 #title {
-    font-size: 3rem;
-    color: white;
+  font-size: 3rem;
+  color: white;
 }

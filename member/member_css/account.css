@@ -5,8 +5,8 @@ body {
   font-family: 'Secular One', sans-serif;
   color: white;
 }
-@media screen and (max-width: 770px){
-  #joined-event-col .col-md-4{
+@media screen and (max-width: 770px) {
+  #joined-event-col .col-md-4 {
     width: 100%;
   }
 }
@@ -24,7 +24,6 @@ body {
     text-align: center;
     width: 100%;
   }
-
 }
 
 body {
@@ -81,8 +80,8 @@ body {
 #Profile button.btn,
 #privacy-panel-email button.btn,
 #privacy-panel-password button.btn,
-#privacy-panel-other button.btn{
-  background-color: rgba(13, 60, 136, 0.475) ;
+#privacy-panel-other button.btn {
+  background-color: rgba(13, 60, 136, 0.475);
   border: rgba(13, 60, 136, 0.475);
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
@@ -112,7 +111,7 @@ body {
   list-style-type: none;
   overflow-y: scroll;
 }
-#follower-list li{
+#follower-list li {
   margin-bottom: 3px;
 }
 #bio-text {
@@ -162,7 +161,7 @@ body {
 }
 .col-md-4 a {
   color: rgb(255, 251, 3);
-  text-shadow: 0px 0px 10px rgb(255, 251, 3) ;
+  text-shadow: 0px 0px 10px rgb(255, 251, 3);
   font-size: 1.3rem;
 }
 .card {
@@ -181,7 +180,7 @@ body {
   box-shadow: white 0px 0px 10px;
   border: white solid 1px;
 }
-.card-img-top{
+.card-img-top {
   object-fit: cover;
   aspect-ratio: 1/1 !important;
   width: 100% !important;

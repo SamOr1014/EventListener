@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
-@media screen and (max-width: 450px){
-  #place-left{
+@media screen and (max-width: 450px) {
+  #place-left {
     font-size: 1rem !important;
     left: 3%;
     top: -6% !important;
@@ -57,7 +57,7 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
 }
-#Profile{
+#Profile {
   padding: 3%;
   border: #232526 solid 1px;
   background: #141e30; /* fallback for old browsers */
@@ -90,7 +90,6 @@ body {
   border-top: grey solid 1px;
 }
 
-
 #event-left,
 #event-left img {
   border: #232526 solid 1px;
@@ -112,10 +111,10 @@ body {
 p {
   margin-bottom: 0px !important;
 }
-.card-title{
+.card-title {
   font-size: 2rem;
 }
-.card-text{
+.card-text {
   font-size: 1.2rem;
 }
 #user p {
@@ -128,7 +127,7 @@ p {
   font-size: 1rem;
 }
 
-#no-login-msg{
+#no-login-msg {
   font-size: 2.5rem;
 }
 
@@ -136,12 +135,12 @@ p {
   display: flex;
   flex-direction: column;
 }
-.card-img-top{
+.card-img-top {
   object-fit: cover;
   aspect-ratio: 1/1 !important;
   width: 100% !important;
 }
-#place-left{
+#place-left {
   padding: 1%;
   font-size: 1.5rem;
   left: 3%;

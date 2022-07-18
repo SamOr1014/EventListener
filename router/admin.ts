@@ -22,9 +22,9 @@ admin.put("/users/ban-status", async (req, res) => {
   if (!banStatus) {
     await client.query("update users set is_banned = true where id = $1", [userToBeBam])
   } else {
-    await client.query('update users set is_banned = false where id = $1',[userToBeBam])
+    await client.query("update users set is_banned = false where id = $1", [userToBeBam])
   }
-  res.json({updateBan : true})
+  res.json({ updateBan: true })
 })
 
 //get the page event only
@@ -34,32 +34,42 @@ admin.get("/events", (req, res) => {
 })
 
 //admin getting all event in the event panel
-admin.get('/allEvents', async (req, res)=> {
-  const allEvent = await client.query('select * from events order by id asc')
-  res.json(allEvent.rows);
-});
+admin.get("/allEvents", async (req, res) => {
+  const allEvent = await client.query("select * from events order by id asc")
+  res.json(allEvent.rows)
+})
 
-admin.get('/allEvents/activeEvents', async (req, res)=> {
-  const allEvent = await client.query('select * from events where is_deleted = false and is_active = true order by id asc')
-  res.json(allEvent.rows);
-});
+admin.get("/allEvents/activeEvents", async (req, res) => {
+  const allEvent = await client.query(
+    "select * from events where is_deleted = false and is_active = true order by id asc"
+  )
+  res.json(allEvent.rows)
+})
 
-admin.get('/allEvents/inactiveEvents', async (req, res)=> {
-  const allEvent = await client.query('select * from events where is_deleted = false and is_active = false order by id asc')
-  res.json(allEvent.rows);
-});
+admin.get("/allEvents/inactiveEvents", async (req, res) => {
+  const allEvent = await client.query(
+    "select * from events where is_deleted = false and is_active = false order by id asc"
+  )
+  res.json(allEvent.rows)
+})
 
-admin.get('/allEvents/deletedEvents', async (req, res)=> {
-  const allEvent = await client.query('select * from events where is_deleted = true order by id asc')
-  res.json(allEvent.rows);
-});
+admin.get("/allEvents/deletedEvents", async (req, res) => {
+  const allEvent = await client.query(
+    "select * from events where is_deleted = true order by id asc"
+  )
+  res.json(allEvent.rows)
+})
 
 //delete event by setting their is_deleted column to true
-admin.put('/events/deletestatus', async (req, res)=> {
+admin.put("/events/deletestatus", async (req, res) => {
   const deleteEvent = req.query.eventid
-  const isdeleteStatus = (await client.query('select is_deleted from events where id = $1;',[deleteEvent])).rows[0].is_deleted
+  const isdeleteStatus = (
+    await client.query("select is_deleted from events where id = $1;", [deleteEvent])
+  ).rows[0].is_deleted
 
-  isdeleteStatus?await client.query('update events set is_deleted = false where id = $1',[deleteEvent]):await client.query('update events set is_deleted = true where id = $1',[deleteEvent])
+  isdeleteStatus
+    ? await client.query("update events set is_deleted = false where id = $1", [deleteEvent])
+    : await client.query("update events set is_deleted = true where id = $1", [deleteEvent])
   res.json({ deleteEvent: true })
 })
 
@@ -70,9 +80,13 @@ admin.put("/events/inactivestatus", async (req, res) => {
     return
   }
   const eventidToBeInactive = req.query.eventid
-  const isactiveStatus = (await client.query('select is_active from events where id = $1;',[eventidToBeInactive])).rows[0].is_active
-  //check is_active status 
-  isactiveStatus?await client.query("update events set is_active = false where id = $1", [eventidToBeInactive]):await client.query("update events set is_active = true where id = $1", [eventidToBeInactive])
+  const isactiveStatus = (
+    await client.query("select is_active from events where id = $1;", [eventidToBeInactive])
+  ).rows[0].is_active
+  //check is_active status
+  isactiveStatus
+    ? await client.query("update events set is_active = false where id = $1", [eventidToBeInactive])
+    : await client.query("update events set is_active = true where id = $1", [eventidToBeInactive])
 
   res.json({ deactivate: true })
 })

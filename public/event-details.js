@@ -75,7 +75,7 @@ async function loadEventDetails(eventid) {
   <div class="col-md-12 mb-4"><img class="w-100" src="${image}" alt="..." /></img></div>
     <div class="col-md-12 event-detailsInfo position-relative">
      <div class="event-name" class="mt-2" >${events.name}
-     <div id="place-left" class="position-absolute">${placeLeft } Place Left!!</div>
+     <div id="place-left" class="position-absolute">${placeLeft} Place Left!!</div>
      </div>
        <div id="event-content-text" class="mt-2 ">
          <div class="time">Date:</div>
@@ -244,25 +244,24 @@ async function promptEvent() {
   if (!reportReason) {
     alert("Sorry, I haven't get your msg")
     return
-  }
-  else {
-  const eventid = window.location.search.substr(9)
-  const resp = await fetch(`/event/reports`, {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify({
-      eventid,
-      reportReason,
-    }),
-  })
-  const result = await resp.json()
-  if (!result.success) {
-    alert("please sign in first!")
-    window.location.href = "/signup.html"
   } else {
-    alert("you have reported")
+    const eventid = window.location.search.substr(9)
+    const resp = await fetch(`/event/reports`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        eventid,
+        reportReason,
+      }),
+    })
+    const result = await resp.json()
+    if (!result.success) {
+      alert("please sign in first!")
+      window.location.href = "/signup.html"
+    } else {
+      alert("you have reported")
+    }
   }
-}
 }
 // follow function
 async function loadFollower() {
