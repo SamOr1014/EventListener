@@ -2,7 +2,7 @@
 
 ### Description
 
-This repository is a website/web application that is aimed to create a platform for people to create and join events. The website is build by plain HTML, CSS and Javascript. The server of this webiste is created by Express.js and typescript.
+This repository is a website/web application that is aimed to create a platform for people to create and join events. The website is build by plain HTML, CSS and Javascript. The server of this webiste is created by Express.js and typescript and PostgresSQL is used as our database.
 
 ### Function
 
